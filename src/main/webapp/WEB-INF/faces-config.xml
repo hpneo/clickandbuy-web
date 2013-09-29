@@ -7,5 +7,9 @@
   <application>
     <message-bundle>site_labels</message-bundle>
   </application>
+  
+  <lifecycle>
+    <phase-listener>com.clickandbuy.web.util.AuthListener</phase-listener>
+  </lifecycle>
 
 </faces-config>
