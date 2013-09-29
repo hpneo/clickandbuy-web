@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      template="layout.xhtml">
+  <f:loadBundle basename="site_labels" var="site_labels" />
+  <ui:define name="body">
+    <div class="row header">
+      <div class="small-2 large-4 columns">
+        <h3>Inventarios</h3>
+      </div>
+      <div class="small-2 large-4 columns">
+        <a href="inventarios/nuevo" class="small button">Nuevo reporte</a>
+      </div>
+    </div>
+    <div class="row">
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha de creación</th>
+            <th>Autor</th>
+            <th>Cantidad de productos</th>
+            <th>Cantidad de unidades</th>
+            <th>Total S/.</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2013-09-01</td>
+            <td>
+              <a href="usuario_detalle.html">Piero Sifuentes</a>
+            </td>
+            <td>24</td>
+            <td>250</td>
+            <td>S/. 3050.00</td>
+            <td>
+              <a href="#">Ver</a>
+              <a href="#">Editar</a>
+              <a href="#">Eliminar</a>
+            </td>
+          </tr>
+          <tr>
+            <td>2013-09-01</td>
+            <td>
+              <a href="usuario_detalle.html">Gustavo Leon</a>
+            </td>
+            <td>24</td>
+            <td>250</td>
+            <td>S/. 3050.00</td>
+            <td>
+              <a href="#">Ver</a>
+              <a href="#">Editar</a>
+              <a href="#">Eliminar</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ui:define>
+</ui:composition>

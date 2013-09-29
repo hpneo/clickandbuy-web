@@ -35,6 +35,16 @@
       <artifactId>primefaces</artifactId>
       <version>3.5</version>
     </dependency>
+    <dependency>
+      <groupId>org.ocpsoft.rewrite</groupId>
+      <artifactId>rewrite-servlet</artifactId>
+      <version>2.0.7.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ocpsoft.rewrite</groupId>
+      <artifactId>rewrite-config-prettyfaces</artifactId>
+      <version>2.0.7.Final</version>
+    </dependency>
   </dependencies>
 
   <build>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      template="layout.xhtml">
+  <f:loadBundle basename="site_labels" var="site_labels" />
+  <ui:define name="body">
+    <div class="row header">
+      <div class="small-2 large-4 columns">
+        <h3>Pedidos</h3>
+      </div>
+      <div class="small-2 large-4 columns">
+        <a href="pedidos/nuevo" class="small button">Nuevo pedido</a>
+      </div>
+    </div>
+    <div class="row">
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha de creación</th>
+            <th>Usuario</th>
+            <th>Cantidad de productos</th>
+            <th>Costo total</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2013-09-11</td>
+            <td>
+              <a href="usuario_detalle.html">psifuentes</a>
+            </td>
+            <td>130</td>
+            <td>S/. 4530.00</td>
+            <td>
+              <a href="#">Ver</a>
+              <a href="#">Editar</a>
+            </td>
+          </tr>
+          <tr>
+            <td>2013-09-12</td>
+            <td>
+              <a href="usuario_detalle.html">cliente1</a>
+            </td>
+            <td>215</td>
+            <td>S/. 6120.00</td>
+            <td>
+              <a href="#">Ver</a>
+              <a href="#">Editar</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ui:define>
+</ui:composition>

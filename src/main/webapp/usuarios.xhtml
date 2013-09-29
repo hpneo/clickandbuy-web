@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      template="layout.xhtml">
+  <f:loadBundle basename="site_labels" var="site_labels" />
+  <ui:define name="body">
+    <div class="row header">
+      <div class="small-2 large-4 columns">
+        <h3>Usuarios</h3>
+      </div>
+      <div class="small-2 large-4 columns">
+        <a href="usuarios/nuevo" class="small button">Nuevo usuario</a>
+      </div>
+    </div>
+    <div class="row">
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre de usuario</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>DNI</th>
+            <th>Dirección</th>
+            <th>Celular</th>
+            <th>Correo</th>
+            <th>Rol</th>
+            <th>Fecha de nacimiento</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>psifuentes</td>
+            <td>Piero</td>
+            <td>Sifuentes</td>
+            <td>12345678</td>
+            <td>Av. Principal #123</td>
+            <td>999909090</td>
+            <td>psifuentes@clickandbuy.pe</td>
+            <td>Almacén</td>
+            <td>01/01/1990</td>
+            <td>
+              <a href="#">Editar</a>
+            </td>
+          </tr>
+          <tr>
+            <td>gfiguerola</td>
+            <td>Gary</td>
+            <td>Figuerola</td>
+            <td>87654321</td>
+            <td>Av. Central #456</td>
+            <td>999909099</td>
+            <td>gfiguerola@clickandbuy.pe</td>
+            <td>Almacén</td>
+            <td>02/02/1990</td>
+            <td>
+              <a href="#">Editar</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ui:define>
+</ui:composition>

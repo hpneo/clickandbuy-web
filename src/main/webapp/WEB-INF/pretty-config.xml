@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"
+	       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	       xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+
+  <url-mapping id="categories_index">
+    <pattern value="/categorias" />
+    <view-id value="/categorias.xhtml" />
+  </url-mapping>
+  <url-mapping id="categories_new">
+    <pattern value="/categorias/nuevo" />
+    <view-id value="/categoria_nuevo.xhtml" />
+  </url-mapping>
+  
+  <url-mapping id="products_index">
+    <pattern value="/productos" />
+    <view-id value="/productos.xhtml" />
+  </url-mapping>
+  <url-mapping id="products_new">
+    <pattern value="/productos/nuevo" />
+    <view-id value="/producto_nuevo.xhtml" />
+  </url-mapping>
+  
+  <url-mapping id="inventories_index">
+    <pattern value="/inventarios" />
+    <view-id value="/inventarios.xhtml" />
+  </url-mapping>
+  <url-mapping id="inventories_new">
+    <pattern value="/inventarios/nuevo" />
+    <view-id value="/inventario_nuevo.xhtml" />
+  </url-mapping>
+  
+  <url-mapping id="users_index">
+    <pattern value="/usuarios" />
+    <view-id value="/usuarios.xhtml" />
+  </url-mapping>
+  <url-mapping id="users_new">
+    <pattern value="/usuarios/nuevo" />
+    <view-id value="/usuario_nuevo.xhtml" />
+  </url-mapping>
+  
+  <url-mapping id="quotes_index">
+    <pattern value="/cotizaciones" />
+    <view-id value="/cotizaciones.xhtml" />
+  </url-mapping>
+  <url-mapping id="quotes_new">
+    <pattern value="/cotizaciones/nuevo" />
+    <view-id value="/cotizacion_nuevo.xhtml" />
+  </url-mapping>
+  
+  <url-mapping id="orders_index">
+    <pattern value="/pedidos" />
+    <view-id value="/pedidos.xhtml" />
+  </url-mapping>
+  <url-mapping id="orders_new">
+    <pattern value="/pedidos/nuevo" />
+    <view-id value="/pedido_nuevo.xhtml" />
+  </url-mapping>
+
+</pretty-config>

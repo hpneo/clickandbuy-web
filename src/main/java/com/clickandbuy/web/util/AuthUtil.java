@@ -7,7 +7,7 @@ package com.clickandbuy.web.util;
 public class AuthUtil {
   
   public static boolean userSignedIn() {
-    return WebUtil.getSession("current_user") != null;
+    return WebUtil.getSession("current_user") == null;
   }
   
 }

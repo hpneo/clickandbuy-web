@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      template="layout.xhtml">
+  <f:loadBundle basename="site_labels" var="site_labels" />
+  <ui:define name="body">
+    <div class="row header">
+      <div class="small-2 large-4 columns">
+        <h3>Categorías</h3>
+      </div>
+      <div class="small-2 large-4 columns">
+        <a class="small button" href="categorias/nuevo">Nueva categoría</a>
+      </div>
+    </div>
+    <div class="row">
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Cantidad de productos</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Abarrotes</td>
+            <td>190</td>
+            <td>
+              <a href="#">Ver</a>
+              <a href="#">Editar</a>
+              <a href="#">Eliminar</a>
+            </td>
+          </tr>
+          <tr>
+            <td>Cuidado personal</td>
+            <td>70</td>
+            <td>
+              <a href="#">Ver</a>
+              <a href="#">Editar</a>
+              <a href="#">Eliminar</a>
+            </td>
+          </tr>
+          <tr>
+            <td>Limpieza</td>
+            <td>55</td>
+            <td>
+              <a href="#">Ver</a>
+              <a href="#">Editar</a>
+              <a href="#">Eliminar</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ui:define>
+</ui:composition>

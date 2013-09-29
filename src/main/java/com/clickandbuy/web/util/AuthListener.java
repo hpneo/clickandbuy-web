@@ -20,6 +20,10 @@ public class AuthListener implements javax.faces.event.PhaseListener {
 
   @Override
   public void beforePhase(PhaseEvent event) {
+    System.out.println("===================================");
+    System.out.println(WebUtil.getRequest().getServletPath());
+    System.out.println("===================================");
+    
     if (!WebUtil.getRequest().getServletPath().contains("login.xhtml")) {
       if (!AuthUtil.userSignedIn()) {
 	WebUtil.redirect("/login.xhtml");
