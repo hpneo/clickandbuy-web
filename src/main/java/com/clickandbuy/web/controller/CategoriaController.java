@@ -6,7 +6,6 @@ package com.clickandbuy.web.controller;
 
 import com.clickandbuy.web.bean.CategoriaBean;
 import com.clickandbuy.web.util.WebUtil;
-import com.ocpsoft.pretty.PrettyContext;
 import javax.faces.bean.*;
 
 /**

@@ -11,7 +11,7 @@
     <pattern value="/categorias/nuevo" />
     <view-id value="/categoria_nuevo.xhtml" />
   </url-mapping>
-  <url-mapping id="categories_edit">
+  <url-mapping id="categories_show">
     <pattern value="/categorias/#{id}" />
     <view-id value="/categoria_detalle.xhtml" />
   </url-mapping>
@@ -28,6 +28,14 @@
     <pattern value="/productos/nuevo" />
     <view-id value="/producto_nuevo.xhtml" />
   </url-mapping>
+  <url-mapping id="products_show">
+    <pattern value="/productos/#{id}" />
+    <view-id value="/producto_detalle.xhtml" />
+  </url-mapping>
+  <url-mapping id="products_edit">
+    <pattern value="/productos/#{id}/editar" />
+    <view-id value="/producto_editar.xhtml" />
+  </url-mapping>
   
   <url-mapping id="inventories_index">
     <pattern value="/inventarios" />
@@ -36,6 +44,14 @@
   <url-mapping id="inventories_new">
     <pattern value="/inventarios/nuevo" />
     <view-id value="/inventario_nuevo.xhtml" />
+  </url-mapping>
+  <url-mapping id="inventories_show">
+    <pattern value="/inventarios/#{id}" />
+    <view-id value="/inventario_detalle.xhtml" />
+  </url-mapping>
+  <url-mapping id="inventories_edit">
+    <pattern value="/inventarios/#{id}/editar" />
+    <view-id value="/inventario_editar.xhtml" />
   </url-mapping>
   
   <url-mapping id="users_index">
@@ -46,6 +62,14 @@
     <pattern value="/usuarios/nuevo" />
     <view-id value="/usuario_nuevo.xhtml" />
   </url-mapping>
+  <url-mapping id="users_show">
+    <pattern value="/usuarios/#{id}" />
+    <view-id value="/usuario_detalle.xhtml" />
+  </url-mapping>
+  <url-mapping id="users_edit">
+    <pattern value="/usuarios/#{id}/editar" />
+    <view-id value="/usuario_editar.xhtml" />
+  </url-mapping>
   
   <url-mapping id="quotes_index">
     <pattern value="/cotizaciones" />
@@ -55,6 +79,14 @@
     <pattern value="/cotizaciones/nuevo" />
     <view-id value="/cotizacion_nuevo.xhtml" />
   </url-mapping>
+  <url-mapping id="quotes_show">
+    <pattern value="/cotizaciones/#{id}" />
+    <view-id value="/cotizacion_detalle.xhtml" />
+  </url-mapping>
+  <url-mapping id="quotes_edit">
+    <pattern value="/cotizaciones/#{id}/editar" />
+    <view-id value="/cotizacion_editar.xhtml" />
+  </url-mapping>
   
   <url-mapping id="orders_index">
     <pattern value="/pedidos" />
@@ -63,6 +95,14 @@
   <url-mapping id="orders_new">
     <pattern value="/pedidos/nuevo" />
     <view-id value="/pedido_nuevo.xhtml" />
+  </url-mapping>
+  <url-mapping id="orders_show">
+    <pattern value="/pedidos/#{id}" />
+    <view-id value="/pedido_detalle.xhtml" />
+  </url-mapping>
+  <url-mapping id="orders_edit">
+    <pattern value="/pedidos/#{id}/editar" />
+    <view-id value="/pedido_editar.xhtml" />
   </url-mapping>
 
 </pretty-config>
