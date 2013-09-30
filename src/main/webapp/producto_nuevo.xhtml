@@ -10,43 +10,43 @@
   <ui:define name="body">
     <div class="row header">
       <div class="small-2 large-4 columns">
-        <h3>Nuevo Producto</h3>
+        <h3>#{site_labels.products_new}</h3>
       </div>
     </div>
     <div class="row">
       <form class="small-9 large-centered columns panel">
         <p class="input">
-          <label for="product_name">Nombre:</label>
+          <label for="product_name">#{site_labels.product_name}:</label>
           <input type="text" id="product_name" />
         </p>
-        <p class="input">
-          <label for="product_quantity">Stock inicial:</label>
-          <input type="text" id="product_quantity" />
-        </p>
-        <p class="input">
-          <label for="product_category">Categoría:</label>
-          <select id="product_category">
-            <option value="">Abarrotes</option>
-            <option value="">Limpieza</option>
-            <option value="">Aseo personal</option>
-          </select>
-        </p>
-        <div class="row">
-          <p class="input large-4 columns">
-            <label for="product_price">Precio de compra:</label>
+	<div class="row">
+	  <p class="input large-3 columns">
+	    <label for="product_category">#{site_labels.product_category}:</label>
+	    <select id="product_category">
+	      <option value="">Abarrotes</option>
+	      <option value="">Limpieza</option>
+	      <option value="">Aseo personal</option>
+	    </select>
+	  </p>
+	  <p class="input large-3 columns">
+	    <label for="product_quantity">#{site_labels.product_stock}:</label>
+	    <input type="text" id="product_quantity" />
+	  </p>
+          <p class="input large-3 columns">
+            <label for="product_price">#{site_labels.product_price}:</label>
             <input type="text" id="product_price" />
           </p>
-          <p class="input large-4 columns">
-            <label for="product_sell_price">Precio de venta:</label>
+          <p class="input large-3 columns">
+            <label for="product_sell_price">#{site_labels.product_sell_price}:</label>
             <input type="text" id="product_sell_price" />
           </p>
         </div>
         <p class="input">
-          <label for="product_description">Descripción:</label>
+          <label for="product_description">#{site_labels.product_description}:</label>
           <textarea id="product_description"></textarea>
         </p>
         <p class="actions">
-          <input type="submit" value="Crear Producto" class="button" />
+          <input type="submit" value="#{site_labels.products_create}" class="button" />
         </p>
       </form>
     </div>

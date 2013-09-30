@@ -11,6 +11,14 @@
     <pattern value="/categorias/nuevo" />
     <view-id value="/categoria_nuevo.xhtml" />
   </url-mapping>
+  <url-mapping id="categories_edit">
+    <pattern value="/categorias/#{id}" />
+    <view-id value="/categoria_detalle.xhtml" />
+  </url-mapping>
+  <url-mapping id="categories_edit">
+    <pattern value="/categorias/#{id}/editar" />
+    <view-id value="/categoria_editar.xhtml" />
+  </url-mapping>
   
   <url-mapping id="products_index">
     <pattern value="/productos" />

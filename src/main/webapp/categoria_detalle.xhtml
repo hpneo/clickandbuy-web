@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      template="layout.xhtml">
+  <f:loadBundle basename="site_labels" var="site_labels" />
+  <ui:define name="body">
+    <div class="row header">
+      <div class="small-2 large-6 columns">
+        <h3>Abarrotes</h3>
+        <h4>Productos en esta categoría</h4>
+      </div>
+    </div>
+    <div class="row">
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio unitario</th>
+            <th>Precio total</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <a href="producto_detalle.html">Galletas Oreo (x6 unidades)</a>
+            </td>
+            <td>500</td>
+            <td>S/. 2.50</td>
+            <td>S/. 1250.00</td>
+            <td>
+              <a href="#">Editar</a>
+              <a href="#">Eliminar</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ui:define>
+</ui:composition>

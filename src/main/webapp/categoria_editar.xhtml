@@ -9,8 +9,8 @@
   <f:loadBundle basename="site_labels" var="site_labels" />
   <ui:define name="body">
     <div class="row header">
-      <div class="small-2 large-4 columns">
-        <h3>#{site_labels.categories_new}</h3>
+      <div class="small-2 large-12 columns">
+        <h3>#{site_labels.categories_edit} › #{categoriaController.categoria.nombre}</h3>
       </div>
     </div>
     <div class="row">
@@ -20,7 +20,7 @@
 	  <h:inputText value="#{categoriaController.categoria.nombre}" />
 	</p>
 	<p class="actions">
-	  <p:commandButton value="#{site_labels.categories_create}" action="#{categoriaController.insertar}" ajax="false" />
+	  <p:commandButton value="#{site_labels.categories_create}" action="#{categoriaController.actualizar}" ajax="false" />
 	</p>
       </h:form>
     </div>
