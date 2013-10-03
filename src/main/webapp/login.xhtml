@@ -14,7 +14,7 @@
   </h:head>
   <h:body>
     <div class="row" id="popin-login">
-      <form class="small-6 large-centered columns panel">
+      <h:form class="small-6 large-centered columns panel">
 	<p class="input">
 	  <label for="login_user">Usuario:</label>
           <p:inputText id="login_user" value="#{loginController.usuario.usuNombreusuario}"/>
@@ -24,9 +24,9 @@
           <p:password id="login_password" value="#{loginController.usuario.usuContrasenia}"/>
 	</p>
 	<p class="actions">
-            <p:commandButton  value="Entrar" styleClass="button radius expand" action="#{loginController.login()}"/>
+            <p:commandButton value="Entrar" styleClass="button radius expand" action="#{loginController.login}" ajax="false" />
 	</p>
-      </form>
+      </h:form>
     </div>
   </h:body>
 </html>

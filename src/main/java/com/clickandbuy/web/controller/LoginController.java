@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
@@ -19,19 +20,20 @@ import javax.faces.bean.SessionScoped;
  */
 
 @ManagedBean(name = "loginController")
-@SessionScoped
-public class LoginController implements Serializable{
+@ViewScoped
+public class LoginController {
     
     private Usuario usuario = new Usuario();
-    private UsuarioBusiness usuariobusiness = new UsuarioBusiness();
+    private UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
 
     public void login()
     {
         try {
-            if(usuariobusiness.autenticarUsuario(usuario.getUsuNombreusuario(), usuario.getUsuContrasenia()))
+            if(usuarioBusiness.autenticarUsuario(usuario.getUsuNombreusuario(), usuario.getUsuContrasenia()))
             {
                 System.out.println("INGRESASTE PAPI");
                 WebUtil.setSession("current_user", 1);
+		System.out.println(WebUtil.getSession("current_user"));
                 WebUtil.redirect("/productos");
             }else
                 System.out.println("NO INGRESASTE PENDEJO");
@@ -49,15 +51,5 @@ public class LoginController implements Serializable{
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
-    public UsuarioBusiness getUsuariobusiness() {
-        return usuariobusiness;
-    }
-
-    public void setUsuariobusiness(UsuarioBusiness usuariobusiness) {
-        this.usuariobusiness = usuariobusiness;
-    }
-    
-    
     
 }
