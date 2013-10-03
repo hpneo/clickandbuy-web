@@ -10,13 +10,23 @@
   <ui:define name="body">
     <div class="row header">
       <div class="small-2 large-4 columns">
-        <h3>Categorías</h3>
+        <h3>#{site_labels.categories}</h3>
       </div>
       <div class="small-2 large-4 columns">
         <a class="small button" href="categorias/nuevo">Nueva categoría</a>
       </div>
     </div>
     <div class="row">
+      <p:dataTable id="categorias" value="#{categoriaController.categorias}" var="categoria" rows="5" emptyMessage="#{site_labels.no_records}">
+	<p:column headerText="#{site_labels.category_name}">
+	  #{categoria.catNombre}
+	</p:column>
+	<p:column headerText="#{site_labels.actions}">
+	  <a href="categorias/#{categoria.catCodigo}">Ver</a>
+	  <a href="categorias/#{categoria.catCodigo}/editar">Editar</a>
+	  <a href="categorias/#{categoria.catCodigo}/eliminar">Eliminar</a>
+	</p:column>
+      </p:dataTable>
       <table>
         <thead>
           <tr>

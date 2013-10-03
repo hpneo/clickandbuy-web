@@ -10,14 +10,14 @@
   <ui:define name="body">
     <div class="row header">
       <div class="small-2 large-12 columns">
-        <h3>#{site_labels.categories_edit} › #{categoriaController.categoria.nombre}</h3>
+        <h3>#{site_labels.categories_edit} › #{categoriaController.categoria.catNombre}</h3>
       </div>
     </div>
     <div class="row">
       <h:form class="small-9 large-centered columns panel">
 	<p class="input">
 	  <h:outputLabel value="#{site_labels.category_name}: " />
-	  <h:inputText value="#{categoriaController.categoria.nombre}" />
+	  <h:inputText value="#{categoriaController.categoria.catNombre}" />
 	</p>
 	<p class="actions">
 	  <p:commandButton value="#{site_labels.categories_create}" action="#{categoriaController.actualizar}" ajax="false" />
