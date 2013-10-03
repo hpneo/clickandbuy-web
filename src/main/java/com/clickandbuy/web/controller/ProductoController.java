@@ -4,10 +4,15 @@
  */
 package com.clickandbuy.web.controller;
 
-import com.clickandbuy.web.bean.ProductoBean;
+import clickandbuy.upc.edu.core.business.CategoriaBusiness;
+import clickandbuy.upc.edu.core.business.ProductoBusiness;
+import clickandbuy.upc.edu.core.entity.Categoria;
+import clickandbuy.upc.edu.core.entity.Producto;
 import com.clickandbuy.web.util.WebUtil;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -23,14 +28,21 @@ public class ProductoController {
   
   @ManagedProperty("#{param.id}")
   private int id = 0;
-  private ProductoBean producto = new ProductoBean();
+  private Producto producto = new Producto();
   private List<SelectItem> categorias = new ArrayList<SelectItem>();
+  private ProductoBusiness productoBusiness = new ProductoBusiness();
   
   public void insertar() {
     System.out.println("========================");
-    System.out.println(this.producto.getCodigo());
-    System.out.println(this.producto.getNombre());
+    System.out.println(this.producto.getProdCodigo());
+    System.out.println(this.producto.getProdNombre());
     System.out.println("========================");
+    
+    try {
+      this.productoBusiness.addProducto(this.producto);
+    } catch (Exception ex) {
+      Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+    }
     
     WebUtil.redirect("/productos");
   }
@@ -38,8 +50,8 @@ public class ProductoController {
   public void actualizar() {
     if (this.producto != null) {
       System.out.println("========================");
-      System.out.println(this.producto.getCodigo());
-      System.out.println(this.producto.getNombre());
+      System.out.println(this.producto.getProdCodigo());
+      System.out.println(this.producto.getProdNombre());
       System.out.println("========================");
       
       WebUtil.redirect("/productos/" + this.id);
@@ -54,29 +66,40 @@ public class ProductoController {
     this.id = id;
   }
   
-  public ProductoBean getProducto() {
+  public Producto getProducto() {
     if (this.id == 0) {
-      this.producto = new ProductoBean();
+      this.producto = new Producto();
     }
     else {
-      this.producto = new ProductoBean(); //ProductoBusiness.obtener(this.id);
-      this.producto.setCodigo(this.id);
-      this.producto.setNombre("Galletas Oreo (x6 unidades)");
-      this.producto.setCodigoCategoria(1);
+      try {
+	this.producto = this.productoBusiness.getProductoByCode(this.id);
+      } catch (Exception ex) {
+	this.producto = new Producto();
+      }
     }
     
     return this.producto;
   }
   
-  public void setProductoBean(ProductoBean producto) {
+  public void setProducto(Producto producto) {
     this.producto = producto;
   }
   
   public List<SelectItem> getCategorias() {
     this.categorias = new ArrayList<SelectItem>();
-    categorias.add(new SelectItem(1, "Abarrotes"));
-    categorias.add(new SelectItem(2, "Cuidado personal"));
-    categorias.add(new SelectItem(3, "Limpieza"));
+    
+    CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
+    List<Categoria> _categorias;
+    
+    try {
+      _categorias = categoriaBusiness.listCategoria();
+    } catch (Exception ex) {
+      _categorias = new ArrayList<Categoria>();
+    }
+    
+    for (Categoria c:_categorias) {
+      categorias.add(new SelectItem(c.getCatCodigo(), c.getCatNombre()));
+    }
     
     return categorias;
   }

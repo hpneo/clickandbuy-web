@@ -33,6 +33,11 @@ public class CategoriaController {
     System.out.println(this.categoria.getCatCodigo());
     System.out.println(this.categoria.getCatCodigo());
     System.out.println("========================");
+    try {
+      this.categoriaBusiness.addCategoria(this.categoria);
+    } catch (Exception ex) {
+      Logger.getLogger(CategoriaController.class.getName()).log(Level.SEVERE, null, ex);
+    }
     
     WebUtil.redirect("/categorias");
   }
