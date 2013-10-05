@@ -17,31 +17,31 @@
       <h:form class="small-9 large-centered columns panel">
         <p class="input">
 	  <h:outputLabel for="product_name" value="#{site_labels.product_name}:" />
-	  <h:inputText id="product_name" value="#{productoController.producto.nombre}" />
+	  <h:inputText id="product_name" value="#{productoController.producto.prodNombre}" />
         </p>
 	<div class="row">
 	  <p class="input large-3 columns">
 	    <h:outputLabel for="product_category" value="#{site_labels.product_category}:" />
-	    <h:selectOneMenu id="product_category" value="#{productoController.producto.codigoCategoria}">
+	    <h:selectOneMenu id="product_category" value="#{productoController.producto.categoria.catCodigo}">
 	      <f:selectItems value="#{productoController.categorias}" />
 	    </h:selectOneMenu>
 	  </p>
 	  <p class="input large-3 columns">
 	    <h:outputLabel for="product_stock" value="#{site_labels.product_stock}:" />
-	    <h:inputText id="product_stock" value="#{productoController.producto.stock}" />
+	    <h:inputText id="product_stock" value="#{productoController.producto.prodStock}" />
 	  </p>
           <p class="input large-3 columns">
 	    <h:outputLabel for="product_price" value="#{site_labels.product_price}:" />
-            <h:inputText id="product_price" value="#{productoController.producto.precioCompra}" />
+            <h:inputText id="product_price" value="#{productoController.producto.prodPreciocompra}" />
           </p>
           <p class="input large-3 columns">
 	    <h:outputLabel for="product_sell_price" value="#{site_labels.product_sell_price}:" />
-            <h:inputText id="product_sell_price" value="#{productoController.producto.precioVenta}" />
+            <h:inputText id="product_sell_price" value="#{productoController.producto.prodPrecioventa}" />
           </p>
         </div>
         <p class="input">
 	  <h:outputLabel for="product_description" value="#{site_labels.product_description}:" />
-          <h:inputTextarea id="product_description" value="#{productoController.producto.descripcion}" />
+          <h:inputTextarea id="product_description" value="#{productoController.producto.prodDescripcion}" />
         </p>
         <p class="actions">
 	  <p:commandButton value="#{site_labels.products_update}" action="#{productoController.actualizar}" ajax="false" />

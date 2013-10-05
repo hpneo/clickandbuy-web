@@ -29,6 +29,7 @@ public class ProductoController {
   @ManagedProperty("#{param.id}")
   private int id = 0;
   private Producto producto = new Producto();
+  private List<Producto> productos = new ArrayList<Producto>();
   private List<SelectItem> categorias = new ArrayList<SelectItem>();
   private ProductoBusiness productoBusiness = new ProductoBusiness();
   
@@ -102,6 +103,14 @@ public class ProductoController {
     }
     
     return categorias;
+  }
+  
+  public List<Producto> getProductos() {
+    try {
+      return this.productoBusiness.listProducto();
+    } catch (Exception e) {
+      return new ArrayList<Producto>();
+    }
   }
   
 }

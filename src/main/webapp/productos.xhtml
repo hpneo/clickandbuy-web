@@ -17,51 +17,28 @@
       </div>
     </div>
     <div class="row">
-      <table>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Stock</th>
-            <th>Categoría</th>
-            <th>Precio de compra</th>
-            <th>Precio de venta</th>
-            <th>Descripción</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Galletas Oreo (x6 unidades)</td>
-            <td>2050</td>
-            <td>
-              <a href="categoria_detalle.html">Abarrotes</a>
-            </td>
-            <td>2.50</td>
-            <td>3.00</td>
-            <td>Paquetes de 6 unidades de galletas Oreo clásica</td>
-            <td>
-              <a href="productos/1">Ver</a>
-              <a href="productos/1/editar">Editar</a>
-              <a href="productos/1/eliminar">Eliminar</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Ayudín líquido limón (x24 unidades)</td>
-            <td>1300</td>
-            <td>
-              <a href="categoria_detalle.html">Limpieza</a>
-            </td>
-            <td>216.00</td>
-            <td>288.00</td>
-            <td>Caja de 24 botellas de Ayudín líquido olor a limón</td>
-            <td>
-              <a href="productos/2">Ver</a>
-              <a href="productos/2/editar">Editar</a>
-              <a href="productos/2/eliminar">Eliminar</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <p:dataTable id="productos" value="#{productoController.productos}" var="producto" rows="10" emptyMessage="#{site_labels.no_records}">
+	<p:column headerText="#{site_labels.product_name}">
+	  #{producto.prodNombre}
+	</p:column>
+	<p:column headerText="#{site_labels.product_stock}">
+	  #{producto.prodStock}
+	</p:column>
+	<p:column headerText="#{site_labels.product_category}">
+	  #{producto.categoria.catNombre}
+	</p:column>
+	<p:column headerText="#{site_labels.product_price}">
+	  #{producto.prodPreciocompra}
+	</p:column>
+	<p:column headerText="#{site_labels.product_sell_price}">
+	  #{producto.prodPrecioventa}
+	</p:column>
+	<p:column headerText="#{site_labels.actions}">
+	  <a href="productos/#{producto.prodCodigo}">Ver</a>
+	  <a href="productos/#{producto.prodCodigo}/editar">Editar</a>
+	  <a href="productos/#{producto.prodCodigo}/eliminar">Eliminar</a>
+	</p:column>
+      </p:dataTable>
     </div>
   </ui:define>
 </ui:composition>
