@@ -10,50 +10,32 @@
   <ui:define name="body">
     <div class="row header">
       <div class="small-2 large-4 columns">
-        <h3>Pedidos</h3>
+        <h3>#{site_labels.orders}</h3>
       </div>
       <div class="small-2 large-4 columns">
-        <a href="pedidos/nuevo" class="small button">Nuevo pedido</a>
+        <a href="pedidos/nuevo" class="small button">#{site_labels.orders_new}</a>
       </div>
     </div>
     <div class="row">
-      <table>
-        <thead>
-          <tr>
-            <th>Fecha de creación</th>
-            <th>Usuario</th>
-            <th>Cantidad de productos</th>
-            <th>Costo total</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>2013-09-11</td>
-            <td>
-              <a href="usuario_detalle.html">psifuentes</a>
-            </td>
-            <td>130</td>
-            <td>S/. 4530.00</td>
-            <td>
-              <a href="#">Ver</a>
-              <a href="#">Editar</a>
-            </td>
-          </tr>
-          <tr>
-            <td>2013-09-12</td>
-            <td>
-              <a href="usuario_detalle.html">cliente1</a>
-            </td>
-            <td>215</td>
-            <td>S/. 6120.00</td>
-            <td>
-              <a href="#">Ver</a>
-              <a href="#">Editar</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <p:dataTable id="pedidos" value="#{pedidoController.pedidos}" var="pedido" rows="10" emptyMessage="#{site_labels.no_records}">
+        <p:column headerText="#{site_labels.order_create_date}">
+          #{pedido.fecCreacion}
+        </p:column>
+        <p:column headerText="#{site_labels.order_user}">
+          #{pedido.pedUsuario.usuNombreusuario}
+        </p:column>
+        <p:column headerText="#{site_labels.order_products_count}">
+          #{pedido.productos.count}
+        </p:column>
+        <p:column headerText="#{site_labels.order_total}">
+          #{pedido.pedTotal}
+        </p:column>
+        <p:column headerText="#{site_labels.actions}">
+          <a href="pedidos/#{pedido.pedCodigo}">#{site_labels.actions_view}</a>
+          <a href="pedidos/#{pedido.pedCodigo}/editar">#{site_labels.actions_edit}</a>
+          <a href="pedidos/#{pedido.pedCodigo}/eliminar">#{site_labels.actions_delete}</a>
+        </p:column>
+      </p:dataTable>
     </div>
   </ui:define>
 </ui:composition>

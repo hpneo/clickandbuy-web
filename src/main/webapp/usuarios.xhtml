@@ -17,52 +17,22 @@
       </div>
     </div>
     <div class="row">
-      <table>
-        <thead>
-          <tr>
-            <th>Nombre de usuario</th>
-            <th>Nombre</th>
-            <th>Apellidos</th>
-            <th>DNI</th>
-            <th>Dirección</th>
-            <th>Celular</th>
-            <th>Correo</th>
-            <th>Rol</th>
-            <th>Fecha de nacimiento</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>psifuentes</td>
-            <td>Piero</td>
-            <td>Sifuentes</td>
-            <td>12345678</td>
-            <td>Av. Principal #123</td>
-            <td>999909090</td>
-            <td>psifuentes@clickandbuy.pe</td>
-            <td>Almacén</td>
-            <td>01/01/1990</td>
-            <td>
-              <a href="#">Editar</a>
-            </td>
-          </tr>
-          <tr>
-            <td>gfiguerola</td>
-            <td>Gary</td>
-            <td>Figuerola</td>
-            <td>87654321</td>
-            <td>Av. Central #456</td>
-            <td>999909099</td>
-            <td>gfiguerola@clickandbuy.pe</td>
-            <td>Almacén</td>
-            <td>02/02/1990</td>
-            <td>
-              <a href="#">Editar</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <p:dataTable id="usuarios" value="#{usuarioController.usuarios}" var="usuario" rows="10" emptyMessage="#{site_labels.no_records}">
+        <p:column headerText="#{site_labels.user_username}">
+          #{usuario.usuNombreusuario}
+        </p:column>
+        <p:column headerText="#{site_labels.user_password}">
+          #{usuario.usuContrasenia}
+        </p:column>
+        <p:column headerText="#{site_labels.user_role}">
+          #{usuario.rol.rolNombre}
+        </p:column>
+        <p:column headerText="#{site_labels.actions}">
+          <a href="usuarios/#{usuario.catCodigo}">#{site_labels.actions_view}</a>
+          <a href="usuarios/#{usuario.catCodigo}/editar">#{site_labels.actions_edit}</a>
+          <a href="usuarios/#{usuario.catCodigo}/eliminar">#{site_labels.actions_delete}</a>
+        </p:column>
+      </p:dataTable>
     </div>
   </ui:define>
 </ui:composition>

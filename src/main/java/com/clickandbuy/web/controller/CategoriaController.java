@@ -31,7 +31,7 @@ public class CategoriaController {
   public void insertar() {
     System.out.println("========================");
     System.out.println(this.categoria.getCatCodigo());
-    System.out.println(this.categoria.getCatCodigo());
+    System.out.println(this.categoria.getCatNombre());
     System.out.println("========================");
     try {
       this.categoriaBusiness.addCategoria(this.categoria);
