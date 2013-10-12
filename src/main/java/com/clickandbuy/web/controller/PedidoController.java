@@ -6,7 +6,7 @@ package com.clickandbuy.web.controller;
 
 import clickandbuy.upc.edu.core.business.PedidoBusiness;
 import clickandbuy.upc.edu.core.entity.Pedido;
-import com.clickandbuy.web.bean.PedidoBean;
+import clickandbuy.upc.edu.core.entity.Producto;
 import com.clickandbuy.web.util.WebUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public class PedidoController {
       Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
     }
     
-    WebUtil.redirect("/pedidos/" + this.getPedCodigo());
+    WebUtil.redirect("/pedidos/" + this.pedido.getPedCodigo());
   }
 
   public void actualizar() {

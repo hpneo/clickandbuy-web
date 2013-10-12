@@ -6,13 +6,13 @@ package com.clickandbuy.web.controller;
 
 import clickandbuy.upc.edu.core.business.UsuarioBusiness;
 import clickandbuy.upc.edu.core.entity.Usuario;
-import com.clickandbuy.web.bean.UsuarioBean;
 import com.clickandbuy.web.util.WebUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.*;
+import javax.faces.model.SelectItem;
 
 /**
  *
