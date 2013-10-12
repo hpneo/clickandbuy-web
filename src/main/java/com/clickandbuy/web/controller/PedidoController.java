@@ -5,7 +5,9 @@
 package com.clickandbuy.web.controller;
 
 import clickandbuy.upc.edu.core.business.PedidoBusiness;
+import clickandbuy.upc.edu.core.business.ProductoBusiness;
 import clickandbuy.upc.edu.core.entity.Pedido;
+import clickandbuy.upc.edu.core.entity.PedidoDetalle;
 import clickandbuy.upc.edu.core.entity.Producto;
 import com.clickandbuy.web.util.WebUtil;
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.*;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -25,8 +28,11 @@ public class PedidoController {
   @ManagedProperty("#{param.id}")
   private int id = 0;
   private Pedido pedido = new Pedido();
+  private PedidoDetalle pedidoDetalle = new PedidoDetalle();
   private List<Pedido> pedidos = new ArrayList<Pedido>();
   PedidoBusiness pedidoBusiness = new PedidoBusiness();
+  ProductoBusiness productoBusiness = new ProductoBusiness();
+  private List<SelectItem> productos = new ArrayList<SelectItem>();
 
   public void insertar() {
     System.out.println("========================");
@@ -59,24 +65,30 @@ public class PedidoController {
 
   public void agregarProducto(Integer codProducto) {
     try {
-      Producto producto = this.pedidoBusiness.getProductoByCode(codProducto);
-      this.pedido.getProductos().add(producto);
+      Producto producto = this.productoBusiness.getProductoByCode(codProducto);
+      this.pedidoDetalle = new PedidoDetalle();
+      this.pedidoDetalle.setProducto(producto);
+      this.pedido.getItems().add(this.pedidoDetalle);
 
       this.pedidoBusiness.updatePedido(this.pedido);
     } catch (Exception ex) {
       Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
     }
+    
+    WebUtil.redirect("/pedidos/" + this.id);
   }
 
-  public void eliminarProducto(Integer codProducto) {
+  public void eliminarProducto(Integer codPedidoDetalle) {
     try {
-      Producto producto = this.pedidoBusiness.getProductoByCode(codProducto);
-      this.pedido.getProductos().remove(producto);
+      PedidoDetalle pedidoDetalle = this.pedidoBusiness.getPedidoDetalleByCode(codPedidoDetalle);
+      this.pedido.getItems().remove(pedidoDetalle);
 
       this.pedidoBusiness.updatePedido(this.pedido);
     } catch (Exception ex) {
       Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
     }
+    
+    WebUtil.redirect("/pedidos/" + this.id);
   }
 
   public int getId() {
@@ -113,4 +125,31 @@ public class PedidoController {
       return new ArrayList<Pedido>();
     }
   }
+  
+  public PedidoDetalle getPedidoDetalle() {
+    return this.pedidoDetalle;
+  }
+  
+  public void setPedidoDetalle(PedidoDetalle pedidoDetalle) {
+    this.pedidoDetalle = pedidoDetalle;
+  }
+  
+  public List<SelectItem> getCategorias() {
+    this.productos = new ArrayList<SelectItem>();
+    
+    List<Producto> _productos;
+    
+    try {
+      _productos = this.productoBusiness.listProducto();
+    } catch (Exception ex) {
+      _productos = new ArrayList<Producto>();
+    }
+    
+    for (Producto c:_productos) {
+      productos.add(new SelectItem(c.getProdCodigo(), c.getProdNombre()));
+    }
+    
+    return productos;
+  }
+  
 }
