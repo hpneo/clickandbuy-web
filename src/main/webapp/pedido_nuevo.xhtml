@@ -10,7 +10,7 @@
   <ui:define name="body">
     <div class="row header">
       <div class="small-2 large-4 columns">
-        <h3>Nuevo Pedido</h3>
+        <h3>#{site_labels.orders_new}</h3>
       </div>
     </div>
     <div class="row">
@@ -28,7 +28,7 @@
 	  #{pedido_detalle.prodPrecioTotal}
 	</p:column>
 	<p:column headerText="#{site_labels.actions}">
-	  <h:commandLink value="#{site_labels.actions_delete}" action="#{pedidoController.agregarProducto(pedido_detalle.codPedidoDetalle)}" />
+	  <h:commandLink value="#{site_labels.actions_delete}" action="#{pedidoController.eliminarProducto(pedido_detalle.codPedidoDetalle)}" />
 	</p:column>
       </p:dataTable>
       <h:form>
@@ -46,7 +46,7 @@
 	      <h:inputText id="product_name" value="#{pedidoController.pedidoDetalle.pedCantidad}" />
             </p>
             <p class="actions small-3 columns">
-              <input type="submit" class="small button" value="Agregar" />
+	      <p:commandButton value="#{site_labels.add}" action="#{pedidoController.agregarProducto}" ajax="false" styleClass="small button" />
             </p>
           </div>
         </fieldset>

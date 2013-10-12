@@ -63,11 +63,8 @@ public class PedidoController {
     }
   }
 
-  public void agregarProducto(Integer codProducto) {
+  public void agregarProducto() {
     try {
-      Producto producto = this.productoBusiness.getProductoByCode(codProducto);
-      this.pedidoDetalle = new PedidoDetalle();
-      this.pedidoDetalle.setProducto(producto);
       this.pedido.getItems().add(this.pedidoDetalle);
 
       this.pedidoBusiness.updatePedido(this.pedido);
@@ -134,7 +131,7 @@ public class PedidoController {
     this.pedidoDetalle = pedidoDetalle;
   }
   
-  public List<SelectItem> getCategorias() {
+  public List<SelectItem> getProductos() {
     this.productos = new ArrayList<SelectItem>();
     
     List<Producto> _productos;
