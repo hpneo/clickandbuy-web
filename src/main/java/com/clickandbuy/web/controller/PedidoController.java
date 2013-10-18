@@ -6,8 +6,10 @@ package com.clickandbuy.web.controller;
 
 import clickandbuy.upc.edu.core.business.PedidoBusiness;
 import clickandbuy.upc.edu.core.business.ProductoBusiness;
+import clickandbuy.upc.edu.core.business.ProductoxpedidoBusinees;
 import clickandbuy.upc.edu.core.entity.Pedido;
-import clickandbuy.upc.edu.core.entity.PedidoDetalle;
+import clickandbuy.upc.edu.core.entity.Productoxpedido;
+import clickandbuy.upc.edu.core.entity.ProductoxpedidoId;
 import clickandbuy.upc.edu.core.entity.Producto;
 import com.clickandbuy.web.util.WebUtil;
 import java.util.ArrayList;
@@ -28,10 +30,11 @@ public class PedidoController {
   @ManagedProperty("#{param.id}")
   private int id = 0;
   private Pedido pedido = new Pedido();
-  private PedidoDetalle pedidoDetalle = new PedidoDetalle();
+  private Productoxpedido pedidoDetalle = new Productoxpedido();
   private List<Pedido> pedidos = new ArrayList<Pedido>();
   PedidoBusiness pedidoBusiness = new PedidoBusiness();
   ProductoBusiness productoBusiness = new ProductoBusiness();
+  ProductoxpedidoBusinees productoxpedidoBusinees = new ProductoxpedidoBusinees();
   private List<SelectItem> productos = new ArrayList<SelectItem>();
 
   public void insertar() {
@@ -65,9 +68,8 @@ public class PedidoController {
 
   public void agregarProducto() {
     try {
-      this.pedido.getItems().add(this.pedidoDetalle);
-
-      this.pedidoBusiness.updatePedido(this.pedido);
+      this.pedidoDetalle.setPedido(this.pedido);
+      this.productoxpedidoBusinees.addProductoxpedido(this.pedidoDetalle);
     } catch (Exception ex) {
       Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -75,12 +77,12 @@ public class PedidoController {
     WebUtil.redirect("/pedidos/" + this.id);
   }
 
-  public void eliminarProducto(Integer codPedidoDetalle) {
+  public void eliminarProducto(Integer codProducto) {
     try {
-      PedidoDetalle pedidoDetalle = this.pedidoBusiness.getPedidoDetalleByCode(codPedidoDetalle);
-      this.pedido.getItems().remove(pedidoDetalle);
+      ProductoxpedidoId codPedido = new ProductoxpedidoId(this.id, codProducto);
+      Productoxpedido pedidoDetalle = this.productoxpedidoBusinees.getProductoxpedido(codPedido);
 
-      this.pedidoBusiness.updatePedido(this.pedido);
+      this.productoxpedidoBusinees.deleteProductoxpedido(pedidoDetalle);
     } catch (Exception ex) {
       Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -102,9 +104,9 @@ public class PedidoController {
     }
     else {
       try {
-  this.pedido = this.pedidoBusiness.getPedidoByCode(this.id);
+	this.pedido = this.pedidoBusiness.getPedido(this.id);
       } catch (Exception ex) {
-  this.pedido = new Pedido();
+	this.pedido = new Pedido();
       }
     }
     
@@ -123,11 +125,11 @@ public class PedidoController {
     }
   }
   
-  public PedidoDetalle getPedidoDetalle() {
+  public Productoxpedido getPedidoDetalle() {
     return this.pedidoDetalle;
   }
   
-  public void setPedidoDetalle(PedidoDetalle pedidoDetalle) {
+  public void setPedidoDetalle(Productoxpedido pedidoDetalle) {
     this.pedidoDetalle = pedidoDetalle;
   }
   

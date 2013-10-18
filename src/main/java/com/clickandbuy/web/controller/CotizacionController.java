@@ -4,9 +4,12 @@
  */
 package com.clickandbuy.web.controller;
 
-import clickandbuy.upc.edu.core.business.CotizacionBusiness;
+import clickandbuy.upc.edu.core.business.PedidoBusiness;
 import clickandbuy.upc.edu.core.business.ProductoBusiness;
-import clickandbuy.upc.edu.core.entity.Cotizacion;
+import clickandbuy.upc.edu.core.business.ProductoxpedidoBusinees;
+import clickandbuy.upc.edu.core.entity.Pedido;
+import clickandbuy.upc.edu.core.entity.Productoxpedido;
+import clickandbuy.upc.edu.core.entity.ProductoxpedidoId;
 import clickandbuy.upc.edu.core.entity.Producto;
 import com.clickandbuy.web.util.WebUtil;
 import java.util.ArrayList;
@@ -26,65 +29,65 @@ import javax.faces.model.SelectItem;
 public class CotizacionController {
   @ManagedProperty("#{param.id}")
   private int id = 0;
-  private Cotizacion cotizacion = new Cotizacion();
-  private CotizacionDetalle cotizacionDetalle = new CotizacionDetalle();
-  private List<Cotizacion> cotizaciones = new ArrayList<Cotizacion>();
-  CotizacionBusiness cotizacionBusiness = new CotizacionBusiness();
+  private Pedido cotizacion = new Pedido();
+  private Productoxpedido cotizacionDetalle = new Productoxpedido();
+  private List<Pedido> cotizaciones = new ArrayList<Pedido>();
+  PedidoBusiness pedidoBusiness = new PedidoBusiness();
   ProductoBusiness productoBusiness = new ProductoBusiness();
+  ProductoxpedidoBusinees productoxpedidoBusinees = new ProductoxpedidoBusinees();
   private List<SelectItem> productos = new ArrayList<SelectItem>();
 
   public void insertar() {
     System.out.println("========================");
-    System.out.println(this.cotizacion.getCotCodigo());
+    System.out.println(this.cotizacion.getPedCodigo());
     System.out.println("========================");
     try {
-      this.cotizacionBusiness.addCotizacion(this.cotizacion);
+      this.pedidoBusiness.addPedido(this.cotizacion);
     } catch (Exception ex) {
-      Logger.getLogger(CotizacionController.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
     }
     
-    WebUtil.redirect("/cotizaciones/" + this.cotizacion.getCotCodigo());
+    WebUtil.redirect("/pedidos/" + this.cotizacion.getPedCodigo());
   }
 
   public void actualizar() {
     if (this.cotizacion != null) {
       System.out.println("========================");
-      System.out.println(this.cotizacion.getCotCodigo());
+      System.out.println(this.cotizacion.getPedCodigo());
       System.out.println("========================");
 
       try {
-        this.cotizacionBusiness.updateCotizacion(this.cotizacion);
+        this.pedidoBusiness.updatePedido(this.cotizacion);
       } catch (Exception ex) {
-        Logger.getLogger(CotizacionController.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
       }
       
-      WebUtil.redirect("/cotizaciones/" + this.id);
+      WebUtil.redirect("/pedidos/" + this.id);
     }
   }
 
-  public void agregarProducto(Integer codProducto) {
+  public void agregarProducto() {
     try {
-      this.cotizacion.getItems().add(this.cotizacionDetalle);
-
-      this.cotizacionBusiness.updateCotizacion(this.cotizacion);
+      this.cotizacionDetalle.setPedido(this.cotizacion);
+      this.productoxpedidoBusinees.addProductoxpedido(this.cotizacionDetalle);
     } catch (Exception ex) {
-      Logger.getLogger(CotizacionController.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
     }
     
-    WebUtil.redirect("/cotizaciones/" + this.id);
+    WebUtil.redirect("/pedidos/" + this.id);
   }
 
-  public void eliminarProducto(Integer codCotizacionDetalle) {
+  public void eliminarProducto(Integer codProducto) {
     try {
-      CotizacionDetalle cotizacionDetalle = this.cotizacionBusiness.getCotizacionDetalleByCode(codCotizacionDetalle);
-      this.cotizacion.getItems().remove(cotizacionDetalle);
+      ProductoxpedidoId codPedido = new ProductoxpedidoId(this.id, codProducto);
+      Productoxpedido pedidoDetalle = this.productoxpedidoBusinees.getProductoxpedido(codPedido);
 
-      this.cotizacionBusiness.updateCotizacion(this.cotizacion);
+      this.productoxpedidoBusinees.deleteProductoxpedido(pedidoDetalle);
     } catch (Exception ex) {
-      Logger.getLogger(CotizacionController.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
     }
     
-    WebUtil.redirect("/cotizaciones/" + this.id);
+    WebUtil.redirect("/pedidos/" + this.id);
   }
 
   public int getId() {
@@ -95,31 +98,39 @@ public class CotizacionController {
     this.id = id;
   }
 
-  public Cotizacion getCotizacion() {
+  public Pedido getCotizacion() {
     if (this.id == 0) {
-      this.cotizacion = new Cotizacion();
+      this.cotizacion = new Pedido();
     }
     else {
       try {
-  this.cotizacion = this.cotizacionBusiness.getCotizacionByCode(this.id);
+	this.cotizacion = this.pedidoBusiness.getPedido(this.id);
       } catch (Exception ex) {
-  this.cotizacion = new Cotizacion();
+	this.cotizacion = new Pedido();
       }
     }
     
     return this.cotizacion;
   }
 
-  public void setCotizacion(Cotizacion cotizacion) {
+  public void setCotizacion(Pedido cotizacion) {
     this.cotizacion = cotizacion;
   }
   
-  public List<Cotizacion> getCotizaciones() {
+  public List<Pedido> getCotizaciones() {
     try {
-      return cotizacionBusiness.listCotizacion();
+      return pedidoBusiness.listPedidoxTipo("cotizacion");
     } catch (Exception ex) {
-      return new ArrayList<Cotizacion>();
+      return new ArrayList<Pedido>();
     }
+  }
+  
+  public Productoxpedido getCotizacionDetalle() {
+    return this.cotizacionDetalle;
+  }
+  
+  public void setCotizacionDetalle(Productoxpedido pedidoDetalle) {
+    this.cotizacionDetalle = pedidoDetalle;
   }
   
   public List<SelectItem> getProductos() {
