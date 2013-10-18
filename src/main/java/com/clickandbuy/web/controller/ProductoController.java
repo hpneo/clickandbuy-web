@@ -29,14 +29,16 @@ public class ProductoController {
   @ManagedProperty("#{param.id}")
   private int id = 0;
   private Producto producto = new Producto();
+  private Categoria categoria = new Categoria();
   private List<Producto> productos = new ArrayList<Producto>();
   private List<SelectItem> categorias = new ArrayList<SelectItem>();
   private ProductoBusiness productoBusiness = new ProductoBusiness();
   
   public void insertar() {
+    this.producto.setCategoria(this.getCategoria());
     System.out.println("========================");
-    System.out.println(this.producto.getProdCodigo());
-    System.out.println(this.producto.getProdNombre());
+    System.out.println(this.getCategoria().getCatNombre());
+    System.out.println(this.producto.getCategoria().getCatCodigo());
     System.out.println("========================");
     
     try {
@@ -68,10 +70,7 @@ public class ProductoController {
   }
   
   public Producto getProducto() {
-    if (this.id == 0) {
-      this.producto = new Producto();
-    }
-    else {
+    if (this.id != 0) {
       try {
 	this.producto = this.productoBusiness.getProductoByCode(this.id);
       } catch (Exception ex) {
@@ -84,6 +83,14 @@ public class ProductoController {
   
   public void setProducto(Producto producto) {
     this.producto = producto;
+  }
+
+  public Categoria getCategoria() {
+    return categoria;
+  }
+
+  public void setCategoria(Categoria categoria) {
+    this.categoria = categoria;
   }
   
   public List<SelectItem> getCategorias() {

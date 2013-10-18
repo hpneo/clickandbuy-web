@@ -5,7 +5,9 @@
 package com.clickandbuy.web.controller;
 
 import clickandbuy.upc.edu.core.business.UsuarioBusiness;
+import clickandbuy.upc.edu.core.business.RolBusiness;
 import clickandbuy.upc.edu.core.entity.Usuario;
+import clickandbuy.upc.edu.core.entity.Rol;
 import com.clickandbuy.web.util.WebUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,9 +70,10 @@ public class UsuarioController {
     }
     else {
       try {
-  this.usuario = this.usuarioBusiness.getUsuarioByCode(this.id);
+	// this.usuario = this.usuarioBusiness.getUsuarioByCode(this.id);
+	this.usuario = new Usuario();
       } catch (Exception ex) {
-  this.usuario = new Usuario();
+	this.usuario = new Usuario();
       }
     }
     
@@ -83,7 +86,8 @@ public class UsuarioController {
   
   public List<Usuario> getUsuarios() {
     try {
-      return usuarioBusiness.listUsuario();
+      // return usuarioBusiness.listUsuario();
+      return new ArrayList<Usuario>();
     } catch (Exception ex) {
       return new ArrayList<Usuario>();
     }
@@ -96,7 +100,8 @@ public class UsuarioController {
     List<Rol> _roles;
     
     try {
-      _roles = rolBusiness.listRoles();
+      // _roles = rolBusiness.listRoles();
+      _roles = new ArrayList<Rol>();
     } catch (Exception ex) {
       _roles = new ArrayList<Rol>();
     }
