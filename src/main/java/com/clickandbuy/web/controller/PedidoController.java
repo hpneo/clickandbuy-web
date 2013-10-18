@@ -99,10 +99,7 @@ public class PedidoController {
   }
 
   public Pedido getPedido() {
-    if (this.id == 0) {
-      this.pedido = new Pedido();
-    }
-    else {
+    if (this.id != 0) {
       try {
 	this.pedido = this.pedidoBusiness.getPedido(this.id);
       } catch (Exception ex) {

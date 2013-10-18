@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="row">
-      <p:dataTable id="cotizacion_detalles" value="#{cotizacionController.cotizacion.productos}" var="cotizacion_detalle" rows="10" emptyMessage="#{site_labels.no_records}">
+      <p:dataTable id="cotizacion_detalles" value="#{cotizacionController.cotizacion.productoxpedidos}" var="cotizacion_detalle" rows="10" emptyMessage="#{site_labels.no_records}">
   <p:column headerText="#{site_labels.order_item_product}">
     #{cotizacion_detalle.producto.prodNombre}
   </p:column>

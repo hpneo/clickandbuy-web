@@ -99,10 +99,7 @@ public class CotizacionController {
   }
 
   public Pedido getCotizacion() {
-    if (this.id == 0) {
-      this.cotizacion = new Pedido();
-    }
-    else {
+    if (this.id != 0) {
       try {
 	this.cotizacion = this.pedidoBusiness.getPedido(this.id);
       } catch (Exception ex) {

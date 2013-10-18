@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="row">
-      <p:dataTable id="pedido_detalles" value="#{pedidoController.pedido.productos}" var="pedido_detalle" rows="10" emptyMessage="#{site_labels.no_records}">
+      <p:dataTable id="pedido_detalles" value="#{pedidoController.pedido.productoxpedidos}" var="pedido_detalle" rows="10" emptyMessage="#{site_labels.no_records}">
 	<p:column headerText="#{site_labels.order_item_product}">
 	  #{pedido_detalle.producto.prodNombre}
 	</p:column>
