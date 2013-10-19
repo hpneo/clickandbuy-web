@@ -81,7 +81,7 @@
   </url-mapping>
   <url-mapping id="quotes_show">
     <pattern value="/cotizaciones/#{id}" />
-    <view-id value="/cotizacion_detalle.xhtml" />
+    <view-id value="/cotizacion_editar.xhtml" />
   </url-mapping>
   <url-mapping id="quotes_edit">
     <pattern value="/cotizaciones/#{id}/editar" />
@@ -98,7 +98,7 @@
   </url-mapping>
   <url-mapping id="orders_show">
     <pattern value="/pedidos/#{id}" />
-    <view-id value="/pedido_detalle.xhtml" />
+    <view-id value="/pedido_editar.xhtml" />
   </url-mapping>
   <url-mapping id="orders_edit">
     <pattern value="/pedidos/#{id}/editar" />

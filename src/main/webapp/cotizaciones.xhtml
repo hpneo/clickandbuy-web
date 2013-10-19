@@ -10,22 +10,27 @@
   <ui:define name="body">
     <div class="row header">
       <div class="small-2 large-4 columns">
-        <h3>#{site-labels.quotes}</h3>
+        <h3>#{site_labels.quotes}</h3>
       </div>
       <div class="small-2 large-4 columns">
         <a href="cotizaciones/nuevo" class="small button">#{site_labels.quotes_new}</a>
       </div>
     </div>
     <div class="row">
-      <p:dataTable id="cotizaciones" value="#{cotizacionController.cotizaciones}" var="cotizacion" rows="10" emptyMessage="#{site_labels.no_records}">
-        <p:column headerText="#{site_labels.quote_create_date}">
-          #{cotizacion.fecCreacion}
+      <p:dataTable id="cotizaciones" value="#{cotizacionController.cotizaciones}" var="cotizacion" rows="100" emptyMessage="#{site_labels.no_records}">
+        <p:column headerText="#{site_labels.order_create_date}">
+          #{cotizacion.pedFechahora}
         </p:column>
-        <p:column headerText="#{site_labels.quote_user}">
-          #{cotizacion.usuario.usuNombreusuario}
+        <p:column headerText="#{site_labels.order_user}">
+          #{cotizacion.cliente.cliNombreusuario}
         </p:column>
-        <p:column headerText="#{site_labels.quote_products_count}">
+        <p:column headerText="#{site_labels.order_products_count}">
           #{cotizacion.productoxpedidos.size()}
+        </p:column>
+        <p:column headerText="#{site_labels.actions}">
+          <h:outputLink value="cotizaciones/#{cotizacion.pedCodigo}">
+            Editar
+          </h:outputLink>
         </p:column>
       </p:dataTable>
     </div>
