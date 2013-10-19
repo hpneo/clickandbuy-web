@@ -19,16 +19,13 @@
     <div class="row">
       <p:dataTable id="pedidos" value="#{pedidoController.pedidos}" var="pedido" rows="10" emptyMessage="#{site_labels.no_records}">
         <p:column headerText="#{site_labels.order_create_date}">
-          #{pedido.fecCreacion}
+          #{pedido.pedFechahora}
         </p:column>
         <p:column headerText="#{site_labels.order_user}">
-          #{pedido.usuario.usuNombreusuario}
+          #{pedido.cliente.cliNombreusuario}
         </p:column>
         <p:column headerText="#{site_labels.order_products_count}">
           #{pedido.productoxpedidos.size()}
-        </p:column>
-        <p:column headerText="#{site_labels.order_total}">
-          #{pedido.pedTotal}
         </p:column>
       </p:dataTable>
     </div>

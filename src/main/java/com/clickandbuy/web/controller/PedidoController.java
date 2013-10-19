@@ -6,13 +6,17 @@ package com.clickandbuy.web.controller;
 
 import clickandbuy.upc.edu.core.business.PedidoBusiness;
 import clickandbuy.upc.edu.core.business.ProductoBusiness;
+import clickandbuy.upc.edu.core.business.ClienteBusiness;
 import clickandbuy.upc.edu.core.business.ProductoxpedidoBusinees;
+import clickandbuy.upc.edu.core.entity.Cliente;
 import clickandbuy.upc.edu.core.entity.Pedido;
 import clickandbuy.upc.edu.core.entity.Productoxpedido;
 import clickandbuy.upc.edu.core.entity.ProductoxpedidoId;
 import clickandbuy.upc.edu.core.entity.Producto;
 import com.clickandbuy.web.util.WebUtil;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,6 +37,7 @@ public class PedidoController {
   private Productoxpedido pedidoDetalle = new Productoxpedido();
   private List<Pedido> pedidos = new ArrayList<Pedido>();
   PedidoBusiness pedidoBusiness = new PedidoBusiness();
+  ClienteBusiness clienteBusiness = new ClienteBusiness();
   ProductoBusiness productoBusiness = new ProductoBusiness();
   ProductoxpedidoBusinees productoxpedidoBusinees = new ProductoxpedidoBusinees();
   private List<SelectItem> productos = new ArrayList<SelectItem>();
@@ -40,14 +45,20 @@ public class PedidoController {
   public void insertar() {
     System.out.println("========================");
     System.out.println(this.pedido.getPedCodigo());
+    System.out.println(this.pedidoDetalle);
+    System.out.println(this.pedidoDetalle.getProducto());
+    System.out.println(this.pedidoDetalle.getPropedCantidad());
     System.out.println("========================");
+    
+    this.pedido.getProductoxpedidos().add(this.pedidoDetalle);
+    this.pedidoDetalle = new Productoxpedido();
     try {
-      this.pedidoBusiness.addPedido(this.pedido);
+      // this.pedidoBusiness.addPedido(this.pedido);
     } catch (Exception ex) {
       Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
     }
     
-    WebUtil.redirect("/pedidos/" + this.pedido.getPedCodigo());
+    // WebUtil.redirect("/pedidos/" + this.pedido.getPedCodigo());
   }
 
   public void actualizar() {
@@ -68,13 +79,55 @@ public class PedidoController {
 
   public void agregarProducto() {
     try {
+      Cliente cliente = new Cliente();
+      if (this.clienteBusiness.listCliente().isEmpty()) {
+	cliente.setCliNombreusuario("cliente1");
+	cliente.setCliContrasenia("cliente");
+	cliente.setCliDireccion("");
+	cliente.setCliNombreempresa("Empresa1");
+	cliente.setCliRuc("1234567890");
+	
+	this.clienteBusiness.addCliente(cliente);
+      }
+      cliente = this.clienteBusiness.listCliente().get(0);
+      
+      if (this.id == 0) {
+	this.pedido = new Pedido();
+	this.pedido.setPedTipo("pedido");
+	this.pedido.setCliente(cliente);
+	this.pedido.setPedFechahora(new Date());
+	this.pedidoBusiness.addPedido(this.pedido);
+	
+	List<Pedido> _pedidos = this.pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(), "pedido");
+	
+	this.pedido = _pedidos.get(_pedidos.size() - 1);
+	
+	this.id = this.pedido.getPedCodigo();
+      }
+      
+      Producto pedidoProducto = this.productoBusiness.getProductoByCode(this.pedidoDetalle.getProducto().getProdCodigo());
+      this.pedidoDetalle.setProducto(pedidoProducto);
+      
+      System.out.println("========================");
+      System.out.println(this.pedido.getPedCodigo());
+      System.out.println(this.pedidoDetalle.getProducto().getProdCodigo());
+      System.out.println(this.pedidoDetalle.getProducto().getProdPrecioventa());
+      System.out.println(this.pedidoDetalle.getPropedCantidad());
+      System.out.println("========================");
+      
       this.pedidoDetalle.setPedido(this.pedido);
+      
+      BigDecimal precioTotal = this.pedidoDetalle.getProducto().getProdPrecioventa();
+      precioTotal = precioTotal.multiply(new BigDecimal(this.pedidoDetalle.getPropedCantidad()));
+      
+      this.pedidoDetalle.setPropedPreciototal(precioTotal);
+      this.pedidoDetalle.setId(new ProductoxpedidoId(this.pedido.getPedCodigo(), this.pedidoDetalle.getProducto().getProdCodigo()));
       this.productoxpedidoBusinees.addProductoxpedido(this.pedidoDetalle);
     } catch (Exception ex) {
       Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
     }
     
-    WebUtil.redirect("/pedidos/" + this.id);
+    // WebUtil.redirect("/pedidos/" + this.id);
   }
 
   public void eliminarProducto(Integer codProducto) {
@@ -123,6 +176,9 @@ public class PedidoController {
   }
   
   public Productoxpedido getPedidoDetalle() {
+    if (this.pedidoDetalle.getProducto() == null) {
+      this.pedidoDetalle.setProducto(new Producto());
+    }
     return this.pedidoDetalle;
   }
   

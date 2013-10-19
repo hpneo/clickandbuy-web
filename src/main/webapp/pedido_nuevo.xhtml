@@ -19,13 +19,13 @@
 	  #{pedido_detalle.producto.prodNombre}
 	</p:column>
 	<p:column headerText="#{site_labels.order_item_quantity}">
-	  #{pedido_detalle.pedCantidad}
+	  #{pedido_detalle.propedCantidad}
 	</p:column>
 	<p:column headerText="#{site_labels.order_item_unit_price}">
-	  #{pedido_detalle.product.prodPrecioventa}
+	  #{pedido_detalle.producto.prodPrecioventa}
 	</p:column>
 	<p:column headerText="#{site_labels.order_item_total_price}">
-	  #{pedido_detalle.prodPrecioTotal}
+	  #{pedido_detalle.propedPreciototal}
 	</p:column>
 	<p:column headerText="#{site_labels.actions}">
 	  <h:commandLink value="#{site_labels.actions_delete}" action="#{pedidoController.eliminarProducto(pedido_detalle.codPedidoDetalle)}" />
@@ -42,8 +42,8 @@
 	      </h:selectOneMenu>
             </p>
             <p class="input small-3 columns">
-	      <h:outputLabel for="product_name" value="#{site_labels.order_item_quantity}:" />
-	      <h:inputText id="product_name" value="#{pedidoController.pedidoDetalle.pedCantidad}" />
+	      <h:outputLabel for="product_quantity" value="#{site_labels.order_item_quantity}:" />
+	      <h:inputText id="product_quantity" value="#{pedidoController.pedidoDetalle.propedCantidad}" />
             </p>
             <p class="actions small-3 columns">
 	      <p:commandButton value="#{site_labels.add}" action="#{pedidoController.agregarProducto}" ajax="false" styleClass="small button" />
