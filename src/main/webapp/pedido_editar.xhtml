@@ -28,7 +28,9 @@
 	  #{pedido_detalle.propedPreciototal}
 	</p:column>
 	<p:column headerText="#{site_labels.actions}">
-	  <h:commandLink value="#{site_labels.actions_delete}" action="#{pedidoController.eliminarProducto(pedido_detalle.codPedidoDetalle)}" />
+	  <h:form>
+	    <h:commandLink value="#{site_labels.actions_delete}" action="#{pedidoController.eliminarProducto(pedido_detalle.producto.prodCodigo)}" />
+	  </h:form>
 	</p:column>
       </p:dataTable>
       <h:form>

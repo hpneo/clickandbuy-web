@@ -132,8 +132,15 @@ public class CotizacionController {
 
   public void eliminarProducto(Integer codProducto) {
     try {
+      this.productoxpedidoBusinees = new ProductoxpedidoBusinees();
       ProductoxpedidoId codPedido = new ProductoxpedidoId(this.id, codProducto);
       Productoxpedido pedidoDetalle = this.productoxpedidoBusinees.getProductoxpedido(codPedido);
+      
+      System.out.println("========================");
+      System.out.println(pedidoDetalle.getProducto().getProdCodigo());
+      System.out.println(pedidoDetalle.getPropedCantidad());
+      System.out.println(pedidoDetalle.getPropedPreciototal());
+      System.out.println("========================");
 
       this.productoxpedidoBusinees.deleteProductoxpedido(pedidoDetalle);
     } catch (Exception ex) {
