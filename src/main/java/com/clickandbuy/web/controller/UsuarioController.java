@@ -84,22 +84,25 @@ public class UsuarioController {
     this.usuario = usuario;
   }
   
-  public List<Usuario> getUsuarios() {
-    try {
-      // return usuarioBusiness.listUsuario();
-      return new ArrayList<Usuario>();
+  public List<Usuario> getUsuarios() 
+  {
+    try 
+    {
+       return usuarioBusiness.listUsuario();
     } catch (Exception ex) {
       return new ArrayList<Usuario>();
     }
   }
 
-  public List<SelectItem> getRoles() {
+  public List<SelectItem> getRoles() 
+  {
     this.roles = new ArrayList<SelectItem>();
     
     RolBusiness rolBusiness = new RolBusiness();
     List<Rol> _roles;
     
-    try {
+    try 
+    {
       // _roles = rolBusiness.listRoles();
       _roles = new ArrayList<Rol>();
     } catch (Exception ex) {
