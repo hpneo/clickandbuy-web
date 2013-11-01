@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/styles/foundation.css" />
     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/styles/layout.css" />
   </h:head>
+  
   <h:body>
     <nav class="top-bar">
       <ul class="title-area">
@@ -27,10 +28,10 @@
 	<ul class="left">
 	  <li class="divider"></li>
 	  <li>
-	    <a href="#{request.contextPath}/categorias">#{site_labels.categories}</a>
-	  </li>
-	  <li>
 	    <a href="#{request.contextPath}/productos">#{site_labels.products}</a>
+	  </li>
+          <li>
+	    <a href="#{request.contextPath}/categorias">#{site_labels.categories}</a>
 	  </li>
 	  <li>
 	    <a href="#{request.contextPath}/usuarios">#{site_labels.users}</a>
@@ -49,9 +50,10 @@
 	  </li>
 	</ul>-->
       </section>
+        
     </nav>
-    <section class="main">
-      <ui:insert name="body" />
-    </section>
-  </h:body>
+      <section class="main">
+        <ui:insert name="body" />
+      </section>
+   </h:body>
 </html>

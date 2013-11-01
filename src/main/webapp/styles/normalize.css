@@ -19,7 +19,8 @@ hgroup,
 main,
 nav,
 section,
-summary {
+summary 
+{
     display: block;
 }
 
@@ -29,7 +30,8 @@ summary {
 
 audio,
 canvas,
-video {
+video 
+{
     display: inline-block;
 }
 
@@ -38,7 +40,8 @@ video {
  * Remove excess height in iOS 5 devices.
  */
 
-audio:not([controls]) {
+audio:not([controls]) 
+{
     display: none;
     height: 0;
 }
@@ -163,7 +166,8 @@ hr {
  * Address styling not present in IE 8/9.
  */
 
-mark {
+mark
+{
     background: #ff0;
     color: #000;
 }
@@ -407,4 +411,8 @@ textarea {
 table {
     border-collapse: collapse;
     border-spacing: 0;
+}
+output
+{
+    
 }

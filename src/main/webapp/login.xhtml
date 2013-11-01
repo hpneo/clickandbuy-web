@@ -15,12 +15,12 @@
   <h:body>
     <div class="row" id="popin-login">
       <h:form class="small-6 large-centered columns panel">
-	<p class="input">
-	  <label for="login_user">Usuario:</label>
+          <h:outputLabel class="" value="#{site_labels.user_username}" /> 
+          <p class="input">
           <p:inputText id="login_user" value="#{loginController.usuario.usuNombreusuario}"/>
 	</p>
 	<p class="input">
-	  <label for="login_password">Contraseña:</label>
+	  <h:outputLabel value="#{site_labels.user_password}" /> 
           <p:password id="login_password" value="#{loginController.usuario.usuContrasenia}"/>
 	</p>
 	<p class="actions">

@@ -1,20 +1,25 @@
-#popin-login {
+#popin-login 
+{
   margin-top: 1em;
   margin-bottom: 1em;
 }
 
-.header .columns {
+.header .columns 
+{
   line-height: 49px;
 }
 
-.header .columns:not(:first-child):last-child {
+.header .columns:not(:first-child):last-child 
+{
   text-align: right;
 }
 
-table {
+table 
+{
   width: 100%;
 }
 
-#new-inventory .actions {
+#new-inventory .actions 
+{
   line-height: 71px;
 }
