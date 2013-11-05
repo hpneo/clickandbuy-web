@@ -73,7 +73,7 @@ public class CotizacionController {
         Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
       }
       
-      WebUtil.sendRedirect("/cotizaciones/" + this.id);
+      WebUtil.redirect("/cotizaciones/" + this.id);
     }
   }
 
@@ -127,7 +127,7 @@ public class CotizacionController {
       Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
     }
     
-    WebUtil.sendRedirect("/cotizaciones/" + this.id);
+    WebUtil.redirect("/cotizaciones/" + this.id);
   }
 
   public void eliminarProducto(Integer codProducto) {
@@ -147,7 +147,7 @@ public class CotizacionController {
       Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
     }
     
-    WebUtil.sendRedirect("/cotizaciones/" + this.id);
+    WebUtil.redirect("/cotizaciones/" + this.id);
   }
 
   public int getId() {

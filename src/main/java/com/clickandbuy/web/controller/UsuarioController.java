@@ -42,7 +42,7 @@ public class UsuarioController {
       Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
     }
     
-    WebUtil.sendRedirect("/usuarios");
+    WebUtil.redirect("/usuarios");
   }
   
   public void actualizar() {
@@ -52,7 +52,7 @@ public class UsuarioController {
       System.out.println(this.usuario.getUsuNombreusuario());
       System.out.println("========================");
       
-      WebUtil.sendRedirect("/usuarios/" + this.id);
+      WebUtil.redirect("/usuarios/" + this.id);
     }
   }
 

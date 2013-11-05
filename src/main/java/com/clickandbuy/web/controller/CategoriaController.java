@@ -39,7 +39,7 @@ public class CategoriaController {
       Logger.getLogger(CategoriaController.class.getName()).log(Level.SEVERE, null, ex);
     }
     
-    WebUtil.sendRedirect("/categorias");
+    WebUtil.redirect("/categorias");
   }
   
   public void actualizar() {
@@ -49,7 +49,7 @@ public class CategoriaController {
       System.out.println(this.categoria.getCatNombre());
       System.out.println("========================");
       
-      WebUtil.sendRedirect("/categorias/" + this.id);
+      WebUtil.redirect("/categorias/" + this.id);
     }
   }
 

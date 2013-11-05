@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
+    
   <f:loadBundle basename="site_labels" var="site_labels" />
   <h:head>
     <title>#{site_labels.site_title} - #{site_labels.login_title}</title>
@@ -12,21 +14,35 @@
     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/styles/foundation.css" />
     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/styles/layout.css" />
   </h:head>
-  <h:body>
-    <div class="row" id="popin-login">
-      <h:form class="small-6 large-centered columns panel">
-          <h:outputLabel class="" value="#{site_labels.user_username}" /> 
-          <p class="input">
-          <p:inputText id="login_user" value="#{loginController.usuario.usuNombreusuario}"/>
-	</p>
+   
+  <h:body>  
+   <div class="row" id="popin-login">
+      <p:growl id="growl" showDetail="true" life="3000" />
+       <h:form id="formLogin" class="small-6 large-centered columns panel" >  
+        <p class="input">
+            <p:inputText id="login_user" value="#{loginController.usuario.usuNombreusuario}" required="true" />
+            <p:watermark for="login_user" value="#{site_labels.user_username}" />  
+        </p>
 	<p class="input">
-	  <h:outputLabel value="#{site_labels.user_password}" /> 
-          <p:password id="login_password" value="#{loginController.usuario.usuContrasenia}"/>
+          <p:password id="login_password" value="#{loginController.usuario.usuContrasenia}" required="true"/>
+          <p:watermark for="login_password" value="#{site_labels.user_password}"  />
 	</p>
-	<p class="actions">
-            <p:commandButton value="Entrar" styleClass="button radius expand" action="#{loginController.login}" ajax="false" />
-	</p>
+	<p  class="actions">
+            <p:commandButton value="Entrar" styleClass="button radius expand" update=":growl" actionListener="#{loginController.login()}" oncomplete="manejarLogin(xhr, status, args)" />
+        </p>
       </h:form>
     </div>
   </h:body>
+ 
+    <script type="text/javascript">
+              //<![CDATA[
+              function manejarLogin(xhr, status, args) {
+                if (!args.validationFailed && args.logeado) {
+                  setTimeout(function() {
+                    window.location = args.view;
+                  }, 500);
+                }
+              }
+            //]]>
+     </script>
 </html>

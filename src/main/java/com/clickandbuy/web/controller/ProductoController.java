@@ -47,7 +47,7 @@ public class ProductoController {
       Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
     }
     
-    WebUtil.sendRedirect("/productos");
+    WebUtil.redirect("/productos");
   }
   
   public void actualizar() {
@@ -57,7 +57,7 @@ public class ProductoController {
       System.out.println(this.producto.getProdNombre());
       System.out.println("========================");
       
-      WebUtil.sendRedirect("/productos/" + this.id);
+      WebUtil.redirect("/productos/" + this.id);
     }
   }
 
