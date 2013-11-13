@@ -10,7 +10,6 @@ import clickandbuy.upc.edu.core.entity.Cliente;
 import clickandbuy.upc.edu.core.entity.Usuario;
 import com.clickandbuy.web.util.Constantes;
 import com.clickandbuy.web.util.WebUtil;
-import static com.clickandbuy.web.util.WebUtil.getResponse;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +19,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
 
 /**
@@ -28,7 +28,7 @@ import org.primefaces.context.RequestContext;
  */
 
 @ManagedBean(name = "loginController")
-@SessionScoped
+@ViewScoped
 public class LoginController implements Serializable 
 {
     
@@ -36,7 +36,7 @@ public class LoginController implements Serializable
     private UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
     private Cliente cliente = new Cliente() ;
     private ClienteBusiness clienteBusiness = new ClienteBusiness();
-    
+    private boolean logeado = false;
     
     public Cliente getCliente() 
     {
@@ -56,62 +56,47 @@ public class LoginController implements Serializable
         this.usuario = usuario;
     }
     
-    public LoginController()
+    
+    public void login() 
     {
-        usuarioBusiness = new UsuarioBusiness();
-        clienteBusiness= new ClienteBusiness();
-        if(usuario == null)
-            usuario= new Usuario();
-        if(cliente== null)
-            cliente = new Cliente();
-        
-    }
-    public void login(ActionEvent actionEvent) throws Exception
-    {
-        System.out.print("entro al login");
         try 
         {
-            RequestContext context = RequestContext.getCurrentInstance(); 
-            FacesMessage msg;
-            boolean loggedIn;
-            String ruta="";
+            System.out.println("Entro al login");
             if(usuarioBusiness.autenticarUsuario(usuario.getUsuNombreusuario(), usuario.getUsuContrasenia()))
             {
-                System.out.print("entro al if");
+                System.out.println("Entro al if");
+                System.out.println(usuario.getUsuCodigo());
+                System.out.println(usuario.getUsuNombreusuario());
                 usuario = usuarioBusiness.iniciarSesion(usuario.getUsuNombreusuario());
-                loggedIn=true;
-                msg= new FacesMessage(FacesMessage.SEVERITY_INFO,Constantes.MENSAJE_BIENVENIDA,usuario.getUsuNombreusuario());
-                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(Constantes.SESION_USUARIO,usuario.getUsuNombreusuario());
-                //WebUtil.setSession(Constantes.SESION_USUARIO, 1);
-                System.out.print("apunto de redireccionar");
-		System.out.println(WebUtil.getSession(Constantes.SESION_USUARIO));
-                //WebUtil.redirect("/usuarios");       
-                ruta= "http://localhost:8080/ClickandBuyWeb/faces/usuarios.xhtml";
-                getResponse().sendRedirect(ruta);
+                FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+                WebUtil.getSesion().setMaxInactiveInterval(Constantes.SESION_MAX);
+                //msg= new FacesMessage(FacesMessage.SEVERITY_INFO,Constantes.MENSAJE_BIENVENIDA,usuario.getUsuNombreusuario());
+                WebUtil.setObjectSesion(Constantes.SESION_USUARIO, usuario);
+                logeado= true;
+                System.out.print(WebUtil.getObjectSesion(Constantes.SESION_USUARIO));
+                WebUtil.sendRedirect("usuarios.xhtml");   
             }
             else
+            {
                 if(clienteBusiness.autenticarCliente(usuario.getUsuNombreusuario().toString(), usuario.getUsuContrasenia().toString()))
                 {
                     System.out.print("entro al else");
                     cliente.setCliNombreusuario(usuario.getUsuNombreusuario());
                     cliente.setCliContrasenia(usuario.getUsuContrasenia());
-                    loggedIn=true;
-                    msg= new FacesMessage(FacesMessage.SEVERITY_INFO,Constantes.MENSAJE_BIENVENIDA,cliente.getCliNombreusuario());
+                    //msg= new FacesMessage(FacesMessage.SEVERITY_INFO,Constantes.MENSAJE_BIENVENIDA,cliente.getCliNombreusuario());
+                    logeado=true;
+                    //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(Constantes.SESION_CLIENTE,cliente.getCliNombreusuario());
                 
-                    WebUtil.setSession(Constantes.SESION_USUARIO, usuario);
-                    WebUtil.redirect("/usuarios.xhtml");
+                    //WebUtil.redirect("/usuarios.xhtml");
                 }
                 else
                 {
-                    loggedIn=false;
-                    msg= new FacesMessage(FacesMessage.SEVERITY_WARN,Constantes.MENSAJE_LOGEO_INCORRECTO,"Usuario o contraseña errada");
-                
+                    //msg= new FacesMessage(FacesMessage.SEVERITY_WARN,Constantes.MENSAJE_LOGEO_INCORRECTO,"Usuario o contraseña errada");
+                    logeado=false;
                     System.out.println("No ingresaste ni por cliente ni por usuario");
                 }
-            System.out.print(ruta);
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-            context.addCallbackParam("loggedIn", loggedIn);
-            context.addCallbackParam("ruta", ruta);
+            }
+           
         }
         catch (Exception ex) 
         {
@@ -119,7 +104,19 @@ public class LoginController implements Serializable
         }
         
     }
-    
+    public void logout()
+    {
+        
+        WebUtil.sendRedirect("login.xhtml");
+        System.out.print("entro al logout");
+        FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        WebUtil.getSesion().invalidate();
+        logeado = false;
+        System.out.print("Apunto de redireccionar");
+        /*RequestContext context = RequestContext.getCurrentInstance();
+        context.addCallbackParam("view", "login.xhtml");  
+    */
+    }
     
     
 }

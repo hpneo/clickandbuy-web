@@ -10,39 +10,27 @@
   <h:head>
     <title>#{site_labels.site_title} - #{site_labels.login_title}</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/styles/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/styles/foundation.css" />
     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/styles/layout.css" />
   </h:head>
    
-  <h:body>  
-   <div class="row" id="popin-login">
-      <p:growl id="growl" showDetail="true" life="3000" />
-       <h:form id="formLogin" class="small-6 large-centered columns panel" >  
-        <p class="input">
-            <p:inputText id="login_user" value="#{loginController.usuario.usuNombreusuario}" required="true" />
+  <h:form id="login_form">
+      <p:panel id="login_panel" styleClass="login" >
+          <h1 id="panel_header" >#{site_labels.login_panel_title}</h1>
+        <h:panelGrid columns="3">  
+            <p:inputText id="login_user" styleClass="input" value="#{loginController.usuario.usuNombreusuario}" required="true" />
             <p:watermark for="login_user" value="#{site_labels.user_username}" />  
-        </p>
-	<p class="input">
-          <p:password id="login_password" value="#{loginController.usuario.usuContrasenia}" required="true"/>
-          <p:watermark for="login_password" value="#{site_labels.user_password}"  />
-	</p>
-	<p  class="actions">
-            <p:commandButton value="Entrar" styleClass="button radius expand" update=":growl" actionListener="#{loginController.login()}" oncomplete="manejarLogin(xhr, status, args)" />
-        </p>
-      </h:form>
-    </div>
-  </h:body>
+            <p:message for="login_user"/> 
+            <p:password id="login_password" value="#{loginController.usuario.usuContrasenia}" required="true"/>
+            <p:watermark for="login_password" value="#{site_labels.user_password}"  />
+            <p:message for="login_password"/>
+            <h:commandButton id="login_buton"  value="#{site_labels.login_buton}"  action="#{loginController.login()}"  />
+        </h:panelGrid>
+   </p:panel>
+      <p:separator id="separator_login"/> 
+    <p:panel id="login_credits" styleClass="credits"> 
+        <a>#{site_labels.credits}</a>
+        <a><img id="copyriht_image" src="images/c.png" alt="ClickandBuy" /></a>
+    </p:panel>
  
-    <script type="text/javascript">
-              //<![CDATA[
-              function manejarLogin(xhr, status, args) {
-                if (!args.validationFailed && args.logeado) {
-                  setTimeout(function() {
-                    window.location = args.view;
-                  }, 500);
-                }
-              }
-            //]]>
-     </script>
+   </h:form>
 </html>

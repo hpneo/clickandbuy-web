@@ -10,43 +10,37 @@ import javax.servlet.http.*;
  */
 public class WebUtil 
 {
-    public static Object getSession(String name) 
+    
+    
+    public static Object getObjectSesion(String objectName) 
     {
-        return ((HttpSession) getRequest().getSession(true)).getAttribute(name);
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        return request.getSession(false).getAttribute(objectName);
     }
-    public static void setSession(String name, Object value) 
-    {
-        ((HttpSession) getRequest().getSession(true)).setAttribute(name, value);
+     public static void setObjectSesion(String objectName, Object object)
+     {
+        //log.info("SE PUSO EN SESION EL OBJETO " + objectName + " DEL TIPO " + object.getClass());
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        request.getSession(false).setAttribute(objectName, object);
     }
-    public static void redirect(String path) 
+    public static HttpSession getSesion()
     {
-        try 
+        return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+    }
+    public static void sendRedirect(String ruta)
+    {
+        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+	try 
         {
-            getInstance().responseComplete();
-            getResponse().sendRedirect(getExternalContext().getRequestContextPath() + path);
-        } 
-        catch (Exception e) 
+            
+	    FacesContext.getCurrentInstance().responseComplete();
+            //log.info(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "/faces/" + ruta);
+	    response.sendRedirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/faces/"+ruta);
+	} 
+        catch (IOException ioe) 
         {
-        }
-    }
-  
-    public static HttpServletRequest getRequest() 
-    {
-        return (HttpServletRequest) getExternalContext().getRequest();
-    }
-  
-    public static HttpServletResponse getResponse() 
-    {
-        return (HttpServletResponse) getExternalContext().getResponse();
-    }
-  
-    private static FacesContext getInstance() 
-    {
-        return FacesContext.getCurrentInstance();
-    }
-    private static ExternalContext getExternalContext() 
-    {
-        return getInstance().getExternalContext();
+	    //log.error(ioe.getMessage());
+	}
     }
   
 }

@@ -73,7 +73,7 @@ public class PedidoController {
         Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
       }
       
-      WebUtil.redirect("/pedidos/" + this.id);
+      WebUtil.sendRedirect("/pedidos/" + this.id);
     }
   }
 
@@ -127,7 +127,7 @@ public class PedidoController {
       Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
     }
     
-    WebUtil.redirect("/pedidos/" + this.id);
+    WebUtil.sendRedirect("/pedidos/" + this.id);
   }
 
   public void eliminarProducto(Integer codProducto) {
@@ -140,7 +140,7 @@ public class PedidoController {
       Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
     }
     
-    WebUtil.redirect("/pedidos/" + this.id);
+    WebUtil.sendRedirect("/pedidos/" + this.id);
   }
 
   public int getId() {

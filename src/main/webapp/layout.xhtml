@@ -10,17 +10,32 @@
   <h:head>
     <title>#{site_labels.site_title}</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/styles/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/styles/foundation.css" />
+    
     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/styles/layout.css" />
+    <link href="../imgages/clickandbuy2.png" rel="icon" type="image/x-icon" />
   </h:head>
   
+  <!-- Para que controle el maximo de inactividad -->
+    <p:idleMonitor onactive="sessionTimeOutDialog.show();" timeout="#{session.maxInactiveInterval * 1000}" />
+    <p:dialog header="#{site_labels.caduca_sesion}" widgetVar="sessionTimeOutDialog"
+              modal="true" closable="false" width="400" visible="false">
+        <h:outputText value="#{site_labels.caduca_mensaje}" />
+        <input id="confirmBackToLogin" type="button" value="#{site_labels.caduca_boton}"
+               onclick="window.location='#{facesContext.externalContext.requestContextPath}/faces/login.xhtml';" />
+    </p:dialog>
+  <!-- ========================================================================================================-->
+   <!-- Para que muestre una pantalla de cargando cuando se haga algun registro -->
+    <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>  
+    <p:dialog modal="true" widgetVar="statusDialog" header="Cargando" draggable="false" closable="false">  
+        <p:graphicImage value="../img/ajax-loader.gif" />  
+    </p:dialog>  
+    <!-- ========================================= -->
   <h:body>
     <nav class="top-bar">
       <ul class="title-area">
 	<li class="name">
 	  <h1>
-	    <a href="#{request.contextPath}">#{site_labels.site_title}</a>
+	    <a href="#{request.contextPath}"><img src="images/clickandbuy.png" alt="UPC" /></a>
 	  </h1>
 	</li>
       </ul>
@@ -28,11 +43,12 @@
 	<ul class="left">
 	  <li class="divider"></li>
 	  <li>
-	    <a href="#{request.contextPath}/productos">#{site_labels.products}</a>
-	  </li>
-          <li>
 	    <a href="#{request.contextPath}/categorias">#{site_labels.categories}</a>
 	  </li>
+	  <li>
+	    <a href="#{request.contextPath}/productos">#{site_labels.products}</a>
+	  </li>
+
 	  <li>
 	    <a href="#{request.contextPath}/usuarios">#{site_labels.users}</a>
 	  </li>
@@ -40,20 +56,22 @@
 	    <a href="#{request.contextPath}/cotizaciones">#{site_labels.quotes}</a>
 	  </li>
 	  <li>
-	    <a href="#{request.contextPath}/pedidos">#{site_labels.orders}</a>
+              <a  href="#{request.contextPath}/pedidos">#{site_labels.orders}</a>
 	  </li>
 	</ul>
-	<!--<ul class="right">
+	<ul class="right">
 	  <li class="divider"></li>
 	  <li>
-	    <a href="#">#{site_labels.logout_title}</a>
+	    <a href="#{facesContext.externalContext.requestContextPath}/faces/login.xhtml" >#{site_labels.logout_title}</a>
 	  </li>
-	</ul>-->
+	</ul>
       </section>
-        
     </nav>
-      <section class="main">
-        <ui:insert name="body" />
-      </section>
-   </h:body>
+    <section class="main">
+      <ui:insert name="body" />
+    </section>
+  
+  
+  </h:body>
+  
 </html>
