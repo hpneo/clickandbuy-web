@@ -75,6 +75,10 @@
     <pattern value="/cotizaciones" />
     <view-id value="/cotizaciones.xhtml" />
   </url-mapping>
+  <url-mapping id="quotes_cliente">
+    <pattern value="/cotizaciones_cliente" />
+    <view-id value="/cotizaciones_cliente.xhtml" />
+  </url-mapping>
   <url-mapping id="quotes_new">
     <pattern value="/cotizaciones/nuevo" />
     <view-id value="/cotizacion_nuevo.xhtml" />
@@ -92,6 +96,10 @@
     <pattern value="/pedidos" />
     <view-id value="/pedidos.xhtml" />
   </url-mapping>
+   <url-mapping id="orders_cliente">
+    <pattern value="/pedidos_cliente" />
+    <view-id value="/pedidos_cliente.xhtml" />
+  </url-mapping>
   <url-mapping id="orders_new">
     <pattern value="/pedidos/nuevo" />
     <view-id value="/pedido_nuevo.xhtml" />
@@ -103,6 +111,14 @@
   <url-mapping id="orders_edit">
     <pattern value="/pedidos/#{id}/editar" />
     <view-id value="/pedido_editar.xhtml" />
+  </url-mapping>
+  <url-mapping id="bienvenida_cliente">
+    <pattern value="/bienvenida_cliente" />
+    <view-id value="/bienvenida_cliente.xhtml" />
+  </url-mapping>
+  <url-mapping id="bienvenida_usuario">
+    <pattern value="/bienvenida_usuario" />
+    <view-id value="/bienvenida_usuario.xhtml" />
   </url-mapping>
 
 </pretty-config>

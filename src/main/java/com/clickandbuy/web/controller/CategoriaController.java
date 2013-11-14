@@ -80,11 +80,13 @@ public class CategoriaController {
     this.categoria = categoria;
   }
   
-  public List<Categoria> getCategorias() {
+  public List<Categoria> getCategorias()
+  {
     try {
       return categoriaBusiness.listCategoria();
     } catch (Exception ex) {
       return new ArrayList<Categoria>();
     }
   }
+  
 }

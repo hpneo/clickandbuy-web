@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
+    
   <f:loadBundle basename="site_labels" var="site_labels" />
   <h:head>
     <title>#{site_labels.site_title}</title>
     <meta charset="utf-8" />
-    
     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/styles/layout.css" />
-    <link href="../imgages/clickandbuy2.png" rel="icon" type="image/x-icon" />
+    <link href="#{request.contextPath}/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
   </h:head>
   
   <!-- Para que controle el maximo de inactividad -->
@@ -31,47 +30,22 @@
     </p:dialog>  
     <!-- ========================================= -->
   <h:body>
-    <nav class="top-bar">
-      <ul class="title-area">
-	<li class="name">
-	  <h1>
-	    <a href="#{request.contextPath}"><img src="images/clickandbuy.png" alt="UPC" /></a>
-	  </h1>
-	</li>
-      </ul>
-      <section class="top-bar-section">
-	<ul class="left">
-	  <li class="divider"></li>
-	  <li>
-	    <a href="#{request.contextPath}/categorias">#{site_labels.categories}</a>
-	  </li>
-	  <li>
-	    <a href="#{request.contextPath}/productos">#{site_labels.products}</a>
-	  </li>
 
-	  <li>
-	    <a href="#{request.contextPath}/usuarios">#{site_labels.users}</a>
-	  </li>
-	  <li>
-	    <a href="#{request.contextPath}/cotizaciones">#{site_labels.quotes}</a>
-	  </li>
-	  <li>
-              <a  href="#{request.contextPath}/pedidos">#{site_labels.orders}</a>
-	  </li>
-	</ul>
-	<ul class="right">
-	  <li class="divider"></li>
-	  <li>
-	    <a href="#{facesContext.externalContext.requestContextPath}/faces/login.xhtml" >#{site_labels.logout_title}</a>
-	  </li>
-	</ul>
-      </section>
-    </nav>
-    <section class="main">
-      <ui:insert name="body" />
-    </section>
-  
-  
+    <div class="wrapper">
+        <div class="container">
+            <ul class="menu" rel="sam1" >
+                <li><a href="#{request.contextPath}/bienvenida_usuario"><img src="images/clickandbuy.png" alt="UPC" /></a></li>
+                <li ><a href="#{request.contextPath}/categorias">#{site_labels.categories}</a></li>
+                <li><a href="#{request.contextPath}/productos">#{site_labels.products}</a></li>
+                <li><a href="#{request.contextPath}/usuarios">#{site_labels.users}</a></li>
+                <li><a href="#{request.contextPath}/cotizaciones">#{site_labels.quotes}</a></li>
+                <li><a  href="#{request.contextPath}/pedidos">#{site_labels.orders}</a></li>
+                <li><a href="#{facesContext.externalContext.requestContextPath}/faces/login.xhtml" >#{site_labels.logout_title}</a></li>
+            </ul>
+        </div>
+    </div> 
+     <div >
+        <ui:insert name="body" />
+     </div>
   </h:body>
-  
 </html>

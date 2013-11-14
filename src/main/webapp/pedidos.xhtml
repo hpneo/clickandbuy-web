@@ -5,15 +5,16 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      template="layout.xhtml">
+      template="layout_usuario.xhtml">
   <f:loadBundle basename="site_labels" var="site_labels" />
   <ui:define name="body">
-    <div class="row header">
-      <div class="small-2 large-4 columns">
+      <h:form id="pedidos_form">
+    <div >
+      <div class="h3">
         <h3>#{site_labels.orders}</h3>
       </div>
-      <div class="small-2 large-4 columns">
-        <a href="pedidos/nuevo" class="small button">#{site_labels.orders_new}</a>
+      <div >
+          <h:commandButton id="pedidos_buton"  value="#{site_labels.orders_new}" action="/pedido_nuevo.xhtml"/>  
       </div>
     </div>
     <div class="row">
@@ -34,5 +35,6 @@
         </p:column>
       </p:dataTable>
     </div>
+      </h:form>
   </ui:define>
 </ui:composition>

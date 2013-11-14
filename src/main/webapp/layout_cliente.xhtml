@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    
+  <f:loadBundle basename="site_labels" var="site_labels" />
+  <h:head>
+    <title>#{site_labels.site_title}</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/styles/layout.css" />
+    <link href="#{request.contextPath}/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  </h:head>
+  
+  <!-- Para que controle el maximo de inactividad -->
+    <p:idleMonitor onactive="sessionTimeOutDialog.show();" timeout="#{session.maxInactiveInterval * 1000}" />
+    <p:dialog header="#{site_labels.caduca_sesion}" widgetVar="sessionTimeOutDialog"
+              modal="true" closable="false" width="400" visible="false">
+        <h:outputText value="#{site_labels.caduca_mensaje}" />
+        <input id="confirmBackToLogin" type="button" value="#{site_labels.caduca_boton}"
+               onclick="window.location='#{facesContext.externalContext.requestContextPath}/faces/login.xhtml';" />
+    </p:dialog>
+  <!-- ========================================================================================================-->
+   <!-- Para que muestre una pantalla de cargando cuando se haga algun registro -->
+    <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>  
+    <p:dialog modal="true" widgetVar="statusDialog" header="Cargando" draggable="false" closable="false">  
+        <p:graphicImage value="../img/ajax-loader.gif" />  
+    </p:dialog>  
+    <!-- ========================================= -->
+  <h:body>
+    <div class="wrapper">
+        <div class="container">
+            <ul class="menu" >
+                <li><a href="#{request.contextPath}/bienvenida_cliente"><img src="images/clickandbuy.png" alt="UPC" /></a></li>     
+                <li><a href="#{request.contextPath}/cotizaciones_cliente">#{site_labels.quotes}</a></li>
+                <li><a  href="#{request.contextPath}/pedidos_cliente">#{site_labels.orders}</a></li>
+                <li><a href="#{facesContext.externalContext.requestContextPath}/faces/login.xhtml" >#{site_labels.logout_title}</a></li>
+            </ul>
+        </div>
+    </div> 
+      <div >
+        <ui:insert name="body" />
+     </div>
+  </h:body>
+</html>

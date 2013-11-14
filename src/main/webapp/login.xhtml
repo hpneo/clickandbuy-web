@@ -9,8 +9,8 @@
   <f:loadBundle basename="site_labels" var="site_labels" />
   <h:head>
     <title>#{site_labels.site_title} - #{site_labels.login_title}</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/styles/layout.css" />
+    <link href="#{request.contextPath}/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/styles/login.css" />
   </h:head>
    
   <h:form id="login_form">
@@ -29,7 +29,7 @@
       <p:separator id="separator_login"/> 
     <p:panel id="login_credits" styleClass="credits"> 
         <a>#{site_labels.credits}</a>
-        <a><img id="copyriht_image" src="images/c.png" alt="ClickandBuy" /></a>
+        <a><img id="cab_logo" src="images/cab_logo.png" alt="ClickandBuy" /></a>
     </p:panel>
  
    </h:form>

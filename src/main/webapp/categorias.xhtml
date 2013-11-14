@@ -5,28 +5,30 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      template="layout.xhtml">
+      template="layout_usuario.xhtml">
   <f:loadBundle basename="site_labels" var="site_labels" />
   <ui:define name="body">
-    <div class="row header">
-      <div class="small-2 large-4 columns">
-        <h3>#{site_labels.categories}</h3>
-      </div>
-      <div class="small-2 large-4 columns">
-        <a class="small button" href="categorias/nuevo">#{site_labels.categories_new}</a>
-      </div>
-    </div>
-    <div class="row">
-      <p:dataTable id="categorias" value="#{categoriaController.categorias}" var="categoria" rows="10" emptyMessage="#{site_labels.no_records}">
-      	<p:column headerText="#{site_labels.category_name}">
-      	  #{categoria.catNombre}
-      	</p:column>
-      	<p:column headerText="#{site_labels.actions}">
-      	  <a href="categorias/#{categoria.catCodigo}">#{site_labels.actions_view}</a>
-      	  <a href="categorias/#{categoria.catCodigo}/editar">#{site_labels.actions_edit}</a>
-      	  <a href="categorias/#{categoria.catCodigo}/eliminar">#{site_labels.actions_delete}</a>
-      	</p:column>
-      </p:dataTable>
-    </div>
+      <h:form id="categorias_form">
+            <div >
+              <div class="h3">
+                <h3>#{site_labels.categories}</h3>
+              </div>
+              <div >
+                  <h:commandButton id="categorias_buton"  value="#{site_labels.categories_new}" action="/categoria_nuevo.xhtml"/>
+              </div>
+            </div>
+            <div class="row">
+              <p:dataTable id="categorias" value="#{categoriaController.categorias}" var="categoria" rows="10" emptyMessage="#{site_labels.no_records}">
+                <p:column headerText="#{site_labels.category_name}">
+                  #{categoria.catNombre}
+                </p:column>
+                <p:column headerText="#{site_labels.actions}">
+                  <a href="categorias/#{categoria.catCodigo}">#{site_labels.actions_view}</a>
+                  <a href="categorias/#{categoria.catCodigo}/editar">#{site_labels.actions_edit}</a>
+                  <a href="categorias/#{categoria.catCodigo}/eliminar">#{site_labels.actions_delete}</a>
+                </p:column>
+              </p:dataTable>
+            </div>
+      </h:form>
   </ui:define>
 </ui:composition>

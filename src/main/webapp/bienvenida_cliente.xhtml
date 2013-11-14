@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
+        template="layout_cliente.xhtml" >
+        <ui:define name="body">
+             <h:form >
+                 <p:panel style="font: 13px/23px 'Georgia' " header="#{site_labels.bienvenida_title}" >
+                     <div >
+                         <h3 >#{site_labels.bienvenida_mensaje}</h3>
+                    </div>
+                </p:panel>
+            </h:form>
+        </ui:define>
+</ui:composition>

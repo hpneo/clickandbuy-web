@@ -55,8 +55,14 @@ public class LoginController implements Serializable
     {
         this.usuario = usuario;
     }
-    
-    
+    public String getUsuario_nombreusuario()
+    {
+        return usuario.getUsuNombreusuario();
+    }
+    public String getCliente_nombreusuario()
+    {
+        return cliente.getCliNombreusuario();
+    }
     public void login() 
     {
         try 
@@ -74,7 +80,7 @@ public class LoginController implements Serializable
                 WebUtil.setObjectSesion(Constantes.SESION_USUARIO, usuario);
                 logeado= true;
                 System.out.print(WebUtil.getObjectSesion(Constantes.SESION_USUARIO));
-                WebUtil.sendRedirect("usuarios.xhtml");   
+                WebUtil.sendRedirect("bienvenida_usuario.xhtml");   
             }
             else
             {
@@ -83,11 +89,14 @@ public class LoginController implements Serializable
                     System.out.print("entro al else");
                     cliente.setCliNombreusuario(usuario.getUsuNombreusuario());
                     cliente.setCliContrasenia(usuario.getUsuContrasenia());
+                    cliente = clienteBusiness.iniciarSesion(cliente.getCliNombreusuario());
+                    FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+                    WebUtil.getSesion().setMaxInactiveInterval(Constantes.SESION_MAX);
                     //msg= new FacesMessage(FacesMessage.SEVERITY_INFO,Constantes.MENSAJE_BIENVENIDA,cliente.getCliNombreusuario());
-                    logeado=true;
-                    //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(Constantes.SESION_CLIENTE,cliente.getCliNombreusuario());
-                
-                    //WebUtil.redirect("/usuarios.xhtml");
+                    WebUtil.setObjectSesion(Constantes.SESION_CLIENTE, cliente);
+                    logeado= true;
+                    System.out.print(WebUtil.getObjectSesion(Constantes.SESION_CLIENTE));
+                    WebUtil.sendRedirect("bienvenida_cliente.xhtml"); 
                 }
                 else
                 {

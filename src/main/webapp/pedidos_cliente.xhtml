@@ -5,31 +5,31 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      template="layout_usuario.xhtml">
+      template="layout_cliente.xhtml">
   <f:loadBundle basename="site_labels" var="site_labels" />
   <ui:define name="body">
-      <h:form id="cotizaciones_form">
+      <h:form id="pedidos_form">
     <div >
       <div class="h3">
-        <h3>#{site_labels.quotes}</h3>
+        <h3>#{site_labels.orders}</h3>
       </div>
       <div >
-         <h:commandButton id="cotizaciones_buton"  value="#{site_labels.quotes_new}" action="/cotizacion_nuevo.xhtml"/>  
+          <h:commandButton id="pedidos_buton"  value="#{site_labels.orders_new}" action="/pedido_nuevo.xhtml"/>  
       </div>
     </div>
     <div class="row">
-      <p:dataTable id="cotizaciones" value="#{cotizacionController.cotizaciones}" var="cotizacion" rows="100" emptyMessage="#{site_labels.no_records}">
+      <p:dataTable id="pedidos" value="#{pedidoController.pedidos}" var="pedido" rows="100" emptyMessage="#{site_labels.no_records}">
         <p:column headerText="#{site_labels.order_create_date}">
-          #{cotizacion.pedFechahora}
+          #{pedido.pedFechahora}
         </p:column>
         <p:column headerText="#{site_labels.order_user}">
-          #{cotizacion.cliente.cliNombreusuario}
+          #{pedido.cliente.cliNombreusuario}
         </p:column>
         <p:column headerText="#{site_labels.order_products_count}">
-          #{cotizacion.productoxpedidos.size()}
+          #{pedido.productoxpedidos.size()}
         </p:column>
         <p:column headerText="#{site_labels.actions}">
-          <h:outputLink value="cotizaciones/#{cotizacion.pedCodigo}">
+          <h:outputLink value="pedidos/#{pedido.pedCodigo}">
             Editar
           </h:outputLink>
         </p:column>
