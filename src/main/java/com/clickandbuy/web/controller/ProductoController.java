@@ -41,9 +41,11 @@ public class ProductoController {
     System.out.println(this.producto.getCategoria().getCatCodigo());
     System.out.println("========================");
     
-    try {
+    try 
+    {
       this.productoBusiness.addProducto(this.producto);
-    } catch (Exception ex) {
+    } 
+    catch (Exception ex) {
       Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
     }
     
