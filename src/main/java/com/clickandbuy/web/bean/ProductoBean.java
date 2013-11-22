@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.clickandbuy.web.bean;
 
 /**
@@ -77,5 +73,4 @@ public class ProductoBean implements java.io.Serializable {
   public void setPrecioVenta(double precioVenta) {
     this.precioVenta = precioVenta;
   }
-  
 }
