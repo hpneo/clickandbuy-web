@@ -18,7 +18,9 @@ import javax.servlet.http.HttpSession;
 public class AuthorizationListener implements PhaseListener {
 
     @Override
-    public void afterPhase(PhaseEvent event) {
+    public void afterPhase(PhaseEvent event) 
+    {
+        System.out.println("nena");
         FacesContext facesContext = event.getFacesContext();
         String currentPage = facesContext.getViewRoot().getViewId();
 
@@ -45,6 +47,13 @@ public class AuthorizationListener implements PhaseListener {
     }
 
     @Override
-    public void beforePhase(PhaseEvent event) {
+    public void beforePhase(PhaseEvent event) 
+    {
+       if (!WebUtil.getRequest().getServletPath().contains("login.xhtml")) {
+            if (!AuthUtil.userSignedIn() && !AuthUtil.clienteSignedIn()) 
+            {
+                WebUtil.sendRedirect("/login");
+            }
+    }
        }
 }
