@@ -13,6 +13,7 @@ import clickandbuy.upc.edu.core.entity.Pedido;
 import clickandbuy.upc.edu.core.entity.Productoxpedido;
 import clickandbuy.upc.edu.core.entity.ProductoxpedidoId;
 import clickandbuy.upc.edu.core.entity.Producto;
+import clickandbuy.upc.edu.core.exception.PedidoException;
 import com.clickandbuy.web.util.WebUtil;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -43,22 +44,17 @@ public class CotizacionController {
     private List<SelectItem> productos = new ArrayList<SelectItem>();
 
     public void insertar() {
-        this.cotizacion.getProductoxpedidos().add(this.cotizacionDetalle);
-        this.cotizacionDetalle = new Productoxpedido();
-        try {
-            // this.pedidoBusiness.addPedido(this.pedido);
-        } catch (Exception ex) {
-            Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-        // WebUtil.redirect("/cotizaciones/" + this.pedido.getPedCodigo());
+        this.cotizacionDetalle = new Productoxpedido();
+
+        this.cotizacion.getProductoxpedidos().add(this.cotizacionDetalle);
     }
 
-    public void actualizar() {
+    public void actualizar() throws Exception {
         if (this.cotizacion != null) {
             try {
                 this.pedidoBusiness.updatePedido(this.cotizacion);
-            } catch (Exception ex) {
+            } catch (PedidoException ex) {
                 Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
@@ -66,7 +62,7 @@ public class CotizacionController {
         }
     }
 
-    public void agregarProducto() {
+    public void agregarProducto() throws Exception {
         try {
             Cliente cliente = new Cliente();
             if (this.clienteBusiness.listCliente().isEmpty()) {
@@ -105,21 +101,21 @@ public class CotizacionController {
             this.cotizacionDetalle.setPropedPreciototal(precioTotal);
             this.cotizacionDetalle.setId(new ProductoxpedidoId(this.cotizacion.getPedCodigo(), this.cotizacionDetalle.getProducto().getProdCodigo()));
             this.productoxpedidoBusinees.addProductoxpedido(this.cotizacionDetalle);
-        } catch (Exception ex) {
+        } catch (PedidoException ex) {
             Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         WebUtil.sendRedirect("/cotizaciones/" + this.id);
     }
 
-    public void eliminarProducto(Integer codProducto) {
+    public void eliminarProducto(Integer codProducto) throws Exception {
         try {
             this.productoxpedidoBusinees = new ProductoxpedidoBusinees();
             ProductoxpedidoId codPedido = new ProductoxpedidoId(this.id, codProducto);
             Productoxpedido pedidoDetalle = this.productoxpedidoBusinees.getProductoxpedido(codPedido);
 
             this.productoxpedidoBusinees.deleteProductoxpedido(pedidoDetalle);
-        } catch (Exception ex) {
+        } catch (PedidoException ex) {
             Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -134,11 +130,11 @@ public class CotizacionController {
         this.id = id;
     }
 
-    public Pedido getCotizacion() {
+    public Pedido getCotizacion() throws Exception {
         if (this.id != 0) {
             try {
                 this.cotizacion = this.pedidoBusiness.getPedido(this.id);
-            } catch (Exception ex) {
+            } catch (PedidoException ex) {
                 this.cotizacion = new Pedido();
             }
         }
@@ -150,10 +146,10 @@ public class CotizacionController {
         this.cotizacion = cotizacion;
     }
 
-    public List<Pedido> getCotizaciones() {
+    public List<Pedido> getCotizaciones() throws Exception {
         try {
             return pedidoBusiness.listPedidoxTipo("cotizacion");
-        } catch (Exception ex) {
+        } catch (PedidoException ex) {
             return new ArrayList<Pedido>();
         }
     }
@@ -169,14 +165,14 @@ public class CotizacionController {
         this.cotizacionDetalle = pedidoDetalle;
     }
 
-    public List<SelectItem> getProductos() {
+    public List<SelectItem> getProductos() throws Exception {
         this.productos = new ArrayList<SelectItem>();
 
         List<Producto> _productos;
 
         try {
             _productos = this.productoBusiness.listProducto();
-        } catch (Exception ex) {
+        } catch (PedidoException ex) {
             _productos = new ArrayList<Producto>();
         }
 

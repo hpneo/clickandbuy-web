@@ -8,6 +8,7 @@ import clickandbuy.upc.edu.core.business.UsuarioBusiness;
 import clickandbuy.upc.edu.core.business.RolBusiness;
 import clickandbuy.upc.edu.core.entity.Usuario;
 import clickandbuy.upc.edu.core.entity.Rol;
+import clickandbuy.upc.edu.core.exception.UsuarioException;
 import com.clickandbuy.web.util.WebUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +32,13 @@ public class UsuarioController {
     private List<SelectItem> roles = new ArrayList<SelectItem>();
     UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
 
-    public void insertar() {
+    public void insertar() throws Exception {
 
         try {
             this.usuarioBusiness.addUsuario(this.usuario);
-        } catch (Exception ex) {
+        } catch (UsuarioException ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         WebUtil.sendRedirect("/usuarios");
     }
 
@@ -57,14 +57,14 @@ public class UsuarioController {
         this.id = id;
     }
 
-    public Usuario getUsuario() {
+    public Usuario getUsuario() throws Exception {
         if (this.id == 0) {
             this.usuario = new Usuario();
         } else {
             try {
-                // this.usuario = this.usuarioBusiness.getUsuarioByCode(this.id);
+                 this.usuario = this.usuarioBusiness.getUsuarioByCode(this.id);
                 this.usuario = new Usuario();
-            } catch (Exception ex) {
+            } catch (UsuarioException ex) {
                 this.usuario = new Usuario();
             }
         }
@@ -76,24 +76,23 @@ public class UsuarioController {
         this.usuario = usuario;
     }
 
-    public List<Usuario> getUsuarios() {
+    public List<Usuario> getUsuarios() throws Exception {
         try {
             return usuarioBusiness.listUsuario();
-        } catch (Exception ex) {
+        } catch (UsuarioException ex) {
             return new ArrayList<Usuario>();
         }
     }
 
-    public List<SelectItem> getRoles() {
+    public List<SelectItem> getRoles() throws Exception {
         this.roles = new ArrayList<SelectItem>();
 
         RolBusiness rolBusiness = new RolBusiness();
         List<Rol> _roles;
 
         try {
-            // _roles = rolBusiness.listRoles();
-            _roles = new ArrayList<Rol>();
-        } catch (Exception ex) {
+             _roles = rolBusiness.listRoles();
+        } catch (UsuarioException ex) {
             _roles = new ArrayList<Rol>();
         }
 

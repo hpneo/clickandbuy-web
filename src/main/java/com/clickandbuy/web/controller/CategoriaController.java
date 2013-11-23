@@ -6,7 +6,7 @@ package com.clickandbuy.web.controller;
 
 import clickandbuy.upc.edu.core.business.CategoriaBusiness;
 import clickandbuy.upc.edu.core.entity.Categoria;
-import com.clickandbuy.web.bean.CategoriaBean;
+import clickandbuy.upc.edu.core.exception.CategoriaException;
 import com.clickandbuy.web.util.WebUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +28,13 @@ public class CategoriaController {
     private List<Categoria> categorias = new ArrayList<Categoria>();
     CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
 
-    public void insertar() {
+    public void insertar() throws Exception {
         try {
             this.categoriaBusiness.addCategoria(this.categoria);
-        } catch (Exception ex) {
+        } catch (CategoriaException ex) 
+        {
             Logger.getLogger(CategoriaController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         WebUtil.sendRedirect("/categorias");
     }
 
@@ -52,13 +52,13 @@ public class CategoriaController {
         this.id = id;
     }
 
-    public Categoria getCategoria() {
+    public Categoria getCategoria() throws Exception {
         if (this.id == 0) {
             this.categoria = new Categoria();
         } else {
             try {
                 this.categoria = this.categoriaBusiness.getCategoriaByCode(this.id);
-            } catch (Exception ex) {
+            } catch (CategoriaException ex) {
                 this.categoria = new Categoria();
             }
         }
@@ -70,10 +70,10 @@ public class CategoriaController {
         this.categoria = categoria;
     }
 
-    public List<Categoria> getCategorias() {
+    public List<Categoria> getCategorias() throws Exception {
         try {
             return categoriaBusiness.listCategoria();
-        } catch (Exception ex) {
+        } catch (CategoriaException ex) {
             return new ArrayList<Categoria>();
         }
     }
