@@ -31,7 +31,7 @@ public class CategoriaController {
         try {
             this.categoriaBusiness.addCategoria(this.categoria);
         } catch (CategoriaException ex) {
-            Logger.getLogger(CategoriaController.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(CategoriaController.class.getName()).log(Level.SEVERE, null, ex);
         }
         WebUtil.sendRedirect("/categorias");
     }
