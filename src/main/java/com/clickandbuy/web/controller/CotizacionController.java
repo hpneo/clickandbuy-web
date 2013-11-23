@@ -13,8 +13,10 @@ import clickandbuy.upc.edu.core.entity.Pedido;
 import clickandbuy.upc.edu.core.entity.Productoxpedido;
 import clickandbuy.upc.edu.core.entity.ProductoxpedidoId;
 import clickandbuy.upc.edu.core.entity.Producto;
-import com.clickandbuy.web.util.Constantes;
 import clickandbuy.upc.edu.core.exception.PedidoException;
+import clickandbuy.upc.edu.core.exception.ProductoException;
+import clickandbuy.upc.edu.core.exception.ProductoxpedidoException;
+import com.clickandbuy.web.util.Constantes;
 import com.clickandbuy.web.util.WebUtil;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -73,9 +75,9 @@ public class CotizacionController {
                 this.cotizacion.setPedFechahora(new Date());
                 this.pedidoBusiness.addPedido(this.cotizacion);
 
-                List<Pedido> pedidos = this.pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(), Constantes.getTIPO_DE_PEDIDO());
+                List pedidos = this.pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(), Constantes.getTIPO_DE_PEDIDO());
 
-                this.cotizacion = pedidos.toArray()[pedidos.size() - 1];
+                this.cotizacion = (Pedido) pedidos.get(pedidos.size() - 1);
 
                 this.id = this.cotizacion.getPedCodigo();
             }
@@ -96,7 +98,7 @@ public class CotizacionController {
         }
     }
 
-    public void eliminarProducto(Integer codProducto) throws PedidoException {
+    public void eliminarProducto(Integer codProducto) throws ProductoxpedidoException {
         try {
             this.productoxpedidoBusinees = new ProductoxpedidoBusinees();
             ProductoxpedidoId codPedido = new ProductoxpedidoId(this.id, codProducto);
@@ -109,7 +111,6 @@ public class CotizacionController {
 
         WebUtil.sendRedirect("/cotizaciones/" + this.id);
     }
-
     public int getId() {
         return id;
     }
@@ -153,14 +154,14 @@ public class CotizacionController {
         this.cotizacionDetalle = pedidoDetalle;
     }
 
-    public List<SelectItem> getProductos() throws PedidoException {
+    public List<SelectItem> getProductos() throws ProductoException {
         this.productos = new ArrayList<SelectItem>();
 
         List<Producto> lproductos;
 
         try {
             lproductos = this.productoBusiness.listProducto();
-        } catch (PedidoException ex) {
+        } catch (ProductoException ex) {
             lproductos = new ArrayList<Producto>();
         }
 

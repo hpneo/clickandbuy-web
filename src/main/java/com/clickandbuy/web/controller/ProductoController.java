@@ -8,6 +8,7 @@ import clickandbuy.upc.edu.core.business.CategoriaBusiness;
 import clickandbuy.upc.edu.core.business.ProductoBusiness;
 import clickandbuy.upc.edu.core.entity.Categoria;
 import clickandbuy.upc.edu.core.entity.Producto;
+import clickandbuy.upc.edu.core.exception.CategoriaException;
 import clickandbuy.upc.edu.core.exception.ProductoException;
 import com.clickandbuy.web.util.WebUtil;
 import java.util.ArrayList;
@@ -83,13 +84,13 @@ public class ProductoController {
         this.categoria = categoria;
     }
 
-    public List<SelectItem> getCategorias() throws ProductoException {
+    public List<SelectItem> getCategorias() throws CategoriaException {
         this.categorias = new ArrayList<SelectItem>();
         CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
         List<Categoria> categoriasCollection;
         try {
             categoriasCollection = categoriaBusiness.listCategoria();
-        } catch (ProductoException ex) {
+        } catch (CategoriaException ex) {
             categoriasCollection = new ArrayList<Categoria>();
         }
         for (Categoria c : categoriasCollection) {
