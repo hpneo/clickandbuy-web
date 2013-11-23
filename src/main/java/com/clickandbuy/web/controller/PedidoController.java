@@ -69,10 +69,10 @@ public class PedidoController {
     }
 
     public void agregarProducto() throws Exception {
-        if (WebUtil.getObjectSesion(Constantes.SESION_CLIENTE) == null) {
+        if (WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE()) == null) {
             WebUtil.sendRedirect("/login");
         } else {
-            Cliente cliente = (Cliente) WebUtil.getObjectSesion(Constantes.SESION_CLIENTE);
+            Cliente cliente = (Cliente) WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE());
             
             if (this.id == 0) {
                 this.pedido.setPedTipo("pedido");
