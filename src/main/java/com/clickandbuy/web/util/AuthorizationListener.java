@@ -18,15 +18,16 @@ import javax.servlet.http.HttpSession;
 public class AuthorizationListener implements PhaseListener {
 
     @Override
-    public void afterPhase(PhaseEvent event) {
+    public void beforePhase(PhaseEvent event) {
     }
 
+    @Override
     public PhaseId getPhaseId() {
         return PhaseId.RENDER_RESPONSE;
     }
 
     @Override
-    public void beforePhase(PhaseEvent event) {
+    public void afterPhase(PhaseEvent event) {
         if (!WebUtil.getRequest().getServletPath().contains("login")) {
             System.out.println("user_signed_in: " + AuthUtil.userSignedIn());
             System.out.println("cliente_signed_in: " + AuthUtil.clienteSignedIn());
