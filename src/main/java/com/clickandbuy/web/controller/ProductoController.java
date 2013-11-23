@@ -8,6 +8,7 @@ import clickandbuy.upc.edu.core.business.CategoriaBusiness;
 import clickandbuy.upc.edu.core.business.ProductoBusiness;
 import clickandbuy.upc.edu.core.entity.Categoria;
 import clickandbuy.upc.edu.core.entity.Producto;
+import clickandbuy.upc.edu.core.exception.ProductoException;
 import com.clickandbuy.web.util.WebUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,12 +35,12 @@ public class ProductoController {
     private List<SelectItem> categorias = new ArrayList<SelectItem>();
     private ProductoBusiness productoBusiness = new ProductoBusiness();
 
-    public void insertar() {
+    public void insertar() throws Exception {
         this.producto.setCategoria(this.getCategoria());
 
         try {
             this.productoBusiness.addProducto(this.producto);
-        } catch (Exception ex) {
+        } catch (ProductoException ex) {
             Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -60,11 +61,11 @@ public class ProductoController {
         this.id = id;
     }
 
-    public Producto getProducto() {
+    public Producto getProducto() throws Exception {
         if (this.id != 0) {
             try {
                 this.producto = this.productoBusiness.getProductoByCode(this.id);
-            } catch (Exception ex) {
+            } catch (ProductoException ex) {
                 this.producto = new Producto();
             }
         }
@@ -84,13 +85,13 @@ public class ProductoController {
         this.categoria = categoria;
     }
 
-    public List<SelectItem> getCategorias() {
+    public List<SelectItem> getCategorias() throws Exception {
         this.categorias = new ArrayList<SelectItem>();
         CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
         List<Categoria> _categorias;
         try {
             _categorias = categoriaBusiness.listCategoria();
-        } catch (Exception ex) {
+        } catch (ProductoException ex) {
             _categorias = new ArrayList<Categoria>();
         }
         for (Categoria c : _categorias) {
