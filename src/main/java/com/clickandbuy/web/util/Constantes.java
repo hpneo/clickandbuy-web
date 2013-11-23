@@ -33,4 +33,6 @@ public final class Constantes
     
      public static String MENU_ITEM_EXIT="Exit";
       public static String MENU_ITEM_CERRAR_SESION="Cerrar sesión";
+      
+      private static String TIPO_DE_PEDIDO="cotizacion";
 }
