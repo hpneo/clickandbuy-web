@@ -1,7 +1,6 @@
 package com.clickandbuy.web.util;
 
 import java.io.IOException;
-import java.util.Enumeration;
 import javax.faces.context.*;
 import javax.servlet.http.*;
 

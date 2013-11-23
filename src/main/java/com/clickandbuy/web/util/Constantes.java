@@ -10,7 +10,7 @@ package com.clickandbuy.web.util;
  */
 public final class Constantes {
 
-    private static int SESION_MAX = 60 * 15; //La sesion que dure 15 minutos
+    private static int SESION_MAX = 60 * 15; 
     private static String SESION_USUARIO = "usuario";
     private static String SESION_CLIENTE = "cliente";
 
