@@ -69,7 +69,6 @@ public class ProductoController {
                 this.producto = new Producto();
             }
         }
-
         return this.producto;
     }
 
@@ -101,10 +100,10 @@ public class ProductoController {
         return categorias;
     }
 
-    public List<Producto> getProductos() {
+    public List<Producto> getProductos() throws Exception {
         try {
             return this.productoBusiness.listProducto();
-        } catch (Exception e) {
+        } catch (ProductoException e) {
             return new ArrayList<Producto>();
         }
     }
