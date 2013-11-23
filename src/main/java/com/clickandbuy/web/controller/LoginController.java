@@ -61,11 +61,11 @@ public class LoginController implements Serializable {
                 System.out.println(usuario.getUsuNombreusuario());
                 usuario = usuarioBusiness.iniciarSesion(usuario.getUsuNombreusuario());
                 FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-                WebUtil.getSesion().setMaxInactiveInterval(Constantes.SESION_MAX);
+                WebUtil.getSesion().setMaxInactiveInterval(Constantes.getSESION_MAX());
                 //msg= new FacesMessage(FacesMessage.SEVERITY_INFO,Constantes.MENSAJE_BIENVENIDA,usuario.getUsuNombreusuario());
-                WebUtil.setObjectSesion(Constantes.SESION_USUARIO, usuario);
+                WebUtil.setObjectSesion(Constantes.getSESION_USUARIO(), usuario);
                 logeado = true;
-                System.out.print(WebUtil.getObjectSesion(Constantes.SESION_USUARIO));
+                System.out.print(WebUtil.getObjectSesion(Constantes.getSESION_USUARIO()));
                 WebUtil.sendRedirect("/bienvenida_usuario");
             } else {
                 if (clienteBusiness.autenticarCliente(usuario.getUsuNombreusuario().toString(), usuario.getUsuContrasenia().toString())) {
@@ -74,11 +74,11 @@ public class LoginController implements Serializable {
                     cliente.setCliContrasenia(usuario.getUsuContrasenia());
                     cliente = clienteBusiness.iniciarSesion(cliente.getCliNombreusuario());
                     FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-                    WebUtil.getSesion().setMaxInactiveInterval(Constantes.SESION_MAX);
+                    WebUtil.getSesion().setMaxInactiveInterval(Constantes.getSESION_MAX());
                     //msg= new FacesMessage(FacesMessage.SEVERITY_INFO,Constantes.MENSAJE_BIENVENIDA,cliente.getCliNombreusuario());
-                    WebUtil.setObjectSesion(Constantes.SESION_CLIENTE, cliente);
+                    WebUtil.setObjectSesion(Constantes.getSESION_CLIENTE(), cliente);
                     logeado = true;
-                    System.out.print(WebUtil.getObjectSesion(Constantes.SESION_CLIENTE));
+                    System.out.print(WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE()));
                     WebUtil.sendRedirect("/bienvenida_cliente");
                 } else {
                     //msg= new FacesMessage(FacesMessage.SEVERITY_WARN,Constantes.MENSAJE_LOGEO_INCORRECTO,"Usuario o contraseña errada");
@@ -87,8 +87,8 @@ public class LoginController implements Serializable {
                 }
             }
 
-            System.out.println("SESION_USUARIO : " + WebUtil.getObjectSesion(Constantes.SESION_USUARIO));
-            System.out.println("SESION_CLIENTE : " + WebUtil.getObjectSesion(Constantes.SESION_CLIENTE));
+            System.out.println("SESION_USUARIO : " + WebUtil.getObjectSesion(Constantes.getSESION_USUARIO()));
+            System.out.println("SESION_CLIENTE : " + WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE()));
 
         } catch (Exception ex) {
             //Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
@@ -97,10 +97,10 @@ public class LoginController implements Serializable {
     }
 
     public void logout() {
-        if (WebUtil.getObjectSesion(Constantes.SESION_USUARIO) != null) {
-            WebUtil.deleteObjectSession(Constantes.SESION_USUARIO);
-        } else if (WebUtil.getObjectSesion(Constantes.SESION_CLIENTE) != null) {
-            WebUtil.deleteObjectSession(Constantes.SESION_CLIENTE);
+        if (WebUtil.getObjectSesion(Constantes.getSESION_USUARIO()) != null) {
+            WebUtil.deleteObjectSession(Constantes.getSESION_USUARIO());
+        } else if (WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE()) != null) {
+            WebUtil.deleteObjectSession(Constantes.getSESION_CLIENTE());
         }
         WebUtil.sendRedirect("/login");
     }

@@ -61,10 +61,10 @@ public class CotizacionController {
     }
 
     public void agregarProducto() throws Exception {
-        if (WebUtil.getObjectSesion(Constantes.SESION_CLIENTE) == null) {
+        if (WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE()) == null) {
             WebUtil.sendRedirect("/login");
         } else {
-            int codigo_cliente = Integer.parseInt(WebUtil.getObjectSesion(Constantes.SESION_CLIENTE).toString());
+            int codigo_cliente = Integer.parseInt(WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE()).toString());
             Cliente cliente = this.clienteBusiness.getClienteByCode(codigo_cliente);
 
             if (this.id == 0) {
@@ -161,12 +161,12 @@ public class CotizacionController {
         List<Producto> lproductos;
 
         try {
-             lproductos = this.productoBusiness.listProducto();
+            lproductos = this.productoBusiness.listProducto();
         } catch (PedidoException ex) {
-             lproductos = new ArrayList<Producto>();
+            lproductos = new ArrayList<Producto>();
         }
 
-        for (Producto c :  lproductos) {
+        for (Producto c : lproductos) {
             productos.add(new SelectItem(c.getProdCodigo(), c.getProdNombre()));
         }
 
