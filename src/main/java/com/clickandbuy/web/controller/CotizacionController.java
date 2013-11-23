@@ -64,8 +64,7 @@ public class CotizacionController {
         if (WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE()) == null) {
             WebUtil.sendRedirect("/login");
         } else {
-            int codigo_cliente = Integer.parseInt(WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE()).toString());
-            Cliente cliente = this.clienteBusiness.getClienteByCode(codigo_cliente);
+            Cliente cliente = (Cliente) WebUtil.getObjectSesion(Constantes.SESION_CLIENTE);
 
             if (this.id == 0) {
                 this.cotizacion = new Pedido();
