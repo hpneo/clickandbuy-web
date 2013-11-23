@@ -12,8 +12,6 @@ public class WebUtil {
 
     public static Object getObjectSesion(String objectName) {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        System.out.print("session: " + request.getSession());
-        System.out.print("session: " + request.getSession(false));
         return request.getSession(false).getAttribute(objectName);
     }
 
