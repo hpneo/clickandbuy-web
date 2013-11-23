@@ -13,6 +13,7 @@ import clickandbuy.upc.edu.core.entity.Pedido;
 import clickandbuy.upc.edu.core.entity.Productoxpedido;
 import clickandbuy.upc.edu.core.entity.ProductoxpedidoId;
 import clickandbuy.upc.edu.core.entity.Producto;
+import com.clickandbuy.web.util.Constantes;
 import com.clickandbuy.web.util.WebUtil;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -67,22 +68,14 @@ public class PedidoController {
         }
     }
 
-    public void agregarProducto() {
-        try {
-            Cliente cliente = new Cliente();
-            if (this.clienteBusiness.listCliente().isEmpty()) {
-                cliente.setCliNombreusuario("cliente1");
-                cliente.setCliContrasenia("cliente");
-                cliente.setCliDireccion("");
-                cliente.setCliNombreempresa("Empresa1");
-                cliente.setCliRuc("1234567890");
-
-                this.clienteBusiness.addCliente(cliente);
-            }
-            cliente = this.clienteBusiness.listCliente().get(0);
-
+    public void agregarProducto() throws Exception {
+        if (WebUtil.getObjectSesion(Constantes.SESION_CLIENTE) == null) {
+            WebUtil.sendRedirect("/login");
+        } else {
+            int codigo_cliente = Integer.parseInt(WebUtil.getObjectSesion(Constantes.SESION_CLIENTE).toString());
+            Cliente cliente = this.clienteBusiness.getClienteByCode(codigo_cliente);
+            
             if (this.id == 0) {
-                this.pedido = new Pedido();
                 this.pedido.setPedTipo("pedido");
                 this.pedido.setCliente(cliente);
                 this.pedido.setPedFechahora(new Date());
@@ -94,7 +87,7 @@ public class PedidoController {
 
                 this.id = this.pedido.getPedCodigo();
             }
-
+            
             Producto pedidoProducto = this.productoBusiness.getProductoByCode(this.pedidoDetalle.getProducto().getProdCodigo());
             this.pedidoDetalle.setProducto(pedidoProducto);
 
@@ -106,11 +99,9 @@ public class PedidoController {
             this.pedidoDetalle.setPropedPreciototal(precioTotal);
             this.pedidoDetalle.setId(new ProductoxpedidoId(this.pedido.getPedCodigo(), this.pedidoDetalle.getProducto().getProdCodigo()));
             this.productoxpedidoBusinees.addProductoxpedido(this.pedidoDetalle);
-        } catch (Exception ex) {
-            Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
+            
+            WebUtil.sendRedirect("/pedidos/" + this.id);
         }
-
-        WebUtil.sendRedirect("/pedidos/" + this.id);
     }
 
     public void eliminarProducto(Integer codProducto) {
