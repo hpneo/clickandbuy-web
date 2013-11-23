@@ -61,10 +61,10 @@ public class CotizacionController {
     }
 
     public void agregarProducto() throws Exception {
-        if (WebUtil.getObjectSesion(Constantes.SESION_CLIENTE) == null) {
+        if (WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE()) == null) {
             WebUtil.sendRedirect("/login");
         } else {
-            Cliente cliente = (Cliente) WebUtil.getObjectSesion(Constantes.SESION_CLIENTE);
+            Cliente cliente = (Cliente) WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE());
 
             if (this.id == 0) {
                 this.cotizacion = new Pedido();
@@ -73,7 +73,7 @@ public class CotizacionController {
                 this.cotizacion.setPedFechahora(new Date());
                 this.pedidoBusiness.addPedido(this.cotizacion);
 
-                List<Pedido> pedidos = this.pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(), Constantes.TIPO_DE_PEDIDO);
+                List<Pedido> pedidos = this.pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(), Constantes.getTIPO_DE_PEDIDO());
 
                 this.cotizacion = pedidos.get(
                         pedidos.size() - 1);
@@ -160,12 +160,12 @@ public class CotizacionController {
         List<Producto> lproductos;
 
         try {
-             lproductos = this.productoBusiness.listProducto();
+            lproductos = this.productoBusiness.listProducto();
         } catch (PedidoException ex) {
-             lproductos = new ArrayList<Producto>();
+            lproductos = new ArrayList<Producto>();
         }
 
-        for (Producto c :  lproductos) {
+        for (Producto c : lproductos) {
             productos.add(new SelectItem(c.getProdCodigo(), c.getProdNombre()));
         }
 

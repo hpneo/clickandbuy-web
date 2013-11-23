@@ -15,23 +15,21 @@ import javax.faces.event.ActionEvent;
  * @author Piero
  */
 @ManagedBean(name = "growlController")
-public class GrowlController 
-{
-    private String text;  
-      
-    public String getText() 
-    {  
-        return text;  
-    }  
-    public void setText(String text) 
-    {  
-        this.text = text;  
-    }  
-  
-    public void login(ActionEvent actionEvent) 
-    {  
-        FacesContext context = FacesContext.getCurrentInstance();  
-          
-        context.addMessage(null, new FacesMessage(Constantes.MENSAJE_LOGEO_CORRECTO, Constantes.MENSAJE_BIENVENIDA + text));    
-    }  
+public class GrowlController {
+
+    private String text;
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void login(ActionEvent actionEvent) {
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        context.addMessage(null, new FacesMessage(Constantes.getMENSAJE_LOGEO_CORRECTO(), Constantes.getMENSAJE_BIENVENIDA() + text));
+    }
 }
