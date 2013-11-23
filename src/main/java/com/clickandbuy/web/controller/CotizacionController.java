@@ -73,7 +73,7 @@ public class CotizacionController {
                 this.cotizacion.setPedFechahora(new Date());
                 this.pedidoBusiness.addPedido(this.cotizacion);
 
-                List<Pedido> pedidos = this.pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(), "cotizacion");
+                List<Pedido> pedidos = this.pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(), Constantes.getTIPO_DE_PEDIDO());
 
                 this.cotizacion = pedidos.get(
                         pedidos.size() - 1);
