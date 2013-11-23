@@ -25,14 +25,12 @@ public class CategoriaController {
     @ManagedProperty("#{param.id}")
     private int id = 0;
     private Categoria categoria = new Categoria();
-    private List<Categoria> categorias = new ArrayList<Categoria>();
     CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
 
     public void insertar() throws Exception {
         try {
             this.categoriaBusiness.addCategoria(this.categoria);
-        } catch (CategoriaException ex) 
-        {
+        } catch (CategoriaException ex) {
             Logger.getLogger(CategoriaController.class.getName()).log(Level.SEVERE, null, ex);
         }
         WebUtil.sendRedirect("/categorias");

@@ -37,7 +37,6 @@ public class CotizacionController {
     private int id = 0;
     private Pedido cotizacion = new Pedido();
     private Productoxpedido cotizacionDetalle = new Productoxpedido();
-    private List<Pedido> cotizaciones = new ArrayList<Pedido>();
     PedidoBusiness pedidoBusiness = new PedidoBusiness();
     ClienteBusiness clienteBusiness = new ClienteBusiness();
     ProductoBusiness productoBusiness = new ProductoBusiness();
@@ -75,9 +74,10 @@ public class CotizacionController {
                 this.cotizacion.setPedFechahora(new Date());
                 this.pedidoBusiness.addPedido(this.cotizacion);
 
-                List<Pedido> _pedidos = this.pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(), "cotizacion");
+                List<Pedido> pedidos = this.pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(), "cotizacion");
 
-                this.cotizacion = _pedidos.get(_pedidos.size() - 1);
+                this.cotizacion = pedidos.get(
+                        pedidos.size() - 1);
 
                 this.id = this.cotizacion.getPedCodigo();
             }
@@ -158,15 +158,15 @@ public class CotizacionController {
     public List<SelectItem> getProductos() throws Exception {
         this.productos = new ArrayList<SelectItem>();
 
-        List<Producto> _productos;
+        List<Producto> lproductos;
 
         try {
-            _productos = this.productoBusiness.listProducto();
+             lproductos = this.productoBusiness.listProducto();
         } catch (PedidoException ex) {
-            _productos = new ArrayList<Producto>();
+             lproductos = new ArrayList<Producto>();
         }
 
-        for (Producto c : _productos) {
+        for (Producto c :  lproductos) {
             productos.add(new SelectItem(c.getProdCodigo(), c.getProdNombre()));
         }
 
