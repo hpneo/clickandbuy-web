@@ -45,7 +45,7 @@ public class WebUtil
             
 	    FacesContext.getCurrentInstance().responseComplete();
             //log.info(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "/faces/" + ruta);
-	    response.sendRedirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/faces/"+ruta);
+	    response.sendRedirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+ruta);
 	} 
         catch (IOException ioe) 
         {

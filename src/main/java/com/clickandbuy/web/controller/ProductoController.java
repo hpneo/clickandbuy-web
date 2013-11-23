@@ -25,101 +25,86 @@ import javax.faces.model.SelectItem;
 @ManagedBean(name = "productoController")
 @RequestScoped
 public class ProductoController {
-  
-  @ManagedProperty("#{param.id}")
-  private int id = 0;
-  private Producto producto = new Producto();
-  private Categoria categoria = new Categoria();
-  private List<Producto> productos = new ArrayList<Producto>();
-  private List<SelectItem> categorias = new ArrayList<SelectItem>();
-  private ProductoBusiness productoBusiness = new ProductoBusiness();
-  
-  public void insertar() {
-    this.producto.setCategoria(this.getCategoria());
-    System.out.println("========================");
-    System.out.println(this.getCategoria().getCatNombre());
-    System.out.println(this.producto.getCategoria().getCatCodigo());
-    System.out.println("========================");
-    
-    try 
-    {
-      this.productoBusiness.addProducto(this.producto);
-    } 
-    catch (Exception ex) {
-      Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    
-    WebUtil.sendRedirect("/productos");
-  }
-  
-  public void actualizar() {
-    if (this.producto != null) {
-      System.out.println("========================");
-      System.out.println(this.producto.getProdCodigo());
-      System.out.println(this.producto.getProdNombre());
-      System.out.println("========================");
-      
-      WebUtil.sendRedirect("/productos/" + this.id);
-    }
-  }
 
-  public int getId() {
-    return id;
-  }
+    @ManagedProperty("#{param.id}")
+    private int id = 0;
+    private Producto producto = new Producto();
+    private Categoria categoria = new Categoria();
+    private List<Producto> productos = new ArrayList<Producto>();
+    private List<SelectItem> categorias = new ArrayList<SelectItem>();
+    private ProductoBusiness productoBusiness = new ProductoBusiness();
 
-  public void setId(int id) {
-    this.id = id;
-  }
-  
-  public Producto getProducto() {
-    if (this.id != 0) {
-      try {
-	this.producto = this.productoBusiness.getProductoByCode(this.id);
-      } catch (Exception ex) {
-	this.producto = new Producto();
-      }
-    }
-    
-    return this.producto;
-  }
-  
-  public void setProducto(Producto producto) {
-    this.producto = producto;
-  }
+    public void insertar() {
+        this.producto.setCategoria(this.getCategoria());
 
-  public Categoria getCategoria() {
-    return categoria;
-  }
+        try {
+            this.productoBusiness.addProducto(this.producto);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-  public void setCategoria(Categoria categoria) {
-    this.categoria = categoria;
-  }
-  
-  public List<SelectItem> getCategorias() {
-    this.categorias = new ArrayList<SelectItem>();
-    
-    CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
-    List<Categoria> _categorias;
-    
-    try {
-      _categorias = categoriaBusiness.listCategoria();
-    } catch (Exception ex) {
-      _categorias = new ArrayList<Categoria>();
+        WebUtil.sendRedirect("/productos");
     }
-    
-    for (Categoria c:_categorias) {
-      categorias.add(new SelectItem(c.getCatCodigo(), c.getCatNombre()));
+
+    public void actualizar() {
+        if (this.producto != null) {
+            WebUtil.sendRedirect("/productos/" + this.id);
+        }
     }
-    
-    return categorias;
-  }
-  
-  public List<Producto> getProductos() {
-    try {
-      return this.productoBusiness.listProducto();
-    } catch (Exception e) {
-      return new ArrayList<Producto>();
+
+    public int getId() {
+        return id;
     }
-  }
-  
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Producto getProducto() {
+        if (this.id != 0) {
+            try {
+                this.producto = this.productoBusiness.getProductoByCode(this.id);
+            } catch (Exception ex) {
+                this.producto = new Producto();
+            }
+        }
+
+        return this.producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public List<SelectItem> getCategorias() {
+        this.categorias = new ArrayList<SelectItem>();
+        CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
+        List<Categoria> _categorias;
+        try {
+            _categorias = categoriaBusiness.listCategoria();
+        } catch (Exception ex) {
+            _categorias = new ArrayList<Categoria>();
+        }
+        for (Categoria c : _categorias) {
+            categorias.add(new SelectItem(c.getCatCodigo(), c.getCatNombre()));
+        }
+
+        return categorias;
+    }
+
+    public List<Producto> getProductos() {
+        try {
+            return this.productoBusiness.listProducto();
+        } catch (Exception e) {
+            return new ArrayList<Producto>();
+        }
+    }
 }

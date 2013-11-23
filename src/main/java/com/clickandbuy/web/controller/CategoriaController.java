@@ -21,72 +21,60 @@ import javax.faces.bean.*;
 @ManagedBean(name = "categoriaController")
 @RequestScoped
 public class CategoriaController {
-  
-  @ManagedProperty("#{param.id}")
-  private int id = 0;
-  private Categoria categoria = new Categoria();
-  private List<Categoria> categorias = new ArrayList<Categoria>();
-  CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
-  
-  public void insertar() {
-    System.out.println("========================");
-    System.out.println(this.categoria.getCatCodigo());
-    System.out.println(this.categoria.getCatNombre());
-    System.out.println("========================");
-    try {
-      this.categoriaBusiness.addCategoria(this.categoria);
-    } catch (Exception ex) {
-      Logger.getLogger(CategoriaController.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    
-    WebUtil.sendRedirect("/categorias");
-  }
-  
-  public void actualizar() {
-    if (this.categoria != null) {
-      System.out.println("========================");
-      System.out.println(this.categoria.getCatCodigo());
-      System.out.println(this.categoria.getCatNombre());
-      System.out.println("========================");
-      
-      WebUtil.sendRedirect("/categorias/" + this.id);
-    }
-  }
 
-  public int getId() {
-    return id;
-  }
+    @ManagedProperty("#{param.id}")
+    private int id = 0;
+    private Categoria categoria = new Categoria();
+    private List<Categoria> categorias = new ArrayList<Categoria>();
+    CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public void insertar() {
+        try {
+            this.categoriaBusiness.addCategoria(this.categoria);
+        } catch (Exception ex) {
+            Logger.getLogger(CategoriaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-  public Categoria getCategoria() {
-    if (this.id == 0) {
-      this.categoria = new Categoria();
+        WebUtil.sendRedirect("/categorias");
     }
-    else {
-      try {
-	this.categoria = this.categoriaBusiness.getCategoriaByCode(this.id);
-      } catch (Exception ex) {
-	this.categoria = new Categoria();
-      }
-    }
-    
-    return this.categoria;
-  }
 
-  public void setCategoria(Categoria categoria) {
-    this.categoria = categoria;
-  }
-  
-  public List<Categoria> getCategorias()
-  {
-    try {
-      return categoriaBusiness.listCategoria();
-    } catch (Exception ex) {
-      return new ArrayList<Categoria>();
+    public void actualizar() {
+        if (this.categoria != null) {
+            WebUtil.sendRedirect("/categoria/" + this.id);
+        }
     }
-  }
-  
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Categoria getCategoria() {
+        if (this.id == 0) {
+            this.categoria = new Categoria();
+        } else {
+            try {
+                this.categoria = this.categoriaBusiness.getCategoriaByCode(this.id);
+            } catch (Exception ex) {
+                this.categoria = new Categoria();
+            }
+        }
+
+        return this.categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public List<Categoria> getCategorias() {
+        try {
+            return categoriaBusiness.listCategoria();
+        } catch (Exception ex) {
+            return new ArrayList<Categoria>();
+        }
+    }
 }

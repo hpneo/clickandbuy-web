@@ -79,7 +79,7 @@ public class LoginController implements Serializable
                 WebUtil.setObjectSesion(Constantes.SESION_USUARIO, usuario);
                 logeado= true;
                 System.out.print(WebUtil.getObjectSesion(Constantes.SESION_USUARIO));
-                WebUtil.sendRedirect("bienvenida_usuario.xhtml");   
+                WebUtil.sendRedirect("/bienvenida_usuario");   
             }
             else
             {
@@ -95,7 +95,7 @@ public class LoginController implements Serializable
                     WebUtil.setObjectSesion(Constantes.SESION_CLIENTE, cliente);
                     logeado= true;
                     System.out.print(WebUtil.getObjectSesion(Constantes.SESION_CLIENTE));
-                    WebUtil.sendRedirect("bienvenida_cliente.xhtml"); 
+                    WebUtil.sendRedirect("/bienvenida_cliente"); 
                 }
                 else
                 {
@@ -119,7 +119,7 @@ public class LoginController implements Serializable
         else
             if(WebUtil.getObjectSesion(Constantes.SESION_CLIENTE)!=null)
                 WebUtil.deleteObjectSession(Constantes.SESION_CLIENTE);
-        WebUtil.sendRedirect("login.xhtml"); 
+        WebUtil.sendRedirect("/login"); 
     }
     
     
