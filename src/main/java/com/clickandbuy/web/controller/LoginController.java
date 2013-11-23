@@ -11,6 +11,8 @@ import clickandbuy.upc.edu.core.entity.Usuario;
 import com.clickandbuy.web.util.Constantes;
 import com.clickandbuy.web.util.WebUtil;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -62,7 +64,6 @@ public class LoginController implements Serializable {
                 usuario = usuarioBusiness.iniciarSesion(usuario.getUsuNombreusuario());
                 FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 WebUtil.getSesion().setMaxInactiveInterval(Constantes.getSESION_MAX());
-                //msg= new FacesMessage(FacesMessage.SEVERITY_INFO,Constantes.MENSAJE_BIENVENIDA,usuario.getUsuNombreusuario());
                 WebUtil.setObjectSesion(Constantes.getSESION_USUARIO(), usuario);
                 logeado = true;
                 System.out.print(WebUtil.getObjectSesion(Constantes.getSESION_USUARIO()));
@@ -83,12 +84,11 @@ public class LoginController implements Serializable {
                 } else {
                     //msg= new FacesMessage(FacesMessage.SEVERITY_WARN,Constantes.MENSAJE_LOGEO_INCORRECTO,"Usuario o contraseña errada");
                     logeado = false;
-                    System.out.println("No ingresaste ni por cliente ni por usuario");
                 }
             }
-            
+
         } catch (Exception ex) {
-            //Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
