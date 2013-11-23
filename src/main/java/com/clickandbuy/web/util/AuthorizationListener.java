@@ -19,6 +19,7 @@ public class AuthorizationListener implements PhaseListener {
 
     @Override
     public void beforePhase(PhaseEvent event) {
+        // Required method by implementing an interface
     }
 
     @Override

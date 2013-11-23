@@ -50,7 +50,7 @@ public class CategoriaController {
         this.id = id;
     }
 
-    public Categoria getCategoria() throws Exception {
+    public Categoria getCategoria() throws CategoriaException {
         if (this.id == 0) {
             this.categoria = new Categoria();
         } else {
@@ -68,7 +68,7 @@ public class CategoriaController {
         this.categoria = categoria;
     }
 
-    public List<Categoria> getCategorias() throws Exception {
+    public List<Categoria> getCategorias() throws CategoriaException {
         try {
             return categoriaBusiness.listCategoria();
         } catch (CategoriaException ex) {

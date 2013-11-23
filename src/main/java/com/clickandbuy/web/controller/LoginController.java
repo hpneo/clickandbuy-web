@@ -29,7 +29,6 @@ public class LoginController implements Serializable {
     private UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
     private Cliente cliente = new Cliente();
     private ClienteBusiness clienteBusiness = new ClienteBusiness();
-    private boolean logeado = false;
 
     public Cliente getCliente() {
         return cliente;
@@ -65,7 +64,6 @@ public class LoginController implements Serializable {
                 FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 WebUtil.getSesion().setMaxInactiveInterval(Constantes.getSESION_MAX());
                 WebUtil.setObjectSesion(Constantes.getSESION_USUARIO(), usuario);
-                logeado = true;
                 System.out.print(WebUtil.getObjectSesion(Constantes.getSESION_USUARIO()));
                 WebUtil.sendRedirect("/bienvenida_usuario");
             } else {
@@ -76,14 +74,9 @@ public class LoginController implements Serializable {
                     cliente = clienteBusiness.iniciarSesion(cliente.getCliNombreusuario());
                     FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                     WebUtil.getSesion().setMaxInactiveInterval(Constantes.getSESION_MAX());
-                    //msg= new FacesMessage(FacesMessage.SEVERITY_INFO,Constantes.MENSAJE_BIENVENIDA,cliente.getCliNombreusuario());
                     WebUtil.setObjectSesion(Constantes.getSESION_CLIENTE(), cliente);
-                    logeado = true;
                     System.out.print(WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE()));
                     WebUtil.sendRedirect("/bienvenida_cliente");
-                } else {
-                    //msg= new FacesMessage(FacesMessage.SEVERITY_WARN,Constantes.MENSAJE_LOGEO_INCORRECTO,"Usuario o contraseña errada");
-                    logeado = false;
                 }
             }
 
@@ -96,7 +89,7 @@ public class LoginController implements Serializable {
     public void logout() {
         WebUtil.deleteObjectSession(Constantes.getSESION_USUARIO());
         WebUtil.deleteObjectSession(Constantes.getSESION_CLIENTE());
-        
+
         WebUtil.sendRedirect("/login");
     }
 }

@@ -75,8 +75,7 @@ public class CotizacionController {
 
                 List<Pedido> pedidos = this.pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(), Constantes.getTIPO_DE_PEDIDO());
 
-                this.cotizacion = pedidos.get(
-                        pedidos.size() - 1);
+                this.cotizacion = pedidos.toArray()[pedidos.size() - 1];
 
                 this.id = this.cotizacion.getPedCodigo();
             }
@@ -97,7 +96,7 @@ public class CotizacionController {
         }
     }
 
-    public void eliminarProducto(Integer codProducto) throws Exception {
+    public void eliminarProducto(Integer codProducto) throws PedidoException {
         try {
             this.productoxpedidoBusinees = new ProductoxpedidoBusinees();
             ProductoxpedidoId codPedido = new ProductoxpedidoId(this.id, codProducto);
@@ -119,7 +118,7 @@ public class CotizacionController {
         this.id = id;
     }
 
-    public Pedido getCotizacion() throws Exception {
+    public Pedido getCotizacion() throws PedidoException {
         if (this.id != 0) {
             try {
                 this.cotizacion = this.pedidoBusiness.getPedido(this.id);
@@ -135,7 +134,7 @@ public class CotizacionController {
         this.cotizacion = cotizacion;
     }
 
-    public List<Pedido> getCotizaciones() throws Exception {
+    public List<Pedido> getCotizaciones() throws PedidoException {
         try {
             return pedidoBusiness.listPedidoxTipo("cotizacion");
         } catch (PedidoException ex) {
@@ -154,7 +153,7 @@ public class CotizacionController {
         this.cotizacionDetalle = pedidoDetalle;
     }
 
-    public List<SelectItem> getProductos() throws Exception {
+    public List<SelectItem> getProductos() throws PedidoException {
         this.productos = new ArrayList<SelectItem>();
 
         List<Producto> lproductos;

@@ -10,9 +10,27 @@ package com.clickandbuy.web.util;
  */
 public final class Constantes {
 
-    private static int SESION_MAX = 60 * 15; 
+    private static int SESION_MAX = 60 * 15;
     private static String SESION_USUARIO = "usuario";
     private static String SESION_CLIENTE = "cliente";
+    private static String MENSAJE_BIENVENIDA = "Bienvenido";
+    private static String MENSAJE_LOGEO_CORRECTO = "Extio";
+    private static String MENSAJE_LOGEO_INCORRECTO = "Error al logearse";
+    private static String MENU_ITEM_LOGO = "logo";
+    private static String MENU_ITEM_URLLOGO = "#{resource['images/cab_logo.png']}";
+    private static String MENU_ITEM_CATEGORIAS = "Categoria";
+    private static String MENU_ITEM_URLCATEGORIAS = "categorias.xhtml";
+    private static String MENU_ITEM_USUARIOS = "Usuarios";
+    private static String MENU_ITEM_URLUSUARIOS = "usuarios.xhtml";
+    private static String MENU_ITEM_PRODUCTOS = "Productos";
+    private static String MENU_ITEM_URLPRODUCTOS = "productos.xhtml";
+    private static String MENU_ITEM_PEDIDOS = "Pedidos";
+    private static String MENU_ITEM_URLPEDIDOS = "pedidos.xhtml";
+    private static String MENU_ITEM_COTIZACIONES = "Cotizaciones";
+    private static String MENU_ITEM_URLCOTIZACIONES = "cotizaciones.xhtml";
+    private static String MENU_ITEM_EXIT = "Exit";
+    private static String MENU_ITEM_CERRAR_SESION = "Cerrar sesión";
+    private static String TIPO_DE_PEDIDO = "cotizacion";
 
     public static int getSESION_MAX() {
         return SESION_MAX;
@@ -97,22 +115,4 @@ public final class Constantes {
     public static String getTIPO_DE_PEDIDO() {
         return TIPO_DE_PEDIDO;
     }
-    private static String MENSAJE_BIENVENIDA = "Bienvenido";
-    private static String MENSAJE_LOGEO_CORRECTO = "Extio";
-    private static String MENSAJE_LOGEO_INCORRECTO = "Error al logearse";
-    private static String MENU_ITEM_LOGO = "logo";
-    private static String MENU_ITEM_URLLOGO = "#{resource['images/cab_logo.png']}";
-    private static String MENU_ITEM_CATEGORIAS = "Categoria";
-    private static String MENU_ITEM_URLCATEGORIAS = "categorias.xhtml";
-    private static String MENU_ITEM_USUARIOS = "Usuarios";
-    private static String MENU_ITEM_URLUSUARIOS = "usuarios.xhtml";
-    private static String MENU_ITEM_PRODUCTOS = "Productos";
-    private static String MENU_ITEM_URLPRODUCTOS = "productos.xhtml";
-    private static String MENU_ITEM_PEDIDOS = "Pedidos";
-    private static String MENU_ITEM_URLPEDIDOS = "pedidos.xhtml";
-    private static String MENU_ITEM_COTIZACIONES = "Cotizaciones";
-    private static String MENU_ITEM_URLCOTIZACIONES = "cotizaciones.xhtml";
-    public static String MENU_ITEM_EXIT = "Exit";
-    public static String MENU_ITEM_CERRAR_SESION = "Cerrar sesión";
-    private static String TIPO_DE_PEDIDO = "cotizacion";
 }

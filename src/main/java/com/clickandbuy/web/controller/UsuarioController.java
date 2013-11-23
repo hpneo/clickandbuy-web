@@ -28,7 +28,6 @@ public class UsuarioController {
     @ManagedProperty("#{param.id}")
     private int id = 0;
     private Usuario usuario = new Usuario();
-    private List<Usuario> usuarios = new ArrayList<Usuario>();
     private List<SelectItem> roles = new ArrayList<SelectItem>();
     UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
 
