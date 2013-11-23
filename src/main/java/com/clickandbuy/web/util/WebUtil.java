@@ -12,7 +12,6 @@ public class WebUtil {
 
     public static Object getObjectSesion(String objectName) {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        System.out.println("session: " + request.getSession(false));
         return request.getSession(false).getAttribute(objectName);
     }
 
@@ -23,8 +22,9 @@ public class WebUtil {
     }
 
     public static void deleteObjectSession(String objectName) {
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        request.getSession(false).removeAttribute(Constantes.getSESION_USUARIO());
+        // HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        // request.getSession(false).removeAttribute(Constantes.getSESION_USUARIO());
+        setObjectSesion(objectName, null);
     }
 
     public static HttpSession getSesion() {

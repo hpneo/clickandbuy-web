@@ -94,11 +94,9 @@ public class LoginController implements Serializable {
     }
 
     public void logout() {
-        if (WebUtil.getObjectSesion(Constantes.getSESION_USUARIO()) != null) {
-            WebUtil.deleteObjectSession(Constantes.getSESION_USUARIO());
-        } else if (WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE()) != null) {
-            WebUtil.deleteObjectSession(Constantes.getSESION_CLIENTE());
-        }
+        WebUtil.deleteObjectSession(Constantes.getSESION_USUARIO());
+        WebUtil.deleteObjectSession(Constantes.getSESION_CLIENTE());
+        
         WebUtil.sendRedirect("/login");
     }
 }
