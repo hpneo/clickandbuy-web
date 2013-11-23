@@ -36,7 +36,7 @@
                 <li><a href="#{request.contextPath}/bienvenida_cliente"><img src="images/clickandbuy.png" alt="UPC" /></a></li>     
                 <li><a href="#{request.contextPath}/cotizaciones_cliente">#{site_labels.quotes}</a></li>
                 <li><a  href="#{request.contextPath}/pedidos_cliente">#{site_labels.orders}</a></li>
-                <li><a href="#{facesContext.externalContext.requestContextPath}/faces/login.xhtml" >#{site_labels.logout_title}</a></li>
+                <li><h:form><p:commandLink action="#{loginController.logout}" ajax="false" value="Cerrar sesion" /></h:form></li>
             </ul>
         </div>
     </div> 

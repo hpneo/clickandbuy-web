@@ -40,7 +40,7 @@
                 <li><a href="#{request.contextPath}/usuarios">#{site_labels.users}</a></li>
                 <li><a href="#{request.contextPath}/cotizaciones">#{site_labels.quotes}</a></li>
                 <li><a  href="#{request.contextPath}/pedidos">#{site_labels.orders}</a></li>
-                <li><a href="#{facesContext.externalContext.requestContextPath}/faces/login.xhtml" >#{site_labels.logout_title}</a></li>
+                <li><h:form><p:commandLink action="#{loginController.logout}" ajax="false" value="Cerrar sesion" /></h:form></li>
             </ul>
         </div>
     </div> 

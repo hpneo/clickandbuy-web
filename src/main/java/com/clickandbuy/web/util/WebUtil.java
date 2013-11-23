@@ -1,6 +1,7 @@
 package com.clickandbuy.web.util;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import javax.faces.context.*;
 import javax.servlet.http.*;
 
@@ -23,6 +24,15 @@ public class WebUtil
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         request.getSession(false).setAttribute(objectName, object);
     }
+     
+    public static void deleteObjectSession(String objectName)
+    {
+         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        request.getSession(false).removeAttribute(Constantes.SESION_USUARIO);
+        request.getSession(false).invalidate();	
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+    } 
+     
     public static HttpSession getSesion()
     {
         return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);

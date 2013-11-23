@@ -67,7 +67,6 @@ public class LoginController implements Serializable
     {
         try 
         {
-            System.out.println("Entro al login");
             if(usuarioBusiness.autenticarUsuario(usuario.getUsuNombreusuario(), usuario.getUsuContrasenia()))
             {
                 System.out.println("Entro al if");
@@ -115,16 +114,12 @@ public class LoginController implements Serializable
     }
     public void logout()
     {
-        
-        WebUtil.sendRedirect("login.xhtml");
-        System.out.print("entro al logout");
-        FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        WebUtil.getSesion().invalidate();
-        logeado = false;
-        System.out.print("Apunto de redireccionar");
-        /*RequestContext context = RequestContext.getCurrentInstance();
-        context.addCallbackParam("view", "login.xhtml");  
-    */
+        if(WebUtil.getObjectSesion(Constantes.SESION_USUARIO)!=null)
+            WebUtil.deleteObjectSession(Constantes.SESION_USUARIO);
+        else
+            if(WebUtil.getObjectSesion(Constantes.SESION_CLIENTE)!=null)
+                WebUtil.deleteObjectSession(Constantes.SESION_CLIENTE);
+        WebUtil.sendRedirect("login.xhtml"); 
     }
     
     
