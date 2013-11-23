@@ -104,6 +104,9 @@ public class LoginController implements Serializable
                     System.out.println("No ingresaste ni por cliente ni por usuario");
                 }
             }
+            
+            System.out.println("SESION_USUARIO : " + WebUtil.getObjectSesion(Constantes.SESION_USUARIO));
+            System.out.println("SESION_CLIENTE : " + WebUtil.getObjectSesion(Constantes.SESION_CLIENTE));
            
         }
         catch (Exception ex) 

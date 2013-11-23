@@ -13,6 +13,7 @@ import clickandbuy.upc.edu.core.entity.Pedido;
 import clickandbuy.upc.edu.core.entity.Productoxpedido;
 import clickandbuy.upc.edu.core.entity.ProductoxpedidoId;
 import clickandbuy.upc.edu.core.entity.Producto;
+import com.clickandbuy.web.util.Constantes;
 import com.clickandbuy.web.util.WebUtil;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -67,18 +68,15 @@ public class CotizacionController {
     }
 
     public void agregarProducto() {
+        if (WebUtil.getObjectSesion(Constantes.SESION_CLIENTE) == null) {
+            WebUtil.sendRedirect("/login");
+        }
+        else {
+            
+        }
         try {
-            Cliente cliente = new Cliente();
-            if (this.clienteBusiness.listCliente().isEmpty()) {
-                cliente.setCliNombreusuario("cliente1");
-                cliente.setCliContrasenia("cliente");
-                cliente.setCliDireccion("");
-                cliente.setCliNombreempresa("Empresa1");
-                cliente.setCliRuc("1234567890");
-
-                this.clienteBusiness.addCliente(cliente);
-            }
-            cliente = this.clienteBusiness.listCliente().get(0);
+            int codigo_cliente = Integer.parseInt(WebUtil.getObjectSesion(Constantes.SESION_CLIENTE).toString());
+            Cliente cliente = this.clienteBusiness.getClienteByCode(codigo_cliente);
 
             if (this.id == 0) {
                 this.cotizacion = new Pedido();
