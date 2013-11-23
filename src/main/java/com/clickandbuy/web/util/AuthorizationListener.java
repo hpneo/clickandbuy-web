@@ -25,7 +25,7 @@ public class AuthorizationListener implements PhaseListener {
    
 
     public PhaseId getPhaseId() {
-        return PhaseId.RESTORE_VIEW;
+        return PhaseId.RENDER_RESPONSE;
     }
 
     @Override
