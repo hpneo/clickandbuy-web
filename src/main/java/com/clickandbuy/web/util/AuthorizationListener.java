@@ -20,24 +20,6 @@ public class AuthorizationListener implements PhaseListener {
     @Override
     public void afterPhase(PhaseEvent event) 
     {
-        System.out.println("nena");
-        FacesContext facesContext = event.getFacesContext();
-        String currentPage = facesContext.getViewRoot().getViewId();
-
-        boolean isLoginPage = (currentPage.lastIndexOf("login.xhtml") > -1);
-        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
-
-        if (session == null) {
-            NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
-            nh.handleNavigation(facesContext, null, "loginPage");
-        } else {
-            Object currentUser = session.getAttribute("username");
-
-            if (!isLoginPage && (currentUser == null || currentUser == "")) {
-                NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
-                nh.handleNavigation(facesContext, null, "loginPage");
-            }
-        }
     }
 
    
@@ -49,7 +31,7 @@ public class AuthorizationListener implements PhaseListener {
     @Override
     public void beforePhase(PhaseEvent event) 
     {
-       if (!WebUtil.getRequest().getServletPath().contains("login.xhtml")) {
+       if (!WebUtil.getRequest().getServletPath().contains("login")) {
             if (!AuthUtil.userSignedIn() && !AuthUtil.clienteSignedIn()) 
             {
                 WebUtil.sendRedirect("/login");
