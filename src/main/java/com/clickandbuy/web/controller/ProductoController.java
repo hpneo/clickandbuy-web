@@ -66,7 +66,7 @@ public class ProductoController {
             try {
                 this.producto = this.productoBusiness.getProductoByCode(this.id);
             } catch (ProductoException ex) {
-                this.producto = new Producto();
+                throw new RuntimeException(ProductoController.class.getName(), ex);
             }
         }
         return this.producto;
@@ -91,7 +91,7 @@ public class ProductoController {
         try {
             categoriasCollection = categoriaBusiness.listCategoria();
         } catch (CategoriaException ex) {
-            categoriasCollection = new ArrayList<Categoria>();
+           throw new RuntimeException(ProductoController.class.getName(), ex);
         }
         for (Categoria c : categoriasCollection) {
             categorias.add(new SelectItem(c.getCatCodigo(), c.getCatNombre()));
@@ -103,8 +103,8 @@ public class ProductoController {
     public List<Producto> getProductos() throws ProductoException {
         try {
             return this.productoBusiness.listProducto();
-        } catch (ProductoException e) {
-            return new ArrayList<Producto>();
+        } catch (ProductoException ex) {
+            throw new RuntimeException(ProductoController.class.getName(), ex);
         }
     }
 }

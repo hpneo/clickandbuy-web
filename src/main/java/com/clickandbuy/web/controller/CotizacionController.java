@@ -126,7 +126,7 @@ public class CotizacionController {
             try {
                 this.cotizacion = this.pedidoBusiness.getPedido(this.id);
             } catch (PedidoException ex) {
-                this.cotizacion = new Pedido();
+                throw new RuntimeException(CotizacionController.class.getName(), ex);
             }
         }
 
@@ -141,7 +141,7 @@ public class CotizacionController {
         try {
             return pedidoBusiness.listPedidoxTipo("cotizacion");
         } catch (PedidoException ex) {
-            return new ArrayList<Pedido>();
+            throw new RuntimeException(CotizacionController.class.getName(), ex);
         }
     }
 
@@ -164,7 +164,7 @@ public class CotizacionController {
         try {
             lproductos = this.productoBusiness.listProducto();
         } catch (ProductoException ex) {
-            lproductos = new ArrayList<Producto>();
+            throw new RuntimeException(CotizacionController.class.getName(), ex);
         }
 
         for (Producto c : lproductos) {
