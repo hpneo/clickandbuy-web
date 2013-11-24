@@ -42,6 +42,7 @@ public class PedidoController {
     ProductoxpedidoBusinees productoxpedidoBusinees = new ProductoxpedidoBusinees();
     static String INDEX_ROUTE = "/pedidos";
     static String SHOW_ROUTE = "/pedidos/%d";
+    static String TIPO_PEDIDO = "pedido";
 
     public void insertar() {
         this.pedido.getProductoxpedidos().add(this.pedidoDetalle);
@@ -73,7 +74,7 @@ public class PedidoController {
                 this.pedido.setPedFechahora(new Date());
                 this.pedidoBusiness.addPedido(this.pedido);
 
-                List<Pedido> pedidosCollection = this.pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(), "pedido");
+                List<Pedido> pedidosCollection = this.pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(), TIPO_PEDIDO);
 
                 this.pedido = pedidosCollection.get(pedidosCollection.size() - 1);
 
@@ -137,7 +138,7 @@ public class PedidoController {
     public List<Pedido> getPedidos() {
         List<Pedido> pedidos = new ArrayList<Pedido>();
         try {
-            pedidos = pedidoBusiness.listPedidoxTipo("pedido");
+            pedidos = pedidoBusiness.listPedidoxTipo(TIPO_PEDIDO);
         } catch (Exception ex) {
            Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
         }
