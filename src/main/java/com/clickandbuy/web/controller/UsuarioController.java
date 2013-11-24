@@ -8,6 +8,7 @@ import clickandbuy.upc.edu.core.business.UsuarioBusiness;
 import clickandbuy.upc.edu.core.business.RolBusiness;
 import clickandbuy.upc.edu.core.entity.Usuario;
 import clickandbuy.upc.edu.core.entity.Rol;
+import clickandbuy.upc.edu.core.exception.RolException;
 import clickandbuy.upc.edu.core.exception.UsuarioException;
 import com.clickandbuy.web.util.WebUtil;
 import java.util.ArrayList;
@@ -83,7 +84,7 @@ public class UsuarioController {
         }
     }
 
-    public List<SelectItem> getRoles() throws Exception {
+    public List<SelectItem> getRoles() throws RolException {
         this.roles = new ArrayList<SelectItem>();
 
         RolBusiness rolBusiness = new RolBusiness();
@@ -91,7 +92,7 @@ public class UsuarioController {
 
         try {
              _roles = rolBusiness.listRoles();
-        } catch (UsuarioException ex) {
+        } catch (RolException ex) {
             _roles = new ArrayList<Rol>();
         }
 

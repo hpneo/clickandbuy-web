@@ -105,7 +105,7 @@ public class CotizacionController {
             Productoxpedido pedidoDetalle = this.productoxpedidoBusinees.getProductoxpedido(codPedido);
 
             this.productoxpedidoBusinees.deleteProductoxpedido(pedidoDetalle);
-        } catch (PedidoException ex) {
+        } catch (ProductoxpedidoException ex) {
             Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
