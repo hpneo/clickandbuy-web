@@ -40,11 +40,8 @@ public class PedidoController {
     ClienteBusiness clienteBusiness = new ClienteBusiness();
     ProductoBusiness productoBusiness = new ProductoBusiness();
     ProductoxpedidoBusinees productoxpedidoBusinees = new ProductoxpedidoBusinees();
-<<<<<<< HEAD
     static String INDEX_ROUTE = "/pedidos";
     static String SHOW_ROUTE = "/pedidos/%d";
-=======
->>>>>>> por
 
     public void insertar() {
         this.pedido.getProductoxpedidos().add(this.pedidoDetalle);
@@ -161,18 +158,12 @@ public class PedidoController {
 
     public List<SelectItem> getProductos() {
         List<SelectItem> productos = new ArrayList<SelectItem>();
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> por
-        List<Producto> productosCollection;
+        List<Producto> productosCollection = new ArrayList<Producto>();
 
         try {
             productosCollection = this.productoBusiness.listProducto();
         } catch (Exception ex) {
             Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
-            productosCollection = new ArrayList<Producto>();
         }
 
         for (Producto c : productosCollection) {
