@@ -25,7 +25,7 @@
         </p>
         <p class="input">
           <h:outputLabel for="user_role" value="#{site_labels.user_role}:" />
-          <h:selectOneMenu id="user_role" value="#{usuarioController.usuario.rol.rolCodigo}">
+          <h:selectOneMenu id="user_role" value="#{usuarioController.rol.rolCodigo}">
             <f:selectItems value="#{usuarioController.roles}" />
           </h:selectOneMenu>
         </p>

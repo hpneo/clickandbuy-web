@@ -29,10 +29,12 @@ public class UsuarioController {
     @ManagedProperty("#{param.id}")
     private int id = 0;
     private Usuario usuario = new Usuario();
+    private Rol rol = new Rol();
     UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
 
     public void insertar() throws UsuarioException {
-
+        this.usuario.setRol(this.getRol());
+        
         try {
             this.usuarioBusiness.addUsuario(this.usuario);
         } catch (UsuarioException ex) {
@@ -56,15 +58,11 @@ public class UsuarioController {
     }
 
     public Usuario getUsuario() throws UsuarioException {
-        if (this.id == 0) {
-            this.usuario = new Usuario();
-        } else {
+        if (this.id != 0) {
             try {
                 this.usuario = this.usuarioBusiness.getUsuarioByCode(this.id);
-                this.usuario = new Usuario();
             } catch (UsuarioException ex) {
                 Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-                this.usuario = new Usuario();
             }
         }
 
@@ -73,6 +71,14 @@ public class UsuarioController {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
     public List<Usuario> getUsuarios() throws UsuarioException {
