@@ -1,6 +1,8 @@
 package com.clickandbuy.web.util;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.context.*;
 import javax.servlet.http.*;
 
@@ -16,14 +18,11 @@ public class WebUtil {
     }
 
     public static void setObjectSesion(String objectName, Object object) {
-        //log.info("SE PUSO EN SESION EL OBJETO " + objectName + " DEL TIPO " + object.getClass());
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         request.getSession(false).setAttribute(objectName, object);
     }
 
     public static void deleteObjectSession(String objectName) {
-        // HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        // request.getSession(false).removeAttribute(Constantes.getSESION_USUARIO());
         setObjectSesion(objectName, null);
     }
 
@@ -36,10 +35,9 @@ public class WebUtil {
         try {
 
             FacesContext.getCurrentInstance().responseComplete();
-            //log.info(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "/faces/" + ruta);
             response.sendRedirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + ruta);
         } catch (IOException ioe) {
-            //log.error(ioe.getMessage());
+            Logger.getLogger(WebUtil.class.getName()).log(Level.SEVERE, null, ioe);
         }
     }
 

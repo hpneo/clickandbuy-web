@@ -8,6 +8,7 @@ import clickandbuy.upc.edu.core.business.CategoriaBusiness;
 import clickandbuy.upc.edu.core.business.ProductoBusiness;
 import clickandbuy.upc.edu.core.entity.Categoria;
 import clickandbuy.upc.edu.core.entity.Producto;
+import clickandbuy.upc.edu.core.exception.CategoriaException;
 import clickandbuy.upc.edu.core.exception.ProductoException;
 import com.clickandbuy.web.util.WebUtil;
 import java.util.ArrayList;
@@ -31,11 +32,10 @@ public class ProductoController {
     private int id = 0;
     private Producto producto = new Producto();
     private Categoria categoria = new Categoria();
-    private List<Producto> productos = new ArrayList<Producto>();
     private List<SelectItem> categorias = new ArrayList<SelectItem>();
     private ProductoBusiness productoBusiness = new ProductoBusiness();
 
-    public void insertar() throws Exception {
+    public void insertar() throws ProductoException {
         this.producto.setCategoria(this.getCategoria());
 
         try {
@@ -61,7 +61,7 @@ public class ProductoController {
         this.id = id;
     }
 
-    public Producto getProducto() throws Exception {
+    public Producto getProducto() throws ProductoException {
         if (this.id != 0) {
             try {
                 this.producto = this.productoBusiness.getProductoByCode(this.id);
@@ -84,23 +84,23 @@ public class ProductoController {
         this.categoria = categoria;
     }
 
-    public List<SelectItem> getCategorias() throws Exception {
+    public List<SelectItem> getCategorias() throws CategoriaException {
         this.categorias = new ArrayList<SelectItem>();
         CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
-        List<Categoria> _categorias;
+        List<Categoria> categoriasCollection;
         try {
-            _categorias = categoriaBusiness.listCategoria();
-        } catch (ProductoException ex) {
-            _categorias = new ArrayList<Categoria>();
+            categoriasCollection = categoriaBusiness.listCategoria();
+        } catch (CategoriaException ex) {
+            categoriasCollection = new ArrayList<Categoria>();
         }
-        for (Categoria c : _categorias) {
+        for (Categoria c : categoriasCollection) {
             categorias.add(new SelectItem(c.getCatCodigo(), c.getCatNombre()));
         }
 
         return categorias;
     }
 
-    public List<Producto> getProductos() throws Exception {
+    public List<Producto> getProductos() throws ProductoException {
         try {
             return this.productoBusiness.listProducto();
         } catch (ProductoException e) {

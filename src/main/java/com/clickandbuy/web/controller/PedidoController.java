@@ -36,7 +36,6 @@ public class PedidoController {
     private int id = 0;
     private Pedido pedido = new Pedido();
     private Productoxpedido pedidoDetalle = new Productoxpedido();
-    private List<Pedido> pedidos = new ArrayList<Pedido>();
     PedidoBusiness pedidoBusiness = new PedidoBusiness();
     ClienteBusiness clienteBusiness = new ClienteBusiness();
     ProductoBusiness productoBusiness = new ProductoBusiness();
@@ -51,8 +50,6 @@ public class PedidoController {
         } catch (Exception ex) {
             Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        // WebUtil.redirect("/pedidos/" + this.pedido.getPedCodigo());
     }
 
     public void actualizar() {
@@ -80,9 +77,9 @@ public class PedidoController {
                 this.pedido.setPedFechahora(new Date());
                 this.pedidoBusiness.addPedido(this.pedido);
 
-                List<Pedido> _pedidos = this.pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(), "pedido");
+                List<Pedido> pedidosCollection = this.pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(), "pedido");
 
-                this.pedido = _pedidos.get(_pedidos.size() - 1);
+                this.pedido = pedidosCollection.get(pedidosCollection.size() - 1);
 
                 this.id = this.pedido.getPedCodigo();
             }
@@ -106,9 +103,9 @@ public class PedidoController {
     public void eliminarProducto(Integer codProducto) {
         try {
             ProductoxpedidoId codPedido = new ProductoxpedidoId(this.id, codProducto);
-            Productoxpedido pedidoDetalle = this.productoxpedidoBusinees.getProductoxpedido(codPedido);
+            Productoxpedido pedidoDetalleAux = this.productoxpedidoBusinees.getProductoxpedido(codPedido);
 
-            this.productoxpedidoBusinees.deleteProductoxpedido(pedidoDetalle);
+            this.productoxpedidoBusinees.deleteProductoxpedido(pedidoDetalleAux);
         } catch (Exception ex) {
             Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -162,15 +159,15 @@ public class PedidoController {
     public List<SelectItem> getProductos() {
         this.productos = new ArrayList<SelectItem>();
 
-        List<Producto> _productos;
+        List<Producto> productosCollection;
 
         try {
-            _productos = this.productoBusiness.listProducto();
+            productosCollection = this.productoBusiness.listProducto();
         } catch (Exception ex) {
-            _productos = new ArrayList<Producto>();
+            productosCollection = new ArrayList<Producto>();
         }
 
-        for (Producto c : _productos) {
+        for (Producto c : productosCollection) {
             productos.add(new SelectItem(c.getProdCodigo(), c.getProdNombre()));
         }
 
