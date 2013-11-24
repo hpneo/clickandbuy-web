@@ -51,7 +51,7 @@ public class CotizacionController {
         this.cotizacionDetalle = new Productoxpedido();
     }
 
-    public void actualizar() throws Exception {
+    public void actualizar() throws PedidoException {
         if (this.cotizacion != null) {
             try {
                 this.pedidoBusiness.updatePedido(this.cotizacion);
@@ -63,7 +63,7 @@ public class CotizacionController {
         }
     }
 
-    public void agregarProducto() throws Exception {
+    public void agregarProducto() throws PedidoException, ProductoException, ProductoxpedidoException {
         if (WebUtil.getObjectSesion(Constantes.getSESIONCLIENTE()) == null) {
             WebUtil.sendRedirect("/login");
         } else {

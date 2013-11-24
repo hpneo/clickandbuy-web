@@ -69,7 +69,7 @@ public class PedidoController {
             Cliente cliente = (Cliente) WebUtil.getObjectSesion(Constantes.getSESIONCLIENTE());
             
             if (this.id == 0) {
-                this.pedido.setPedTipo(Constantes.PEDIDO());
+                this.pedido.setPedTipo(Constantes.getPEDIDO());
                 this.pedido.setCliente(cliente);
                 this.pedido.setPedFechahora(new Date());
                 this.pedidoBusiness.addPedido(this.pedido);

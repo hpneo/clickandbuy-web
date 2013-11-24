@@ -27,7 +27,7 @@ public class CategoriaController {
     private Categoria categoria = new Categoria();
     CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
 
-    public void insertar() throws Exception {
+    public void insertar() throws CategoriaException {
         try {
             this.categoriaBusiness.addCategoria(this.categoria);
         } catch (CategoriaException ex) {
@@ -57,7 +57,7 @@ public class CategoriaController {
             try {
                 this.categoria = this.categoriaBusiness.getCategoriaByCode(this.id);
             } catch (CategoriaException ex) {
-                throw new RuntimeException(CategoriaController.class.getName(), ex);
+                Logger.getLogger(CategoriaController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -69,10 +69,14 @@ public class CategoriaController {
     }
 
     public List<Categoria> getCategorias() throws CategoriaException {
+        List<Categoria> categories = new ArrayList<Categoria>();
+        
         try {
-            return categoriaBusiness.listCategoria();
+            categories = categoriaBusiness.listCategoria();
         } catch (CategoriaException ex) {
-            throw new RuntimeException(CategoriaController.class.getName(), ex);
+            Logger.getLogger(CategoriaController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        return categories;
     }
 }

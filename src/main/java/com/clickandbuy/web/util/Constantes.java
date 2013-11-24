@@ -33,7 +33,7 @@ public final class Constantes {
     private static String TIPODEPEDIDO = "cotizacion";
     private static String PEDIDO = "pedido";
 
-    public static String PEDIDO() {
+    public static String getPEDIDO() {
         return PEDIDO;
     }
     

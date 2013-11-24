@@ -26,10 +26,8 @@ public class AuthorizationListener implements PhaseListener {
 
     @Override
     public void afterPhase(PhaseEvent event) {
-        if (!WebUtil.getRequest().getServletPath().contains("login")) {
-            if (!AuthUtil.userSignedIn() && !AuthUtil.clienteSignedIn()) {
-                WebUtil.sendRedirect("/login");
-            }
+        if (!WebUtil.getRequest().getServletPath().contains("login") && (!AuthUtil.userSignedIn() && !AuthUtil.clienteSignedIn())) {
+            WebUtil.sendRedirect("/login");
         }
     }
 }
