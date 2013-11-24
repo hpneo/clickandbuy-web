@@ -16,6 +16,7 @@ import clickandbuy.upc.edu.core.entity.Producto;
 import clickandbuy.upc.edu.core.exception.PedidoException;
 import clickandbuy.upc.edu.core.exception.ProductoException;
 import clickandbuy.upc.edu.core.exception.ProductoxpedidoException;
+import static com.clickandbuy.web.controller.PedidoController.TIPO_PEDIDO;
 import com.clickandbuy.web.util.Constantes;
 import com.clickandbuy.web.util.WebUtil;
 import java.math.BigDecimal;
@@ -140,7 +141,8 @@ public class CotizacionController {
     public List<Pedido> getCotizaciones() throws PedidoException {
         List<Pedido> cotizaciones = new ArrayList<Pedido>();
         try {
-            cotizaciones = pedidoBusiness.listPedidoxTipo("cotizacion");
+            Cliente cliente = (Cliente) WebUtil.getObjectSesion(Constantes.getSESIONCLIENTE());
+            cotizaciones = pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(),"cotizacion");
         } catch (PedidoException ex) {
             Logger.getLogger(CotizacionController.class.getName()).log(Level.SEVERE, null, ex);
         }

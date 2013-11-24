@@ -13,9 +13,7 @@
       <div class="h3">
         <h3>#{site_labels.orders}</h3>
       </div>
-      <div >
-          <h:commandButton id="pedidos_buton"  value="#{site_labels.orders_new}" action="/pedido_nuevo.xhtml"/>  
-      </div>
+      
     </div>
     <div class="row">
       <p:dataTable id="pedidos" value="#{pedidoController.pedidos}" var="pedido" rows="100" emptyMessage="#{site_labels.no_records}">

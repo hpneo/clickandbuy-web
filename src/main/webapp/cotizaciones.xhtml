@@ -13,9 +13,7 @@
       <div class="h3">
         <h3>#{site_labels.quotes}</h3>
       </div>
-      <div >
-         <h:commandButton id="cotizaciones_buton"  value="#{site_labels.quotes_new}" action="/cotizacion_nuevo.xhtml"/>  
-      </div>
+     
     </div>
     <div class="row">
       <p:dataTable id="cotizaciones" value="#{cotizacionController.cotizaciones}" var="cotizacion" rows="100" emptyMessage="#{site_labels.no_records}">

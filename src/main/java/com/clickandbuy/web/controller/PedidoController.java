@@ -138,7 +138,8 @@ public class PedidoController {
     public List<Pedido> getPedidos() {
         List<Pedido> pedidos = new ArrayList<Pedido>();
         try {
-            pedidos = pedidoBusiness.listPedidoxTipo(TIPO_PEDIDO);
+            Cliente cliente = (Cliente) WebUtil.getObjectSesion(Constantes.getSESIONCLIENTE());
+            pedidos = pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(),TIPO_PEDIDO);
         } catch (Exception ex) {
            Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
         }
