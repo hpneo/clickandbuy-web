@@ -136,7 +136,7 @@ public class PedidoController {
         try {
             return pedidoBusiness.listPedidoxTipo("pedido");
         } catch (Exception ex) {
-            return new ArrayList<Pedido>();
+           throw new RuntimeException(PedidoController.class.getName(), ex);
         }
     }
 

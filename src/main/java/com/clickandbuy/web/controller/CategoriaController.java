@@ -57,7 +57,7 @@ public class CategoriaController {
             try {
                 this.categoria = this.categoriaBusiness.getCategoriaByCode(this.id);
             } catch (CategoriaException ex) {
-                this.categoria = new Categoria();
+                throw new RuntimeException(CategoriaController.class.getName(), ex);
             }
         }
 
