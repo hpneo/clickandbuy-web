@@ -13,6 +13,7 @@ import clickandbuy.upc.edu.core.entity.Pedido;
 import clickandbuy.upc.edu.core.entity.Productoxpedido;
 import clickandbuy.upc.edu.core.entity.ProductoxpedidoId;
 import clickandbuy.upc.edu.core.entity.Producto;
+import clickandbuy.upc.edu.core.entity.Usuario;
 import com.clickandbuy.web.util.Constantes;
 import com.clickandbuy.web.util.WebUtil;
 import java.math.BigDecimal;
@@ -137,9 +138,13 @@ public class PedidoController {
 
     public List<Pedido> getPedidos() {
         List<Pedido> pedidos = new ArrayList<Pedido>();
+         Cliente cliente = (Cliente) WebUtil.getObjectSesion(Constantes.getSESIONCLIENTE());
+        Usuario usuario = (Usuario) WebUtil.getObjectSesion(Constantes.getSESIONUSUARIO());
         try {
-            Cliente cliente = (Cliente) WebUtil.getObjectSesion(Constantes.getSESIONCLIENTE());
-            pedidos = pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(),TIPO_PEDIDO);
+            if(cliente!=null && usuario==null)
+                pedidos = pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(),TIPO_PEDIDO);
+            else if(cliente==null && usuario!=null)
+                pedidos = pedidoBusiness.listPedidoxTipo(TIPO_PEDIDO);
         } catch (Exception ex) {
            Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
         }

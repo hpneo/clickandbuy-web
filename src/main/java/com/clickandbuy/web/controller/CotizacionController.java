@@ -13,6 +13,7 @@ import clickandbuy.upc.edu.core.entity.Pedido;
 import clickandbuy.upc.edu.core.entity.Productoxpedido;
 import clickandbuy.upc.edu.core.entity.ProductoxpedidoId;
 import clickandbuy.upc.edu.core.entity.Producto;
+import clickandbuy.upc.edu.core.entity.Usuario;
 import clickandbuy.upc.edu.core.exception.PedidoException;
 import clickandbuy.upc.edu.core.exception.ProductoException;
 import clickandbuy.upc.edu.core.exception.ProductoxpedidoException;
@@ -140,9 +141,13 @@ public class CotizacionController {
 
     public List<Pedido> getCotizaciones() throws PedidoException {
         List<Pedido> cotizaciones = new ArrayList<Pedido>();
+        Cliente cliente = (Cliente) WebUtil.getObjectSesion(Constantes.getSESIONCLIENTE());
+        Usuario usuario = (Usuario) WebUtil.getObjectSesion(Constantes.getSESIONUSUARIO());
         try {
-            Cliente cliente = (Cliente) WebUtil.getObjectSesion(Constantes.getSESIONCLIENTE());
-            cotizaciones = pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(),"cotizacion");
+            if(cliente!=null && usuario==null)
+                cotizaciones = pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(),"cotizacion");
+            else if(cliente==null && usuario!=null)
+                cotizaciones = pedidoBusiness.listPedidoxTipo("cotizacion");
         } catch (PedidoException ex) {
             Logger.getLogger(CotizacionController.class.getName()).log(Level.SEVERE, null, ex);
         }
