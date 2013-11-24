@@ -121,6 +121,7 @@ public class PedidoController {
             try {
                 this.pedido = this.pedidoBusiness.getPedido(this.id);
             } catch (Exception ex) {
+                Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
                 this.pedido = new Pedido();
             }
         }
@@ -162,6 +163,7 @@ public class PedidoController {
         try {
             productosCollection = this.productoBusiness.listProducto();
         } catch (Exception ex) {
+            Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
             productosCollection = new ArrayList<Producto>();
         }
 
