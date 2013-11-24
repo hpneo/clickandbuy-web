@@ -46,8 +46,8 @@ public class CotizacionController {
     private List<SelectItem> productos = new ArrayList<SelectItem>();
 
     public void insertar() {
-        this.cotizacionDetalle = new Productoxpedido();
         this.cotizacion.getProductoxpedidos().add(this.cotizacionDetalle);
+        this.cotizacionDetalle = new Productoxpedido();
     }
 
     public void actualizar() throws Exception {

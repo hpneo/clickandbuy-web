@@ -57,25 +57,21 @@ public class LoginController implements Serializable {
     public void login() {
         try {
             if (usuarioBusiness.autenticarUsuario(usuario.getUsuNombreusuario(), usuario.getUsuContrasenia())) {
-                System.out.println("Entro al if");
-                System.out.println(usuario.getUsuCodigo());
-                System.out.println(usuario.getUsuNombreusuario());
                 usuario = usuarioBusiness.iniciarSesion(usuario.getUsuNombreusuario());
                 FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 WebUtil.getSesion().setMaxInactiveInterval(Constantes.getSESION_MAX());
                 WebUtil.setObjectSesion(Constantes.getSESION_USUARIO(), usuario);
-                System.out.print(WebUtil.getObjectSesion(Constantes.getSESION_USUARIO()));
+                
                 WebUtil.sendRedirect("/bienvenida_usuario");
             } else {
                 if (clienteBusiness.autenticarCliente(usuario.getUsuNombreusuario().toString(), usuario.getUsuContrasenia().toString())) {
-                    System.out.print("entro al else");
                     cliente.setCliNombreusuario(usuario.getUsuNombreusuario());
                     cliente.setCliContrasenia(usuario.getUsuContrasenia());
                     cliente = clienteBusiness.iniciarSesion(cliente.getCliNombreusuario());
                     FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                     WebUtil.getSesion().setMaxInactiveInterval(Constantes.getSESION_MAX());
                     WebUtil.setObjectSesion(Constantes.getSESION_CLIENTE(), cliente);
-                    System.out.print(WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE()));
+                    
                     WebUtil.sendRedirect("/bienvenida_cliente");
                 }
             }

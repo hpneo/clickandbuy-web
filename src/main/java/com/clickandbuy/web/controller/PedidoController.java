@@ -45,11 +45,6 @@ public class PedidoController {
     public void insertar() {
         this.pedido.getProductoxpedidos().add(this.pedidoDetalle);
         this.pedidoDetalle = new Productoxpedido();
-        try {
-            // this.pedidoBusiness.addPedido(this.pedido);
-        } catch (Exception ex) {
-            Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     public void actualizar() {

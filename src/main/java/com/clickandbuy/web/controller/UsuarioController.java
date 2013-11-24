@@ -32,7 +32,7 @@ public class UsuarioController {
     private List<SelectItem> roles = new ArrayList<SelectItem>();
     UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
 
-    public void insertar() throws Exception {
+    public void insertar() throws UsuarioException {
 
         try {
             this.usuarioBusiness.addUsuario(this.usuario);
@@ -57,12 +57,12 @@ public class UsuarioController {
         this.id = id;
     }
 
-    public Usuario getUsuario() throws Exception {
+    public Usuario getUsuario() throws UsuarioException {
         if (this.id == 0) {
             this.usuario = new Usuario();
         } else {
             try {
-                 this.usuario = this.usuarioBusiness.getUsuarioByCode(this.id);
+                this.usuario = this.usuarioBusiness.getUsuarioByCode(this.id);
                 this.usuario = new Usuario();
             } catch (UsuarioException ex) {
                 this.usuario = new Usuario();
@@ -76,7 +76,7 @@ public class UsuarioController {
         this.usuario = usuario;
     }
 
-    public List<Usuario> getUsuarios() throws Exception {
+    public List<Usuario> getUsuarios() throws UsuarioException {
         try {
             return usuarioBusiness.listUsuario();
         } catch (UsuarioException ex) {
@@ -88,15 +88,15 @@ public class UsuarioController {
         this.roles = new ArrayList<SelectItem>();
 
         RolBusiness rolBusiness = new RolBusiness();
-        List<Rol> _roles;
+        List<Rol> rolesCollection;
 
         try {
-             _roles = rolBusiness.listRoles();
+            rolesCollection = rolBusiness.listRoles();
         } catch (RolException ex) {
-            _roles = new ArrayList<Rol>();
+            rolesCollection = new ArrayList<Rol>();
         }
 
-        for (Rol r : _roles) {
+        for (Rol r : rolesCollection) {
             roles.add(new SelectItem(r.getRolCodigo(), r.getRolNombre()));
         }
 
