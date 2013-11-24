@@ -97,14 +97,15 @@ public class CotizacionController {
         }
     }
 
-    public void eliminarProducto(Integer codProducto) throws Exception {
+    public void eliminarProducto(Integer codProducto) throws PedidoException {
         try {
             this.productoxpedidoBusinees = new ProductoxpedidoBusinees();
             ProductoxpedidoId codPedido = new ProductoxpedidoId(this.id, codProducto);
             Productoxpedido pedidoDetalle = this.productoxpedidoBusinees.getProductoxpedido(codPedido);
 
             this.productoxpedidoBusinees.deleteProductoxpedido(pedidoDetalle);
-        } catch (PedidoException ex) {
+        } catch (PedidoException ex) 
+        {
             Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
