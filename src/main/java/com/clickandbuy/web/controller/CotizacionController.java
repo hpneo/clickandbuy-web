@@ -17,6 +17,7 @@ import clickandbuy.upc.edu.core.exception.PedidoException;
 import clickandbuy.upc.edu.core.exception.ProductoException;
 import clickandbuy.upc.edu.core.exception.ProductoxpedidoException;
 import com.clickandbuy.web.util.Constantes;
+import com.clickandbuy.web.util.RoutesUtil;
 import com.clickandbuy.web.util.WebUtil;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -43,7 +44,9 @@ public class CotizacionController {
     ClienteBusiness clienteBusiness = new ClienteBusiness();
     ProductoBusiness productoBusiness = new ProductoBusiness();
     ProductoxpedidoBusinees productoxpedidoBusinees = new ProductoxpedidoBusinees();
-    private List<SelectItem> productos = new ArrayList<SelectItem>();
+    
+    String INDEX_ROUTE = "/cotizaciones";
+    String SHOW_ROUTE = "/cotizaciones/%d";
 
     public void insertar() {
         this.cotizacion.getProductoxpedidos().add(this.cotizacionDetalle);
@@ -58,7 +61,7 @@ public class CotizacionController {
                 Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            WebUtil.sendRedirect("/cotizaciones/" + this.id);
+            WebUtil.sendRedirect(String.format(SHOW_ROUTE, this.id));
         }
     }
 
@@ -94,7 +97,7 @@ public class CotizacionController {
             this.cotizacionDetalle.setId(new ProductoxpedidoId(this.cotizacion.getPedCodigo(), this.cotizacionDetalle.getProducto().getProdCodigo()));
             this.productoxpedidoBusinees.addProductoxpedido(this.cotizacionDetalle);
 
-            WebUtil.sendRedirect("/cotizaciones/" + this.id);
+            WebUtil.sendRedirect(String.format(SHOW_ROUTE, this.id));
         }
     }
 
@@ -109,7 +112,7 @@ public class CotizacionController {
             Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        WebUtil.sendRedirect("/cotizaciones/" + this.id);
+        WebUtil.sendRedirect(String.format(SHOW_ROUTE, this.id));
     }
     public int getId() {
         return id;
@@ -155,7 +158,7 @@ public class CotizacionController {
     }
 
     public List<SelectItem> getProductos() throws ProductoException {
-        this.productos = new ArrayList<SelectItem>();
+        List<SelectItem> productos = new ArrayList<SelectItem>();
 
         List<Producto> lproductos;
 
