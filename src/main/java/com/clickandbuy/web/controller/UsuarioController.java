@@ -29,7 +29,6 @@ public class UsuarioController {
     @ManagedProperty("#{param.id}")
     private int id = 0;
     private Usuario usuario = new Usuario();
-    
     UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
 
     public void insertar() throws UsuarioException {
@@ -44,7 +43,6 @@ public class UsuarioController {
 
     public void actualizar() {
         if (this.usuario != null) {
-
             WebUtil.sendRedirect("/usuarios/" + this.id);
         }
     }
@@ -65,6 +63,7 @@ public class UsuarioController {
                 this.usuario = this.usuarioBusiness.getUsuarioByCode(this.id);
                 this.usuario = new Usuario();
             } catch (UsuarioException ex) {
+                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
                 this.usuario = new Usuario();
             }
         }
@@ -80,13 +79,14 @@ public class UsuarioController {
         try {
             return usuarioBusiness.listUsuario();
         } catch (UsuarioException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             return new ArrayList<Usuario>();
         }
     }
 
     public List<SelectItem> getRoles() throws RolException {
         List<SelectItem> roles = new ArrayList<SelectItem>();
-      
+
 
         RolBusiness rolBusiness = new RolBusiness();
         List<Rol> rolesCollection;
@@ -94,6 +94,7 @@ public class UsuarioController {
         try {
             rolesCollection = rolBusiness.listRoles();
         } catch (RolException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             rolesCollection = new ArrayList<Rol>();
         }
 
