@@ -72,7 +72,7 @@ public class CategoriaController {
         try {
             return categoriaBusiness.listCategoria();
         } catch (CategoriaException ex) {
-            return new ArrayList<Categoria>();
+            throw new CategoriaException(null);
         }
     }
 }
