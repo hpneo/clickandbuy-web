@@ -30,6 +30,6 @@ public class GrowlController {
     public void login(ActionEvent actionEvent) {
         FacesContext context = FacesContext.getCurrentInstance();
 
-        context.addMessage(null, new FacesMessage(Constantes.getMENSAJE_LOGEO_CORRECTO(), Constantes.getMENSAJE_BIENVENIDA() + text));
+        context.addMessage(null, new FacesMessage(Constantes.getMENSAJELOGEOCORRECTO(), Constantes.getMENSAJEBIENVENIDA() + text));
     }
 }

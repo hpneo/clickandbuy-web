@@ -64,19 +64,19 @@ public class CotizacionController {
     }
 
     public void agregarProducto() throws Exception {
-        if (WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE()) == null) {
+        if (WebUtil.getObjectSesion(Constantes.getSESIONCLIENTE()) == null) {
             WebUtil.sendRedirect("/login");
         } else {
-            Cliente cliente = (Cliente) WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE());
+            Cliente cliente = (Cliente) WebUtil.getObjectSesion(Constantes.getSESIONCLIENTE());
 
             if (this.id == 0) {
                 this.cotizacion = new Pedido();
-                this.cotizacion.setPedTipo("cotizacion");
+                this.cotizacion.setPedTipo(Constantes.getTIPODEPEDIDO());
                 this.cotizacion.setCliente(cliente);
                 this.cotizacion.setPedFechahora(new Date());
                 this.pedidoBusiness.addPedido(this.cotizacion);
 
-                List pedidos = this.pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(), Constantes.getTIPO_DE_PEDIDO());
+                List pedidos = this.pedidoBusiness.listPedidoxClientexTipo(cliente.getCliCodigo(), Constantes.getTIPODEPEDIDO());
 
                 this.cotizacion = (Pedido) pedidos.get(pedidos.size() - 1);
 

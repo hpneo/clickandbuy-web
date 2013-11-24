@@ -7,10 +7,10 @@ package com.clickandbuy.web.util;
 public class AuthUtil {
 
     public static boolean userSignedIn() {
-        return WebUtil.getObjectSesion(Constantes.getSESION_USUARIO()) != null;
+        return WebUtil.getObjectSesion(Constantes.getSESIONUSUARIO()) != null;
     }
 
     public static boolean clienteSignedIn() {
-        return WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE()) != null;
+        return WebUtil.getObjectSesion(Constantes.getSESIONCLIENTE()) != null;
     }
 }

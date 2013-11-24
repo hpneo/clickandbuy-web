@@ -40,8 +40,11 @@ public class PedidoController {
     ClienteBusiness clienteBusiness = new ClienteBusiness();
     ProductoBusiness productoBusiness = new ProductoBusiness();
     ProductoxpedidoBusinees productoxpedidoBusinees = new ProductoxpedidoBusinees();
+<<<<<<< HEAD
     static String INDEX_ROUTE = "/pedidos";
     static String SHOW_ROUTE = "/pedidos/%d";
+=======
+>>>>>>> por
 
     public void insertar() {
         this.pedido.getProductoxpedidos().add(this.pedidoDetalle);
@@ -62,13 +65,13 @@ public class PedidoController {
     }
 
     public void agregarProducto() throws Exception {
-        if (WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE()) == null) {
+        if (WebUtil.getObjectSesion(Constantes.getSESIONCLIENTE()) == null) {
             WebUtil.sendRedirect("/login");
         } else {
-            Cliente cliente = (Cliente) WebUtil.getObjectSesion(Constantes.getSESION_CLIENTE());
+            Cliente cliente = (Cliente) WebUtil.getObjectSesion(Constantes.getSESIONCLIENTE());
             
             if (this.id == 0) {
-                this.pedido.setPedTipo("pedido");
+                this.pedido.setPedTipo(Constantes.PEDIDO());
                 this.pedido.setCliente(cliente);
                 this.pedido.setPedFechahora(new Date());
                 this.pedidoBusiness.addPedido(this.pedido);
@@ -158,7 +161,11 @@ public class PedidoController {
 
     public List<SelectItem> getProductos() {
         List<SelectItem> productos = new ArrayList<SelectItem>();
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> por
         List<Producto> productosCollection;
 
         try {

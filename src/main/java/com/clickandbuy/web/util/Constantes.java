@@ -10,109 +10,114 @@ package com.clickandbuy.web.util;
  */
 public final class Constantes {
 
-    private static int SESION_MAX = 60 * 15;
-    private static String SESION_USUARIO = "usuario";
-    private static String SESION_CLIENTE = "cliente";
-    private static String MENSAJE_BIENVENIDA = "Bienvenido";
-    private static String MENSAJE_LOGEO_CORRECTO = "Extio";
-    private static String MENSAJE_LOGEO_INCORRECTO = "Error al logearse";
-    private static String MENU_ITEM_LOGO = "logo";
-    private static String MENU_ITEM_URLLOGO = "#{resource['images/cab_logo.png']}";
-    private static String MENU_ITEM_CATEGORIAS = "Categoria";
-    private static String MENU_ITEM_URLCATEGORIAS = "categorias.xhtml";
-    private static String MENU_ITEM_USUARIOS = "Usuarios";
-    private static String MENU_ITEM_URLUSUARIOS = "usuarios.xhtml";
-    private static String MENU_ITEM_PRODUCTOS = "Productos";
-    private static String MENU_ITEM_URLPRODUCTOS = "productos.xhtml";
-    private static String MENU_ITEM_PEDIDOS = "Pedidos";
-    private static String MENU_ITEM_URLPEDIDOS = "pedidos.xhtml";
-    private static String MENU_ITEM_COTIZACIONES = "Cotizaciones";
-    private static String MENU_ITEM_URLCOTIZACIONES = "cotizaciones.xhtml";
-    private static String MENU_ITEM_EXIT = "Exit";
-    private static String MENU_ITEM_CERRAR_SESION = "Cerrar sesión";
-    private static String TIPO_DE_PEDIDO = "cotizacion";
+    private static int SESIONMAX = 60 * 15;
+    private static String SESIONUSUARIO = "usuario";
+    private static String SESIONCLIENTE = "cliente";
+    private static String MENSAJEBIENVENIDA = "Bienvenido";
+    private static String MENSAJELOGEOCORRECTO = "Extio";
+    private static String MENSAJELOGEOINCORRECTO = "Error al logearse";
+    private static String MENUITEMLOGO = "logo";
+    private static String MENUITEMURLLOGO = "#{resource['images/cablogo.png']}";
+    private static String MENUITEMCATEGORIAS = "Categoria";
+    private static String MENUITEMURLCATEGORIAS = "categorias.xhtml";
+    private static String MENUITEMUSUARIOS = "Usuarios";
+    private static String MENUITEMURLUSUARIOS = "usuarios.xhtml";
+    private static String MENUITEMPRODUCTOS = "Productos";
+    private static String MENUITEMURLPRODUCTOS = "productos.xhtml";
+    private static String MENUITEMPEDIDOS = "Pedidos";
+    private static String MENUITEMURLPEDIDOS = "pedidos.xhtml";
+    private static String MENUITEMCOTIZACIONES = "Cotizaciones";
+    private static String MENUITEMURLCOTIZACIONES = "cotizaciones.xhtml";
+    private static String MENUITEMEXIT = "Exit";
+    private static String MENUITEMCERRARSESION = "Cerrar sesión";
+    private static String TIPODEPEDIDO = "cotizacion";
+    private static String PEDIDO = "pedido";
 
-    public static int getSESION_MAX() {
-        return SESION_MAX;
+    public static String PEDIDO() {
+        return PEDIDO;
+    }
+    
+    public static int getSESIONMAX() {
+        return SESIONMAX;
     }
 
-    public static String getSESION_USUARIO() {
-        return SESION_USUARIO;
+    public static String getSESIONUSUARIO() {
+        return SESIONUSUARIO;
     }
 
-    public static String getSESION_CLIENTE() {
-        return SESION_CLIENTE;
+    public static String getSESIONCLIENTE() {
+        return SESIONCLIENTE;
     }
 
-    public static String getMENSAJE_BIENVENIDA() {
-        return MENSAJE_BIENVENIDA;
+    public static String getMENSAJEBIENVENIDA() {
+        return MENSAJEBIENVENIDA;
     }
 
-    public static String getMENSAJE_LOGEO_CORRECTO() {
-        return MENSAJE_LOGEO_CORRECTO;
+    public static String getMENSAJELOGEOCORRECTO() {
+        return MENSAJELOGEOCORRECTO;
     }
 
-    public static String getMENSAJE_LOGEO_INCORRECTO() {
-        return MENSAJE_LOGEO_INCORRECTO;
+    public static String getMENSAJELOGEOINCORRECTO() {
+        return MENSAJELOGEOINCORRECTO;
     }
 
-    public static String getMENU_ITEM_LOGO() {
-        return MENU_ITEM_LOGO;
+    public static String getMENUITEMLOGO() {
+        return MENUITEMLOGO;
     }
 
-    public static String getMENU_ITEM_URLLOGO() {
-        return MENU_ITEM_URLLOGO;
+    public static String getMENUITEMURLLOGO() {
+        return MENUITEMURLLOGO;
     }
 
-    public static String getMENU_ITEM_CATEGORIAS() {
-        return MENU_ITEM_CATEGORIAS;
+    public static String getMENUITEMCATEGORIAS() {
+        return MENUITEMCATEGORIAS;
     }
 
-    public static String getMENU_ITEM_URLCATEGORIAS() {
-        return MENU_ITEM_URLCATEGORIAS;
+    public static String getMENUITEMURLCATEGORIAS() {
+        return MENUITEMURLCATEGORIAS;
     }
 
-    public static String getMENU_ITEM_USUARIOS() {
-        return MENU_ITEM_USUARIOS;
+    public static String getMENUITEMUSUARIOS() {
+        return MENUITEMUSUARIOS;
     }
 
-    public static String getMENU_ITEM_URLUSUARIOS() {
-        return MENU_ITEM_URLUSUARIOS;
+    public static String getMENUITEMURLUSUARIOS() {
+        return MENUITEMURLUSUARIOS;
     }
 
-    public static String getMENU_ITEM_PRODUCTOS() {
-        return MENU_ITEM_PRODUCTOS;
+    public static String getMENUITEMPRODUCTOS() {
+        return MENUITEMPRODUCTOS;
     }
 
-    public static String getMENU_ITEM_URLPRODUCTOS() {
-        return MENU_ITEM_URLPRODUCTOS;
+    public static String getMENUITEMURLPRODUCTOS() {
+        return MENUITEMURLPRODUCTOS;
     }
 
-    public static String getMENU_ITEM_PEDIDOS() {
-        return MENU_ITEM_PEDIDOS;
+    public static String getMENUITEMPEDIDOS() {
+        return MENUITEMPEDIDOS;
     }
 
-    public static String getMENU_ITEM_URLPEDIDOS() {
-        return MENU_ITEM_URLPEDIDOS;
+    public static String getMENUITEMURLPEDIDOS() {
+        return MENUITEMURLPEDIDOS;
     }
 
-    public static String getMENU_ITEM_COTIZACIONES() {
-        return MENU_ITEM_COTIZACIONES;
+    public static String getMENUITEMCOTIZACIONES() {
+        return MENUITEMCOTIZACIONES;
     }
 
-    public static String getMENU_ITEM_URLCOTIZACIONES() {
-        return MENU_ITEM_URLCOTIZACIONES;
+    public static String getMENUITEMURLCOTIZACIONES() {
+        return MENUITEMURLCOTIZACIONES;
     }
 
-    public static String getMENU_ITEM_EXIT() {
-        return MENU_ITEM_EXIT;
+    public static String getMENUITEMEXIT() {
+        return MENUITEMEXIT;
     }
 
-    public static String getMENU_ITEM_CERRAR_SESION() {
-        return MENU_ITEM_CERRAR_SESION;
+    public static String getMENUITEMCERRARSESION() {
+        return MENUITEMCERRARSESION;
     }
 
-    public static String getTIPO_DE_PEDIDO() {
-        return TIPO_DE_PEDIDO;
+    public static String getTIPODEPEDIDO() {
+        return TIPODEPEDIDO;
     }
 }

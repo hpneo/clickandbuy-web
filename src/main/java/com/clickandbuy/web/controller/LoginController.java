@@ -59,8 +59,8 @@ public class LoginController implements Serializable {
             if (usuarioBusiness.autenticarUsuario(usuario.getUsuNombreusuario(), usuario.getUsuContrasenia())) {
                 usuario = usuarioBusiness.iniciarSesion(usuario.getUsuNombreusuario());
                 FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-                WebUtil.getSesion().setMaxInactiveInterval(Constantes.getSESION_MAX());
-                WebUtil.setObjectSesion(Constantes.getSESION_USUARIO(), usuario);
+                WebUtil.getSesion().setMaxInactiveInterval(Constantes.getSESIONMAX());
+                WebUtil.setObjectSesion(Constantes.getSESIONUSUARIO(), usuario);
                 
                 WebUtil.sendRedirect("/bienvenida_usuario");
             } else {
@@ -69,8 +69,8 @@ public class LoginController implements Serializable {
                     cliente.setCliContrasenia(usuario.getUsuContrasenia());
                     cliente = clienteBusiness.iniciarSesion(cliente.getCliNombreusuario());
                     FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-                    WebUtil.getSesion().setMaxInactiveInterval(Constantes.getSESION_MAX());
-                    WebUtil.setObjectSesion(Constantes.getSESION_CLIENTE(), cliente);
+                    WebUtil.getSesion().setMaxInactiveInterval(Constantes.getSESIONMAX());
+                    WebUtil.setObjectSesion(Constantes.getSESIONCLIENTE(), cliente);
                     
                     WebUtil.sendRedirect("/bienvenida_cliente");
                 }
@@ -83,8 +83,8 @@ public class LoginController implements Serializable {
     }
 
     public void logout() {
-        WebUtil.deleteObjectSession(Constantes.getSESION_USUARIO());
-        WebUtil.deleteObjectSession(Constantes.getSESION_CLIENTE());
+        WebUtil.deleteObjectSession(Constantes.getSESIONUSUARIO());
+        WebUtil.deleteObjectSession(Constantes.getSESIONCLIENTE());
 
         WebUtil.sendRedirect("/login");
     }
