@@ -133,11 +133,14 @@ public class PedidoController {
     }
 
     public List<Pedido> getPedidos() {
+        List<Pedido> pedidos = new ArrayList<Pedido>();
         try {
-            return pedidoBusiness.listPedidoxTipo("pedido");
+            pedidos = pedidoBusiness.listPedidoxTipo("pedido");
         } catch (Exception ex) {
-           throw new RuntimeException(PedidoController.class.getName(), ex);
+           Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        return pedidos;
     }
 
     public Productoxpedido getPedidoDetalle() {

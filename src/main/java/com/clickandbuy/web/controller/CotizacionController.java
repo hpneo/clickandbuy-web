@@ -43,9 +43,8 @@ public class CotizacionController {
     ClienteBusiness clienteBusiness = new ClienteBusiness();
     ProductoBusiness productoBusiness = new ProductoBusiness();
     ProductoxpedidoBusinees productoxpedidoBusinees = new ProductoxpedidoBusinees();
-    
-    String INDEX_ROUTE = "/cotizaciones";
-    String SHOW_ROUTE = "/cotizaciones/%d";
+    static String INDEX_ROUTE = "/cotizaciones";
+    static String SHOW_ROUTE = "/cotizaciones/%d";
 
     public void insertar() {
         this.cotizacion.getProductoxpedidos().add(this.cotizacionDetalle);
@@ -113,6 +112,7 @@ public class CotizacionController {
 
         WebUtil.sendRedirect(String.format(SHOW_ROUTE, this.id));
     }
+
     public int getId() {
         return id;
     }
@@ -126,7 +126,7 @@ public class CotizacionController {
             try {
                 this.cotizacion = this.pedidoBusiness.getPedido(this.id);
             } catch (PedidoException ex) {
-                throw new RuntimeException(CotizacionController.class.getName(), ex);
+                Logger.getLogger(CotizacionController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -138,11 +138,14 @@ public class CotizacionController {
     }
 
     public List<Pedido> getCotizaciones() throws PedidoException {
+        List<Pedido> cotizaciones = new ArrayList<Pedido>();
         try {
-            return pedidoBusiness.listPedidoxTipo("cotizacion");
+            cotizaciones = pedidoBusiness.listPedidoxTipo("cotizacion");
         } catch (PedidoException ex) {
-            throw new RuntimeException(CotizacionController.class.getName(), ex);
+            Logger.getLogger(CotizacionController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        return cotizaciones;
     }
 
     public Productoxpedido getCotizacionDetalle() {
@@ -159,12 +162,12 @@ public class CotizacionController {
     public List<SelectItem> getProductos() throws ProductoException {
         List<SelectItem> productos = new ArrayList<SelectItem>();
 
-        List<Producto> lproductos;
+        List<Producto> lproductos = new ArrayList<Producto>();
 
         try {
             lproductos = this.productoBusiness.listProducto();
         } catch (ProductoException ex) {
-            throw new RuntimeException(CotizacionController.class.getName(), ex);
+            Logger.getLogger(CotizacionController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         for (Producto c : lproductos) {

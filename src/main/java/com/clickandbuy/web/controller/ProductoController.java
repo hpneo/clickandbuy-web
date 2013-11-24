@@ -65,7 +65,7 @@ public class ProductoController {
             try {
                 this.producto = this.productoBusiness.getProductoByCode(this.id);
             } catch (ProductoException ex) {
-                throw new RuntimeException(ProductoController.class.getName(), ex);
+                Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return this.producto;
@@ -86,11 +86,11 @@ public class ProductoController {
     public List<SelectItem> getCategorias() throws CategoriaException {
         List<SelectItem> categorias = new ArrayList<SelectItem>();
         CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
-        List<Categoria> categoriasCollection;
+        List<Categoria> categoriasCollection = new ArrayList<Categoria>();
         try {
             categoriasCollection = categoriaBusiness.listCategoria();
         } catch (CategoriaException ex) {
-           throw new RuntimeException(ProductoController.class.getName(), ex);
+            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
         for (Categoria c : categoriasCollection) {
             categorias.add(new SelectItem(c.getCatCodigo(), c.getCatNombre()));
@@ -100,10 +100,13 @@ public class ProductoController {
     }
 
     public List<Producto> getProductos() throws ProductoException {
+        List<Producto> productos = new ArrayList<Producto>();
         try {
-            return this.productoBusiness.listProducto();
+            productos = this.productoBusiness.listProducto();
         } catch (ProductoException ex) {
-            throw new RuntimeException(ProductoController.class.getName(), ex);
+            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        return productos;
     }
 }
