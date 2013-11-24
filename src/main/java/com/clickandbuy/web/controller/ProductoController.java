@@ -32,7 +32,6 @@ public class ProductoController {
     private int id = 0;
     private Producto producto = new Producto();
     private Categoria categoria = new Categoria();
-    private List<SelectItem> categorias = new ArrayList<SelectItem>();
     private ProductoBusiness productoBusiness = new ProductoBusiness();
 
     public void insertar() throws ProductoException {
@@ -85,7 +84,7 @@ public class ProductoController {
     }
 
     public List<SelectItem> getCategorias() throws CategoriaException {
-        this.categorias = new ArrayList<SelectItem>();
+        List<SelectItem> categorias = new ArrayList<SelectItem>();
         CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
         List<Categoria> categoriasCollection;
         try {

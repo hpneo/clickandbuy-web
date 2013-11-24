@@ -29,7 +29,7 @@ public class UsuarioController {
     @ManagedProperty("#{param.id}")
     private int id = 0;
     private Usuario usuario = new Usuario();
-    private List<SelectItem> roles = new ArrayList<SelectItem>();
+    
     UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
 
     public void insertar() throws UsuarioException {
@@ -85,7 +85,8 @@ public class UsuarioController {
     }
 
     public List<SelectItem> getRoles() throws RolException {
-        this.roles = new ArrayList<SelectItem>();
+        List<SelectItem> roles = new ArrayList<SelectItem>();
+      
 
         RolBusiness rolBusiness = new RolBusiness();
         List<Rol> rolesCollection;
