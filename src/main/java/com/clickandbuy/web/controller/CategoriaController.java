@@ -72,7 +72,7 @@ public class CategoriaController {
         try {
             return categoriaBusiness.listCategoria();
         } catch (CategoriaException ex) {
-            throw new CategoriaException(null);
+            throw new RuntimeException(CategoriaController.class.getName(), ex);
         }
     }
 }
