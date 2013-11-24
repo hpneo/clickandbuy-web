@@ -40,7 +40,8 @@ public class PedidoController {
     ClienteBusiness clienteBusiness = new ClienteBusiness();
     ProductoBusiness productoBusiness = new ProductoBusiness();
     ProductoxpedidoBusinees productoxpedidoBusinees = new ProductoxpedidoBusinees();
-    private List<SelectItem> productos = new ArrayList<SelectItem>();
+    static String INDEX_ROUTE = "/pedidos";
+    static String SHOW_ROUTE = "/pedidos/%d";
 
     public void insertar() {
         this.pedido.getProductoxpedidos().add(this.pedidoDetalle);
@@ -56,7 +57,7 @@ public class PedidoController {
                 Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            WebUtil.sendRedirect("/pedidos/" + this.id);
+            WebUtil.sendRedirect(String.format(SHOW_ROUTE, this.id));
         }
     }
 
@@ -91,7 +92,7 @@ public class PedidoController {
             this.pedidoDetalle.setId(new ProductoxpedidoId(this.pedido.getPedCodigo(), this.pedidoDetalle.getProducto().getProdCodigo()));
             this.productoxpedidoBusinees.addProductoxpedido(this.pedidoDetalle);
             
-            WebUtil.sendRedirect("/pedidos/" + this.id);
+            WebUtil.sendRedirect(String.format(SHOW_ROUTE, this.id));
         }
     }
 
@@ -105,7 +106,7 @@ public class PedidoController {
             Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        WebUtil.sendRedirect("/pedidos/" + this.id);
+        WebUtil.sendRedirect(String.format(SHOW_ROUTE, this.id));
     }
 
     public int getId() {
@@ -156,7 +157,7 @@ public class PedidoController {
     }
 
     public List<SelectItem> getProductos() {
-        this.productos = new ArrayList<SelectItem>();
+        List<SelectItem> productos = new ArrayList<SelectItem>();
 
         List<Producto> productosCollection;
 
