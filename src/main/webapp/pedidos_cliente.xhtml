@@ -14,7 +14,7 @@
         <h3>#{site_labels.orders}</h3>
       </div>
       <div >
-          <h:commandButton id="pedidos_buton"  value="#{site_labels.orders_new}" action="/pedido_nuevo.xhtml"/>  
+          <h:commandButton id="pedidos_buton"  value="#{site_labels.orders_new}" action="/clientepedido_nuevo.xhtml"/>  
       </div>
     </div>
     <div class="row">
@@ -29,7 +29,7 @@
           #{pedido.productoxpedidos.size()}
         </p:column>
         <p:column headerText="#{site_labels.actions}">
-          <h:outputLink value="pedidos/#{pedido.pedCodigo}">
+          <h:outputLink value="pedidos_cliente/#{pedido.pedCodigo}">
             Editar
           </h:outputLink>
         </p:column>

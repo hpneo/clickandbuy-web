@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      template="layout_cliente.xhtml">
+  <f:loadBundle basename="site_labels" var="site_labels" />
+  <ui:define name="body">
+    <div class="row header">
+      <div class="small-2 large-4 columns">
+        <h3>#{site_labels.orders_edit}</h3>
+      </div>
+    </div>
+    <div class="row">
+      <p:dataTable id="pedido_detalles" value="#{pedidoController.pedido.productoxpedidos}" var="pedido_detalle" rows="10" emptyMessage="#{site_labels.no_records}">
+	<p:column headerText="#{site_labels.order_item_product}">
+	  #{pedido_detalle.producto.prodNombre}
+	</p:column>
+	<p:column headerText="#{site_labels.order_item_quantity}">
+	  #{pedido_detalle.propedCantidad}
+	</p:column>
+	<p:column headerText="#{site_labels.order_item_unit_price}">
+	  #{pedido_detalle.producto.prodPrecioventa}
+	</p:column>
+	<p:column headerText="#{site_labels.order_item_total_price}">
+	  #{pedido_detalle.propedPreciototal}
+	</p:column>
+	<p:column headerText="#{site_labels.actions}">
+	  <h:form>
+	    <h:commandLink value="#{site_labels.actions_delete}" action="#{pedidoController.eliminarProducto(pedido_detalle.producto.prodCodigo)}" />
+	  </h:form>
+	</p:column>
+      </p:dataTable>
+      <h:form>
+        <fieldset>
+          <legend>#{site_labels.orders_new_product}</legend>
+          <div class="row">
+            <p class="input small-6 columns">
+	      <h:outputLabel for="product_name" value="#{site_labels.order_item_product}:" />
+	      <h:selectOneMenu id="product_name" value="#{pedidoController.pedidoDetalle.producto.prodCodigo}">
+		<f:selectItems value="#{pedidoController.productos}" />
+	      </h:selectOneMenu>
+            </p>
+            <p class="input small-3 columns">
+	      <h:outputLabel for="product_quantity" value="#{site_labels.order_item_quantity}:" />
+	      <h:inputText id="product_quantity" value="#{pedidoController.pedidoDetalle.propedCantidad}" />
+            </p>
+            <p class="actions small-3 columns">
+	      <p:commandButton value="#{site_labels.add}" action="#{pedidoController.agregarProducto}" ajax="false" styleClass="small button" />
+            </p>
+          </div>
+        </fieldset>
+      </h:form>
+    </div>
+  </ui:define>
+</ui:composition>

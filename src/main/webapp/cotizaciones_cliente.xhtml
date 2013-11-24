@@ -14,7 +14,7 @@
         <h3>#{site_labels.quotes}</h3>
       </div>
       <div >
-         <h:commandButton id="cotizaciones_buton"  value="#{site_labels.quotes_new}" action="/cotizacion_nuevo.xhtml"/>  
+         <h:commandButton id="cotizaciones_buton"  value="#{site_labels.quotes_new}" action="/clientecotizacion_nuevo.xhtml"/>  
       </div>
     </div>
     <div class="row">
@@ -29,7 +29,7 @@
           #{cotizacion.productoxpedidos.size()}
         </p:column>
         <p:column headerText="#{site_labels.actions}">
-          <h:outputLink value="cotizaciones/#{cotizacion.pedCodigo}">
+          <h:outputLink value="cotizaciones_cliente/#{cotizacion.pedCodigo}">
             Editar
           </h:outputLink>
         </p:column>

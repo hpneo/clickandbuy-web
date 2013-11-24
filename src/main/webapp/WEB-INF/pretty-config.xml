@@ -70,14 +70,25 @@
     <pattern value="/usuarios/#{id}/editar" />
     <view-id value="/usuario_editar.xhtml" />
   </url-mapping>
-  
-  <url-mapping id="quotes_index">
-    <pattern value="/cotizaciones" />
-    <view-id value="/cotizaciones.xhtml" />
-  </url-mapping>
   <url-mapping id="quotes_cliente">
     <pattern value="/cotizaciones_cliente" />
     <view-id value="/cotizaciones_cliente.xhtml" />
+  </url-mapping>
+  <url-mapping id="quotes_cliente_new">
+    <pattern value="/cotizaciones_cliente/nuevo" />
+    <view-id value="/clientecotizacion_nuevo.xhtml" />
+  </url-mapping>
+  <url-mapping id="quotes_cliente_edit">
+    <pattern value="/cotizaciones_cliente/#{id}/editar" />
+    <view-id value="/clientecotizacion_editar.xhtml" />
+  </url-mapping>
+  <url-mapping id="quotes_cliente_show">
+    <pattern value="/cotizaciones_cliente/#{id}" />
+    <view-id value="/clientecotizacion_editar.xhtml" />
+  </url-mapping>
+  <url-mapping id="quotes_index">
+    <pattern value="/cotizaciones" />
+    <view-id value="/cotizaciones.xhtml" />
   </url-mapping>
   <url-mapping id="quotes_new">
     <pattern value="/cotizaciones/nuevo" />
@@ -99,6 +110,18 @@
    <url-mapping id="orders_cliente">
     <pattern value="/pedidos_cliente" />
     <view-id value="/pedidos_cliente.xhtml" />
+  </url-mapping>
+  <url-mapping id="orderscliente_new">
+    <pattern value="/pedidos_cliente/nuevo" />
+    <view-id value="/clientepedido_nuevo.xhtml" />
+  </url-mapping>
+  <url-mapping id="orderscliente_show">
+    <pattern value="/pedidos_cliente/#{id}" />
+    <view-id value="/clientepedido_editar.xhtml" />
+  </url-mapping>
+  <url-mapping id="orderscliente_edit">
+    <pattern value="/pedidos_cliente/#{id}/editar" />
+    <view-id value="/clientepedido_editar.xhtml" />
   </url-mapping>
   <url-mapping id="orders_new">
     <pattern value="/pedidos/nuevo" />

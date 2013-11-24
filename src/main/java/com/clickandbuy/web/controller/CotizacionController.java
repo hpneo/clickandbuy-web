@@ -43,8 +43,8 @@ public class CotizacionController {
     ClienteBusiness clienteBusiness = new ClienteBusiness();
     ProductoBusiness productoBusiness = new ProductoBusiness();
     ProductoxpedidoBusinees productoxpedidoBusinees = new ProductoxpedidoBusinees();
-    static String INDEX_ROUTE = "/cotizaciones";
-    static String SHOW_ROUTE = "/cotizaciones/%d";
+    static String INDEX_ROUTE = "/cotizaciones_cliente";
+    static String SHOW_ROUTE = "/cotizaciones_cliente/%d";
 
     public void insertar() {
         this.cotizacion.getProductoxpedidos().add(this.cotizacionDetalle);

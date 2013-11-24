@@ -40,8 +40,8 @@ public class PedidoController {
     ClienteBusiness clienteBusiness = new ClienteBusiness();
     ProductoBusiness productoBusiness = new ProductoBusiness();
     ProductoxpedidoBusinees productoxpedidoBusinees = new ProductoxpedidoBusinees();
-    static String INDEX_ROUTE = "/pedidos";
-    static String SHOW_ROUTE = "/pedidos/%d";
+    static String INDEX_ROUTE = "/pedidos_cliente";
+    static String SHOW_ROUTE = "/pedidos_cliente/%d";
     static String TIPO_PEDIDO = "pedido";
 
     public void insertar() {
